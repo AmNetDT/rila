@@ -1,0 +1,5 @@
+depot is the location
+tm is the coordinator 
+schooltype is the type of schools (First Degree, Master Degree, Special Courses)
+
+
