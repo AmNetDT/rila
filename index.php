@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Favicon icon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="src/image/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="src/assets/images/favicon.png" />
   <title>RILA</title>
-  <link href="src/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="src/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="src/css/style.css" rel="stylesheet" />
 </head>
 <body>
@@ -18,7 +18,7 @@
             
             <div class="card-body px-4 mb-5 text-center">
               
-              <img src="src/image/logo.png" alt="logo" class="logo" />
+              <img src="src/assets/images/logo.png" alt="logo" class="logo" />
               <p class="login-card-description mt-2">
                 <a href="login/index">
               Login to your account</a></p>
