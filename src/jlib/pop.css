@@ -19,7 +19,7 @@
 .myPop-title {
     font-size: 13px;
     color: #FFF;
-    background: #284E90;
+    background: #535353; /*#284E90*/
     margin: 0;
     padding: 10px;
     cursor: move;

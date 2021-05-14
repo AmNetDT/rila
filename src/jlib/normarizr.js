@@ -176,7 +176,7 @@ $(document).ready(function() {
 
             $.ajax({
                 type: "POST",
-                url: "users/editusers",
+                url: "filesmanagers/users/editusers",
                 data: req,
                 cache: false,
                 success: function(msg) {
@@ -200,19 +200,19 @@ $(document).ready(function() {
         }
     })
 
-    $(document).on('click', '.sys_regts', function() {
+    $(document).on('click', '.reg_campus', function() {
         $("#loader_httpFeed").show();
         if (!ajaxLoadingUsers) {
 
             ajaxLoadingUsers = true;
             $.ajax({
                 type: "POST",
-                url: "users/register",
+                url: "view/new_campus/register",
                 cache: false,
                 success: function(msg) {
                     $("#loader_httpFeed").hide();
                     new top.PopLayer({
-                        "title": "Register Users",
+                        "title": "Add Campus",
                         "content": msg
                     });
                     ajaxLoadingUsers = false;
@@ -585,155 +585,7 @@ $(document).ready(function() {
         return false;
     })
 
-    let userRegistration = () => {
-
-        if ($(".f_name").val() === "") {
-            dalert.alert("Please enter first name");
-        } else if ($(".l_name").val() === "") {
-            dalert.alert("Please enter last name");
-        } else if ($(".i_mei").val() === "") {
-            dalert.alert("Please enter Device imei");
-        } else if ($(".cust_codes").val() === "") {
-            dalert.alert("Please enter Customer Code");
-        } else if ($(".e_codes").val() === "") {
-            dalert.alert("Please enter ED Code");
-        } else if ($(".u_i_users").val() === "") {
-            dalert.alert("Please enter username");
-        } else if ($(".u_i_pass").val() === "") {
-            dalert.alert("Please enter password");
-        } else {
-            if ($(".insert_hidden_i").val() === "1") {
-                userProcessReg();
-            } else {
-                editProcessReg();
-            }
-        }
-    }
-
-    let editProcessReg = () => {
-        $("#loader_httpFeed").show();
-        $.ajax({
-            type: "POST",
-            url: "filesmanagers/users/editserver.php",
-            data: $('.reg_Serialise_i').serialize(),
-            dataType: "json",
-            success: function(xhr) {
-                if (xhr.status == "200") {
-                    dalert.alert(xhr.msg);
-                    //Reload that page again
-                }
-            },
-            error: function(xhr) {
-                if (xhr.status == 404) {
-                    $("#loader_httpFeed").hide();
-                    dalert.alert("internet connection working");
-                } else {
-                    $("#loader_httpFeed").hide();
-                    dalert.alert("internet is down");
-                }
-            }
-        });
-        $("#loader_httpFeed").hide();
-        return false;
-    }
-
-    let userProcessReg = () => {
-        $("#loader_httpFeed").show();
-        $.ajax({
-            type: "POST",
-            url: "filesmanagers/users/registerserver.php",
-            data: $('.reg_Serialise_i').serialize(),
-            dataType: "json",
-            success: function(xhr) {
-
-                if (xhr.status == "200") {
-                    dalert.alert(xhr.msg);
-                    $(".drclear").val("");
-                } else {
-                    dalert.alert(xhr.msg);
-                }
-            },
-            error: function(xhr) {
-                if (xhr.status == 404) {
-                    $("#loader_httpFeed").hide();
-                    dalert.alert("internet connection working");
-                } else {
-                    $("#loader_httpFeed").hide();
-                    dalert.alert("internet is down");
-                }
-            }
-        });
-        $("#loader_httpFeed").hide();
-        return false;
-    }
-
-    $(document).on('click', '.passSet', function() {
-        let key = Math.floor(Math.random() * (Math.pow(10, 4)));
-        $('.setPassword').val(key);
-        return false;
-    })
-
-    $(document).on('click', '.userSet', function() {
-        if ($(".f_name").val() === "" || $(".l_name").val() === "") {
-            dalert.alert("Please enter first and last name to generate username");
-        } else {
-            let key = usernameGenerator();
-            $('.setUsername').val(key);
-        }
-        return false;
-    })
-
-    let usernameGenerator = () => {
-        let prefix = "@mt3.com";
-        let usersnames = $(".f_name").val();
-        let append = $(".l_name").val();
-        let small = usersnames + '.' + append.charAt(0) + prefix;
-        return small.toLowerCase();
-    }
-
-    $(document).on('click', '#logB', function() {
-
-        let usrs = $(".login_userName").val();
-        let paswd = $(".login_userPass").val();
-        if (usrs === "") {
-            dalert.alert('Please enter username');
-        } else if (paswd === "") {
-            dalert.alert('Please enter username');
-        } else {
-
-            let req = {
-                users: usrs,
-                pass: paswd
-            };
-
-            $("#loader_httpFeed").show();
-            $.ajax({
-                type: "POST",
-                url: "filesmanagers/login/login",
-                data: req,
-                dataType: "json",
-                cache: false,
-                success: function(msg) {
-                    if (msg.status === "400") {
-                        dalert.alert(msg.msg);
-                    } else {
-                        location.href = msg.url;
-                    }
-                },
-                error: function(xhr) {
-                    if (xhr.status == 404) {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet connection working");
-                    } else {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet is down");
-                    }
-                }
-            });
-        }
-        return false;
-    })
-
+   
     $(document).on('click', '.dlete_mod_remove', function() {
         $("#loader_httpFeed").show();
         let id = $(this).attr("id");
@@ -1438,76 +1290,7 @@ $(document).ready(function() {
         });
     })
 
-    $(document).on('click', '.approve_001_002_defaultToken', function() {
-
-        $("#loader_httpFeed").show();
-        let id = $(this).attr("id");
-
-        let res = {
-            urno: $('#custid00_01' + id).val(),
-            id: id,
-            separator: 1
-        }
-
-        $.ajax({
-            type: "GET",
-            url: "http://mt3api.com:9000/api/validate/sendfaulttoken",
-            data: res,
-            dataType: "json",
-            cache: false
-        });
-
-        $("#loader_httpFeed").hide();
-        $(".btn_manager_model_customers_default" + id).fadeOut()
-
-    })
-
-    $(document).on('click', '.decline_001_002_defaultToken', function() {
-
-        $("#loader_httpFeed").show();
-        let id = $(this).attr("id");
-
-        let res = {
-            urno: $('#custid00_01' + id).val(),
-            id: id,
-            separator: 2
-        }
-
-        $.ajax({
-            type: "GET",
-            url: "http://mt3api.com:9000/api/validate/sendfaulttoken",
-            data: res,
-            dataType: "json",
-            cache: false
-        });
-
-        $("#loader_httpFeed").hide();
-        $(".btn_manager_model_customers_default" + id).fadeOut()
-    })
-
-    setInterval(function() {
-
-        let region = $("#regionID_008678").val();
-        let res = {
-            region: region
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "http://mt3api.com:9000/api/validate/defaulttokencount",
-            data: JSON.stringify(res),
-            contentType: 'application/json',
-            dataType: 'json',
-            success: function(data) {
-                let count = data
-                $('#notification_icon').html(count.counts)
-            }
-        });
-    }, 1000 * 10);
-
-
-
-
+    
     $(document).on('click', '.btn_tm_outlets_fetch_all', function() {
         $("#loader_httpFeed").show();
         let employeeid = $(this).attr("lang");

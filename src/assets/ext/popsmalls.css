@@ -8,7 +8,6 @@
     opacity: 0.3;
     display: none;
 	z-index:5
-	
 }
 
 .myPop {
@@ -20,7 +19,7 @@
 .myPop-title {
     font-size: 13px;
     color: #FFF;
-    background: #284E90;
+    background: #535353;
     margin: 0;
     padding: 10px;
     cursor: move;
@@ -39,9 +38,6 @@
 	font-size: 15px;
 }
 
-
-
-
 .myPop-content {
     width: 800px;
 	height: 500px;
@@ -50,6 +46,3 @@
 	overflow:auto;
 	padding-top:20px;
 }
-
-
-

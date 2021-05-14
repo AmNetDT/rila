@@ -26,7 +26,7 @@ class Validate {
                             }
                             break;
                         case 'max':
-                            if(strlen($value) < $rule_value){
+                            if(strlen($value) > $rule_value){
                                 $this->addError("{$item} must be a maximum of ($rule_value)");
                             }
                             break;

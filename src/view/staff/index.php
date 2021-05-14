@@ -89,5 +89,3 @@ if($user->isLoggedIn()){
  
 
 
-
-

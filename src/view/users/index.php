@@ -34,9 +34,9 @@ if($user->isLoggedIn()){
         <h3>Manage User</h3>
         <div class="row">
           <div class="container">
-            <div id="btn_c" style="float:left">
-        <button class="sys_regts border my-2 " type="submit"><span class="icon-plus"> Add User</span></button>
-      </div>
+            
+                <a href="http://localhost/rila/rila/login/register">Click here to register!</a>
+            
 <div class="table-responsive">
 <?php
 
@@ -55,7 +55,6 @@ if($user->isLoggedIn()){
                 <th>Privilege</th>
                 <th>School</th>
                 <th>Location</th>
-                <th>Status</th>
                 <th>Created</th>
                 <th>&nbsp;</th>
             </tr>
@@ -96,20 +95,6 @@ if($user->isLoggedIn()){
                        print $location->name;
 
                        }
-                ?></td>
-                <td><?php
-
-                        $activated = $user->status;
-                        if($activated>0){
-
-                            echo "Active";
-
-                        }else{
-
-                            echo "Deactivated";
-
-                        }
-                       
                 ?></td>
                 <td><?php echo $user->joined; ?></td>
                 <td>

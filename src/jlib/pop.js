@@ -106,7 +106,7 @@
 				"myPop": $("<div class='myPop'>" +
                                 "<h2 class='myPop-title'>" +
                                     "<span class='myPop-title-value'></span>" + 
-                                    "<span class='myPop-close'><img src='customerManagement/jlib/cancel_icon.png' /></span>" +  
+                                    "<span class='myPop-close'><span class='fa fa-times text-white'></span></span>" +
                                 "</h2>" + 
                                 "<div class='myPop-content'>" + this.content + "</div>" + 
                            "</div>", this.document)

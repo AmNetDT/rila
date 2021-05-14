@@ -25,7 +25,8 @@
         <div class="row">
           <div class="container">
 			<div class="table-responsive" style="font-size:0.81rem">
-							
+			
+				
 				<table id="user_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -48,60 +49,10 @@
 </div>
 </div>
 
-
-<div id="userModal" class="modal fade">
-	<div class="modal-dialog">
-		<form method="post" id="user_form" enctype="multipart/form-data">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add User</h4>
-				</div>
-				<div class="modal-body">
-					<label>Enter First Name</label>
-					<input type="text" name="firstname" id="firstname" class="form-control" />
-					<br />
-					<label>Enter Last Name</label>
-					<input type="text" name="lastname" id="lastname" class="form-control" />
-					<br />
-					<label>Select User Image</label>
-					<input type="file" name="user_image" id="user_image" />
-					<span id="user_uploaded_image"></span>
-				</div>
-				<div class="modal-footer">
-					<input type="hidden" name="user_id" id="user_id" />
-					<input type="hidden" name="operation" id="operation" />
-					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
-
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(event){
 		
-	var dataTable = $('#user_data').DataTable({
-		"processing":true,
-		"serverSide":true,
-		"order":[],
-		"ajax":{
-			url:"view/students/fetch.php",
-			type:"POST"
-		},
-		"columnDefs":[
-			{
-				"targets":[0, 3, 4],
-				"orderable":false,
-			},
-		],
 		
-
-	});
-
-	
-			
 	$(document).on('click', '.update', function(){
 		var user_id = $(this).attr("id");
 		$.ajax({
@@ -114,7 +65,7 @@ $(document).ready(function(event){
 				$('#userModal').modal('show');
 				$('#firstname').val(data.firstname);
 				$('#lastname').val(data.lastname);
-				$('.modal-title').text("Edit Student");
+				$('.modal-title').text("Edit User");
 				$('#user_id').val(user_id);
 				$('#user_uploaded_image').html(data.user_image);
 				$('#action').val("Edit");
@@ -123,28 +74,6 @@ $(document).ready(function(event){
 		})
 	});
 	
-	$(document).on('click', '.delete', function(event){
-		var user_id = $(this).attr("id");
-		if(confirm("Are you sure you want to delete this?"))
-		{
-			$.ajax({
-				url:"view/students/delete.php",
-				method:"POST",
-				data:{user_id:user_id},
-				success:function(data)
-				{
-					console.log(data);
-					dataTable.ajax.reload();
-				}
-			});
-			
-		event.preventDefault();
-		}
-		else
-		{
-			return false;	
-		}
-	});
 	
 	event.preventDefault();
 });

@@ -178,21 +178,47 @@ if(!$user->isLoggedIn()){
                     <div class="tree">
                     <ul id="sidebarnav">
                       <li><a>User Management</a>
-			                <ul>
-                                <li class="_mc">
-                            <a class="waves-effect waves-dark menutree" href="javascript:void(0)" id="view/new_campus" aria-expanded="false">
-                                <span class="hide-menu">Add New Campus</span>
+			            <ul>
+                        <li>
+                            <a class="waves-effect waves-dark menutree pl-4">
+                                <span class="hide-menu">All Campus</span>
                             </a>
+			                <ul style="margin-left:-15px;">
+                                <li class="_mc">
+                                <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/new_campus" aria-expanded="false">
+                                    <span class="hide-menu">Campus</span>
+                                </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="_mc">
-                            <a class="waves-effect waves-dark menutree" href="javascript:void(0)" id="view/users" aria-expanded="false">
+                        <li>
+                            <a class="waves-effect waves-dark menutree pl-4">
                                 <span class="hide-menu">Manage Users</span>
                             </a>
+                            <ul style="margin-left:-15px;">
+                                    <!--li class="_mc">
+                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/register" aria-expanded="false">
+                                            <span class="hide-menu"> Add New User</span>
+                                        </a>
+                                    </li!-->
+                                    <li class="_mc">
+                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/" aria-expanded="false">
+                                            <span class="hide-menu"> Users</span>
+                                        </a>
+                                    </li>
+                                </ul>
                         </li>
-                         <li class="_mc">
-                            <a class="waves-effect waves-dark menutree" href="javascript:void(0)" id="view/staff" aria-expanded="false">
-                                <span class="hide-menu"> Staff Record</span>
+                         <li>
+                            <a class="waves-effect waves-dark menutree pl-4">
+                                <span class="hide-menu">Staff</span>
                             </a>
+                            <ul style="margin-left:-15px;">
+                                    <li class="_mc">
+                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/staff" aria-expanded="false">
+                                            <span class="hide-menu"> Record</span>
+                                        </a>
+                                    </li>
+                            </ul>
                         </li>
                         <li>
                             <a class="waves-effect waves-dark menutree pl-4">
