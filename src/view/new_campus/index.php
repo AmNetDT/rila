@@ -17,6 +17,7 @@ if ($user->isLoggedIn()) {
   <script>
     $(document).ready(function() {
       $('#abdganiu').DataTable();
+      
     });
   </script>
   <!-- End datatable !-->
@@ -38,7 +39,7 @@ if ($user->isLoggedIn()) {
           <div class="row">
             <div class="container">
               <div id="btn_c" style="float:left">
-                <button class="reg_campus border my-2 " type="submit"><span class="icon-plus"> Add Campus</span></button>
+                <button class="reg_campus border my-2 " type="submit"><span class="icon-plus"> Create New Campus</span></button>
 
               </div>
               <div class="table-responsive">
@@ -71,7 +72,7 @@ if ($user->isLoggedIn()) {
 
                       ?>
                         <tr>
-                          <td><?php echo $i++;  ?></td>
+                          <td><?php echo $i++; ?></td>
                           <td><?php echo $location->name; ?></td>
                           <td><?php echo $location->address; ?></td>
                           <td><?php echo $location->phone; ?></td>
@@ -79,8 +80,8 @@ if ($user->isLoggedIn()) {
                           <td><?php echo $location->added_by; ?></td>
                           <td><?php echo $location->created; ?></td>
                           <td>
-                            <div id="btn_c" style="float:left;">
-                              <button class="btn btn_regis_01 border"><span class="fa fa-edit"></span></button>
+                            <div id="" style="float:left;">
+                              <button type="submit" id="<?php echo $location->id; ?>" class="edit_campus btn border rst<?php echo $location->id; ?>" lang="<?php echo $location->name; ?>"><span class="fa fa-edit"></span></button>
                             </div>
                           </td>
                         </tr>

@@ -22,172 +22,33 @@ $(document).ready(function() {
         //}
     })
 
-    $(document).on('click', '.btn_permit_02', function() {
-        //let ct = $('.permit_all_checks:checked').size();
-        let counts = $(".counts_permission").val();
-        //let def = counts-ct;
-        //if(def > 0){
-        outletUpdatePermission(counts);
-        //}
-    })
 
-    let outletUpdatePermission = (count) => {
 
+    $(document).on('click', '.edit_campus', function () {
         $("#loader_httpFeed").show();
-        let mCount = Number(count) + 1;
-        let usesArray = [];
-        let i = 1;
-
-        for (i; i < mCount; i++) {
-            let monVals;
-            if ($(".permitOutlet" + i).is(':checked')) {
-                monVals = $(".permitOutlet" + i).val() + '~true';
-            } else {
-                monVals = $(".permitOutlet" + i).val() + '~false';
-            }
-            usesArray.push(monVals);
-        }
-
-        let req = {
-            outletid: usesArray
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "filesmanagers/outlet_permission/salesserver.php",
-            data: req,
-            dataType: "json",
-            cache: false,
-            success: function(resp) {
-                $("#loader_httpFeed").hide();
-                dalert.alert(resp.msg);
-            },
-            error: function(xhr) {
-                if (xhr.status == 404) {
-                    $("#loader_httpFeed").hide();
-                    dalert.alert("internet connection working");
-                } else {
-                    $("#loader_httpFeed").hide();
-                    dalert.alert("internet is down");
-                }
-            }
-        });
-    }
-
-    $(document).on('click', '.chkll_permits', function() {
-        if ($(this).is(":checked")) {
-            $(".permit_all_checks").prop("checked", true);
-        } else if ($(this).is(":not(:checked)")) {
-            $(".permit_all_checks").prop("checked", false);
-        }
-    });
-
-
-    $(document).on('click', '.btn_outlet_update_permission', function() {
-        $("#loader_httpFeed").show();
-        let id = $(this).attr("id");
-        let username = $(this).attr("lang");
-
-        if (!ajaxLoadingOutletUpdatePermission) {
-
-            ajaxLoadingOutletUpdatePermission = true;
-
-            let req = {
-                id: id
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "filesmanagers/outlet_permission/lightbox_outlet_permission.php",
-                data: req,
-                cache: false,
-                success: function(msg) {
-                    $("#loader_httpFeed").hide();
-                    new top.PopLayer({
-                        "title": `Outlet Update Permission-> ${username.toUpperCase()}`,
-                        "content": msg
-                    });
-                    ajaxLoadingOutletUpdatePermission = false;
-                },
-                error: function(xhr) {
-                    if (xhr.status == 404) {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet connection working");
-                    } else {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet is down");
-                    }
-                }
-            });
-        }
-    })
-
-    $(document).on('click', '.users_app_modules_dev', function() {
-        $("#loader_httpFeed").show();
-        let username = $(this).attr("lang");
+        let name = $(this).attr("lang");
         let id = $(this).attr("id");
 
-        if (!ajaxLoadingModules) {
 
-            ajaxLoadingModules = true;
-
-            let req = {
-                employee_id: id
-            }
-
+        if (!ajaxLoadingUsers) {
+           
+            ajaxLoadingUsers = true;
             $.ajax({
                 type: "POST",
-                url: "filesmanagers/user_modules/module_light_box",
-                data: req,
+                url: "view/new_campus/update",
+                data: {
+                    campus_id:id
+                },
                 cache: false,
-                success: function(msg) {
+                success: function (msg) {
                     $("#loader_httpFeed").hide();
                     new top.PopLayer({
-                        "title": `Users App Module -> ${username.toUpperCase()}`,
+                        "title": `Update Campus -> ${name.toUpperCase()}`,
                         "content": msg
                     });
-                    ajaxLoadingModules = false;
+                    ajaxLoadingUsers = false;
                 },
-                error: function(xhr) {
-                    if (xhr.status == 404) {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet connection working");
-                    } else {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet is down");
-                    }
-                }
-            });
-        }
-    })
-
-    $(document).on('click', '.sys_edit_users', function() {
-        $("#loader_httpFeed").show();
-        let username = $(this).attr("lang");
-        let id = $(this).attr("id");
-
-        if (!ajaxLoadingUsersEdit) {
-
-            ajaxLoadingUsersEdit = true;
-
-            let req = {
-                employee_id: id
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "filesmanagers/users/editusers",
-                data: req,
-                cache: false,
-                success: function(msg) {
-                    $("#loader_httpFeed").hide();
-                    new top.PopLayer({
-                        "title": `Edit User Info -> ${username.toUpperCase()}`,
-                        "content": msg
-                    });
-                    ajaxLoadingUsersEdit = false;
-                },
-                error: function(xhr) {
+                error: function (xhr) {
                     if (xhr.status == 404) {
                         $("#loader_httpFeed").hide();
                         dalert.alert("internet connection working");
@@ -207,12 +68,12 @@ $(document).ready(function() {
             ajaxLoadingUsers = true;
             $.ajax({
                 type: "POST",
-                url: "view/new_campus/register",
+                url: "view/new_campus/create_campus",
                 cache: false,
                 success: function(msg) {
                     $("#loader_httpFeed").hide();
                     new top.PopLayer({
-                        "title": "Add Campus",
+                        "title": "Create New Campus",
                         "content": msg
                     });
                     ajaxLoadingUsers = false;
