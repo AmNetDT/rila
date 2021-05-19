@@ -17,7 +17,7 @@ if ($user->isLoggedIn()) {
   <script>
     $(document).ready(function() {
       $('#abdganiu').DataTable();
-      
+
     });
   </script>
   <!-- End datatable !-->
@@ -42,7 +42,7 @@ if ($user->isLoggedIn()) {
                 <button class="reg_campus border my-2 " type="submit"><span class="icon-plus"> Create New Campus</span></button>
 
               </div>
-              <div class="table-responsive">
+              <div class="table-responsive data-font">
                 <?php
 
                 $locations = Db::getInstance()->query("SELECT * FROM locations");
