@@ -31,7 +31,7 @@ if($user->isLoggedIn()){
         <?php
 
         $username = escape($user->data()->username);
-        $staff = Db::getInstance()->query("SELECT * FROM `staff_record` WHERE `employee_id`='$username'");
+        $staff = Db::getInstance()->query("SELECT * FROM `staff_record` WHERE `member_id`='$username'");
 
         if($staff->count()){
            foreach($staff->results() as $staff){

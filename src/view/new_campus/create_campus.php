@@ -44,7 +44,7 @@
             ?>
            <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
            <div id="submitButton">
-             <button type="button" id="save" class="btn btn-primary px-5 mb-3">
+             <button type="button" id="save" class="btn btn-light px-5 mb-3">
                Save
              </button>
            </div>

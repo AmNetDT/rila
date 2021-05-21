@@ -28,8 +28,9 @@ class User{
             $this->find($user);
         }
     }
-    public function create($fields = array()){
-        if(!$this->_db->insert('users', $fields)){
+    public function create($table, $fields = array()){
+       // if(!$this->_db->insert('users', $fields)){
+         if(!$this->_db->insert($table, $fields)){
             throw new Exception('There was problem creating an account');
         }
     }
@@ -60,11 +61,11 @@ class User{
                
                if($remember){
                     $hash = Hash::unique();
-                    $hashCheck = $this->_db->get('user_session', array('user_id', '=', $this->data()->id));
+                    $hashCheck = $this->_db->get('user_session', array('member_id', '=', $this->data()->id));
                     
                     if(!$hashCheck->count()){
                         $this->_db->insert('user_session', array(
-                            'user_id'   => $this->data()->id,
+                            'member_id'   => $this->data()->id,
                             'hash'      => $hash 
                         ));
                     } else{
@@ -85,7 +86,7 @@ class User{
    }
 
    public function logout(){
-       $this->_db->delete('user_session', array('user_id', '=', $this->data()->id));
+       $this->_db->delete('user_session', array('member_id', '=', $this->data()->id));
 
        Session::delete($this->_sessionName);
        Cookie::delete($this->_cookieName);

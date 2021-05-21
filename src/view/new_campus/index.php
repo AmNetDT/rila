@@ -38,8 +38,8 @@ if ($user->isLoggedIn()) {
 
           <div class="row">
             <div class="container">
-              <div id="btn_c" style="float:left">
-                <button class="reg_campus border my-2 " type="submit"><span class="icon-plus"> Create New Campus</span></button>
+              <div id="btn_c" style="text-align: right;">
+                <button class="reg_campus border my-2 " type="submit"><span class="fa fa-plus"> Create New Campus</span></button>
 
               </div>
               <div class="table-responsive data-font">

@@ -1,10 +1,13 @@
 <?php
 require_once '../../core/init.php';
 
+$member_id = $_POST['username'];
+$syscategory = $_POST['syscategory'];
 $user = new User();
 
 
   if (Input::exists()) {
+  
     if (Token::check(Input::get('token'))) {
       $validate = new Validate();
       $validation = $validate->check($_POST, array(
@@ -37,7 +40,7 @@ $user = new User();
         $salt = Hash::salt(32);
         
         try {
-          $user->create(array(
+          $user->create('users', array(
             'username'      => Input::get('username'),
             'syscategory'   => Input::get('syscategory'),
             'school'        => Input::get('school'),
@@ -46,11 +49,30 @@ $user = new User();
             'salt'          => $salt,
             'joined'        => date('Y-m-d H:i:s')
           ));
-          echo 'You have successfully registered';
+
+        if(Input::get('syscategory') != 5){// syscategory 5 is student
+
+                $user->create('staff_record', array(
+                  'member_id' => Input::get('username')
+                ));
+                echo 'You have successfully registered a staff';
+
+        }else{
+
+                $user->create('students_record', array(
+                  'member_id' => Input::get('username')
+                ));
+                echo 'You have successfully registered a student';
+        }
+          
           
         } catch (Exception $e) {
           die($e->getMessage());
         }
+
+      
+        
+
       } else {
 
         foreach ($validation->errors() as $error) {
@@ -59,4 +81,6 @@ $user = new User();
       }
     }
   }
+
+
 

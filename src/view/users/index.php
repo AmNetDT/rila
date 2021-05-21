@@ -21,12 +21,7 @@ if ($user->isLoggedIn()) {
   </script>
   <!-- End datatable !-->
 
-  <div id="body_general">
-    <div id="accounttile">
-      <div class="col-sm-12 col-sm-6">
-        <span id="close" class="fa fa-close p-1 btn-danger text-lg"></span>
-      </div>
-    </div>
+  
 
     <div class="container">
       <div class="jumbotron jumbotron-fluid pt-3 bg-white">
@@ -34,9 +29,11 @@ if ($user->isLoggedIn()) {
           <h3>Manage User</h3>
           <div class="row">
             <div class="container">
-              
-                <button id="" class="_view fa fa-plus btn btn-default border mb-1"> Add User</button>
-              
+              <div id="btn_c" style="text-align: right;">
+                <button class="reg_user border mb-1" type="submit">
+                  <span class="fa fa-plus"> Add User</span>
+                </button>
+              </div>
 
 
               <div class="table-responsive data-font">
@@ -120,7 +117,7 @@ if ($user->isLoggedIn()) {
         </div>
       </div>
     </div>
-  </div>
+  
 
 <?php
 
@@ -132,34 +129,3 @@ if ($user->isLoggedIn()) {
 
 ?>
 
-
-<!-- page loader !-->
-<script>
-  
-  $("#loader_httpFeed").hide();
-  $(document).on('click', '._view', function(e) {
-
-
-    $("#loader_httpFeed").show();
-    $.ajax({
-      type: "POST",
-      url: "view/users/register",
-      cache: false,
-      success: function(msg) {
-        $("#contentbar_inner").html(msg);
-        $("#loader_httpFeed").hide();
-      },
-      error: function(xhr) {
-        if (xhr.status == 404) {
-          $("#loader_httpFeed").hide();
-          dalert.alert("internet connection working");
-        } else {
-          $("#loader_httpFeed").hide();
-          dalert.alert("internet is down");
-        }
-      }
-    });
-    return false;
-    e.preventDefault();
-  });
-</script>

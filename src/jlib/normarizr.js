@@ -4,13 +4,43 @@ var ajaxLoadingIssue = false;
 var ajaxLoadingUsers = false;
 var ajaxLoadingUsersEdit = false;
 var ajaxStaffDetailsView = false;
-var ajaxLoadingOutletUpdatePermission = false;
-var ajaxLoadingCustomersCards = false;
-var ajaxLoadingOutletCards = false;
-var ajaxLoadingCompitition = false;
+var ajaxRegisterNewUser= false;
 
 
 $(document).ready(function() {
+
+    //Create New User Pop up Window with Ajax jquery
+    $(document).on('click', '.reg_user', function (e) {
+        $("#loader_httpFeed").show();
+        
+        if (!ajaxRegisterNewUser) {
+
+            ajaxRegisterNewUser = true;
+            $.ajax({
+                type: "POST",
+                url: "view/users/register",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Create New User",
+                        "content": msg
+                    });
+                    ajaxRegisterNewUser = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+        e.preventDefault();
+    })
 
     //Create Campus Pop up Window with Ajax jquery
     $(document).on('click', '.reg_campus', function () {

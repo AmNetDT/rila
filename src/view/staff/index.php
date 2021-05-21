@@ -69,7 +69,7 @@ if ($user->isLoggedIn()) {
                       ?>
                         <tr>
                           <td><?php echo $i++; ?></td>
-                          <td><?php echo $staff->employee_id ?></td>
+                          <td><?php echo $staff->member_id ?></td>
                           <td><?php echo $staff->firstname . " " . $staff->lastname ?></td>
                           <td><?php echo $staff->category ?></td>
                           <td><?php echo $staff->location ?></td>
@@ -84,11 +84,15 @@ if ($user->isLoggedIn()) {
                             </div>
                           </td>
                         </tr>
+              <?php
 
+                      }
+                      
+              ?>
                     </tbody>
                   </table>
               <?php
-                      }
+                      
                     }
               ?>
               </div>

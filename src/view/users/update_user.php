@@ -81,16 +81,16 @@
                          </div>
                          <div class="form-group">
                              <label for="password" class="sr-only">Password</label>
-                             <input type="password" name="password" id="password" value="<?php echo $use->password; ?>" class="form-control" />
+                             <input type="password" name="password" id="password" class="form-control" />
                          </div>
                          <div class="form-group">
                              <label for="confirm_password" class="sr-only">Confirm Password</label>
-                             <input type="password" name="confirm_password" id="confirm_password" value="<?php echo $use->password; ?>" class="form-control" />
+                             <input type="password" name="confirm_password" id="confirm_password" class="form-control" />
                          </div>
                          <input type="hidden" name="user_id" id="user_id" value="<?php echo $use->id; ?>" />
                          <div id="submitButton">
-                             <button type="button" id="save" class="btn btn-primary px-5 mb-3">
-                                 Update
+                             <button type="button" id="save" class="btn btn-light mb-3">
+                                 <span class="fa fa-edit"> Update</span>
                              </button>
                              <input type="hidden" name="token" id="token" value="<?php echo Token::generate() ?>" />
                          </div>
