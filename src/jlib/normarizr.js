@@ -240,6 +240,58 @@ $(document).ready(function() {
     });
    
 
+    //User/Student Delete Confirm Message box with Ajax jquery
+    $(document).on('click', '.delete_user_or_student', function () {
+        let _id = $(this).attr("id");
+        let syscategory = $(this).attr("lang");
+        let member_id = $(this).attr("title");
+
+        //alert(member_id)
+        dalert.ReplaceConfirm();
+
+        confirm("Are you sure you want to delete the user completely from the system?", "Confirm Delete!", function (result) {
+            if (result) {
+                $.ajax({
+                    url: "crud/delete_user",
+                    method: "POST",
+                    data: {
+                        _id: _id,
+                        syscategory: syscategory,
+                        member_id: member_id
+                    },
+                    success: function (data) {
+                        dalert.alert(data, "Message",
+                            {
+                                messageFontColor: '#333333',
+                                messageBgColor: '#ffffff',
+                                tittleBgColor: '#535353',
+                                tittleFontColor: '#ffffff'
+                            });
+                        dataTable.ajax.reload('abdganiu');
+                    }
+                });
+            }
+            else {
+                dalert.alert("Delete Cancelled!", "Message",
+                    {
+                        messageFontColor: '#333333',
+                        messageBgColor: '#ffffff',
+                        tittleBgColor: '#535353',
+                        tittleFontColor: '#ffffff'
+                    });
+                return false;
+            }
+        },
+            {
+                messageFontColor: '#333333',
+                messageBgColor: '#ffffff',
+                tittleBgColor: '#535353',
+                tittleFontColor: '#ffffff'
+            });
+
+    });
+
+
 
 });
 
