@@ -4,25 +4,48 @@ require_once '../core/db.php';
 
 
 	$syscategory = $_POST['syscategory'];
-	$id = $_POST['_id'];
 	$member_id = $_POST['member_id'];
 	
-		$del = "DELETE FROM `user` WHERE `id` = $id";
-		$query = $connection->prepare($del, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		if ($query->execute(array($id))) {
+		
 			if($syscategory != 5){
 
-		$del = "DELETE FROM `staff_record` WHERE `member_id` = '$member_id'";
+		$del_user = "DELETE FROM `users` WHERE `username` = ?";
+		$query = $connection->prepare($del_user);
+		if($query->execute(array($member_id))){
+
+			$del = "DELETE FROM `staff_record` WHERE `member_id` = ?";
+			$query = $connection->prepare($del);
+			if ($query->execute(array($member_id))) {
+
+				echo "Staff records deleted <br />";
+				echo "Staff login details deleted";
+			}
+	
+		}
+
+		
 
 			}else{
 
-		$del = "DELETE FROM `students_record` WHERE `member_id` = '$member_id'";
-			}
-		
-			echo "Successfully Deleted";
-		} else {
-			echo "Failed to Delete";
+
+	$del_user = "DELETE FROM `users` WHERE `username` = ?";
+	$query = $connection->prepare($del_user);
+	if ($query->execute(array($member_id))) {
+
+		$del = "DELETE FROM `students_record` WHERE `member_id` = ?";
+		$query = $connection->prepare($del);
+		if ($query->execute(array($member_id))) {
+
+			echo "Staff records deleted <br />";
+			echo "Staff login details deleted";
 		}
+	}
+
+		
+			}
+
+		
+		
 
 
 		

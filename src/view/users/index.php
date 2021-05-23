@@ -98,7 +98,7 @@ if ($user->isLoggedIn()) {
                             <button id="<?php echo $user->id; ?>" class="edit_user btn btn-default border rst<?php echo $user->id; ?>" lang="<?php echo $user->username; ?>"><span class="fa fa-edit"></span></button>
                           </div>
                           <div id="btn_c" style="float:left">
-                            <button id="<?php echo $user->id; ?>" class="delete_user_or_student btn btn-default border rst<?php echo $user->id; ?>" title="<?php echo $user->username; ?>" lang="<?php echo $user->syscategory; ?>"><span class="fa fa-trash"></span></button>
+                            <button id="" class="delete_user_or_student btn btn-default border" title="<?php echo $user->username; ?>" lang="<?php echo $user->syscategory; ?>"><span class="fa fa-trash"></span></button>
                           </div>
                         </td>
                       </tr>

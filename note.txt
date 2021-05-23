@@ -1,5 +1,8 @@
-depot is the location
-tm is the coordinator 
-schooltype is the type of schools (First Degree, Master Degree, Special Courses)
-
-
+/////////////////////////////////////////////////////////
+Student and staff full detail can be seen by the admin users but can edit.
+////////////////////////////////////////////////////////
+Admin Users as follow:
+1. Administrator
+2. coordinator
+.......................................................................
+Can edit user login details, view user details (can't edit) and delete user and user details,

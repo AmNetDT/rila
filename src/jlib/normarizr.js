@@ -242,7 +242,7 @@ $(document).ready(function() {
 
     //User/Student Delete Confirm Message box with Ajax jquery
     $(document).on('click', '.delete_user_or_student', function () {
-        let _id = $(this).attr("id");
+        
         let syscategory = $(this).attr("lang");
         let member_id = $(this).attr("title");
 
@@ -255,7 +255,7 @@ $(document).ready(function() {
                     url: "crud/delete_user",
                     method: "POST",
                     data: {
-                        _id: _id,
+                        
                         syscategory: syscategory,
                         member_id: member_id
                     },
