@@ -2,8 +2,8 @@
 
 require_once '../../core/init.php';
 
-$id = $_POST['id'];
-
+$member_id = $_POST['member_id'];
+//echo $member_id;
 $user = new User();
 if ($user->isLoggedIn()) {
 
@@ -23,18 +23,19 @@ if ($user->isLoggedIn()) {
                     <h3>Staff View</h3>
                     <?php
 
-                    $staffa = Db::getInstance()->query("SELECT * FROM `staff_record` WHERE `id`=id");
+                    $staffa = Db::getInstance()->query("SELECT * FROM `staff_record` WHERE `member_id`='$member_id'");
 
                     if ($staffa->count()) {
                         foreach ($staffa->results() as $staff) {
-
+                            
                     ?>
                             <div class="row border-bottom">
                                 <div class="container my-4">
                                     <div class="card mb-3" style="max-width: 100%;">
                                         <div class="row no-gutters">
                                             <div class="col-md-3 col-sm-3">
-                                                <img src="view/students/upload/<?php echo $staff->image ?>" class="card-img" alt="" style="width: 12rem;">
+                                                <?php if(isset($staff->image)){echo '<img src="view/students/upload/ '. $staff->image .'" class="card-img" alt="" style="width: 12rem;">'; }else{ echo "";} ?>
+                                                <h6><?php echo '<span class="card-title py-0 my-0">' . $staff->member_id . '</span>'; ?></h6>
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="card-body">
@@ -45,8 +46,8 @@ if ($user->isLoggedIn()) {
                                             } else {
                                                 echo '<span class="card-title py-0 my-0">' . $staff->member_id . '</span>';
                                             }
-                                        }
-                                    }
+                                       
+                                    
                                             ?>
 
 
@@ -58,6 +59,10 @@ if ($user->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
+                            <?php
+                    }
+                }
+                            ?>
                 </div>
             </div>
         </div>

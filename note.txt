@@ -6,3 +6,26 @@ Admin Users as follow:
 2. coordinator
 .......................................................................
 Can edit user login details, view user details (can't edit) and delete user and user details,
+
+
+
+////////////////////////////////////////////////////////
+Payment.
+.........................................................................
+1. Admin Users can add student payment after they have confirmed the payment.
+2. Student can view their payment status on their dashboard
+
+
+
+///////////////////////////////////////////////////////
+Coordinator.
+.........................................................................
+1. Coordinator can only create a student user account, can't create a staff user account
+
+
+
+Nnewi - depot
+
+5.9993583
+
+6.9432333

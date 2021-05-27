@@ -151,45 +151,6 @@ $(document).ready(function() {
     })
 
 
-    //Staff Details View Pop Up Window with Ajax jquery
-    $(document).on('click', '.view_staff_details', function () {
-        $("#loader_httpFeed").show();
-        let name = $(this).attr("lang");
-        let id = $(this).attr("id");
-
-
-        if (!ajaxStaffDetailsView) {
-
-            ajaxStaffDetailsView = true;
-            $.ajax({
-                type: "POST",
-                url: "view/staff/view_all",
-                data: {
-                    user_id: id
-                },
-                cache: false,
-                success: function (msg) {
-                    $("#loader_httpFeed").hide();
-                    new top.PopLayer({
-                        "title": `Details of ${name.toUpperCase()}`,
-                        "content": msg
-                    });
-                    ajaxLoadingUsers = false;
-                },
-                error: function (xhr) {
-                    if (xhr.status == 404) {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet connection working");
-                    } else {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet is down");
-                    }
-                }
-            });
-        }
-    })
-
-
     //Universal Delete Confirm Message box with Ajax jquery
     $(document).on('click', '.delete_row', function () {
         let _id = $(this).attr("id");

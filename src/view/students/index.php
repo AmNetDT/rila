@@ -34,16 +34,16 @@ if ($user->isLoggedIn()) {
     <div class="container">
       <div class="jumbotron jumbotron-fluid pt-3 bg-white">
         <div id="accounttile" class="container">
-          <h3>Students</h3>
+          <h3>Student</h3>
           <div class="row">
             <div class="container">
 
               <div class="table-responsive data-font">
                 <?php
 
-                $staff = Db::getInstance()->query("SELECT * FROM students_record");
+                $studenta = Db::getInstance()->query("SELECT * FROM students_record");
 
-                if (!$staff->count()) {
+                if (!$studenta->count()) {
                   echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
                 } else {
 
@@ -52,9 +52,10 @@ if ($user->isLoggedIn()) {
                     <thead>
                       <tr>
                         <th width="20">SN</th>
-                        <th width="150">Employee ID</th>
+                        <th width="150">Student ID</th>
+                        <th width="150">Matric No.</th>
                         <th width="180">Full name</th>
-                        <th width="180">Matric No.</th>
+                        <th width="180">Mobile</th>
                         <th width="100">Location</th>
                         <th width="160">School</th>
                         <th width="140">Created</th>
@@ -64,37 +65,35 @@ if ($user->isLoggedIn()) {
                     <tbody>
                       <?php
                       $i = 1;
-                      foreach ($staff->results() as $staff) {
+                      foreach ($studenta->results() as $student) {
 
                       ?>
                         <tr>
                           <td><?php echo $i++; ?></td>
-                          <td><?php echo $staff->member_id ?></td>
-                          <td><?php echo $staff->firstname . " " . $staff->lastname ?></td>
-                          <td><?php echo $staff->matric_no ?></td>
-                          <td><?php echo $staff->location ?></td>
-                          <td><?php echo $staff->school ?></td>
-                          <td><?php echo $staff->created ?></td>
+                          <td><?php echo $student->member_id; ?></td>
+                          <td><?php echo $student->matric_no; ?></td>
+                          <td><?php echo $student->firstname . " " . $student->lastname ?></td>
+                          <td><?php echo $student->phone ?></td>
+                          <td><?php echo $student->location ?></td>
+                          <td><?php echo $student->schools ?></td>
+                          <td><?php echo $student->created ?></td>
                           <td>
-                            <div class="_view">
-                              <form method="post">
-                                <input type="hidden" value="<?php echo $staff->id ?>" id="stay_" />
-                                <button tyle="submit" id="<?php echo $staff->id ?>" class="fa fa-search btn btn-default border rst<?php echo $staff->id; ?>"></button>
-                              </form>
+                            <div class="staff_student_view" id="<?php echo $student->member_id; ?>" lang="view/students">
+
+                              <button type="button" class=" fa fa-search btn btn-default border"></button>
+
                             </div>
                           </td>
                         </tr>
-              <?php
-
+                      <?php
                       }
-                      
-              ?>
+                      ?>
                     </tbody>
                   </table>
-              <?php
-                      
-                    }
-              ?>
+                <?php
+                }
+
+                ?>
               </div>
             </div>
           </div>
@@ -109,41 +108,4 @@ if ($user->isLoggedIn()) {
   Redirect::to('../../login/');
 }
 
-
 ?>
-
-<!-- page loader !-->
-<script>
-  $("#loader_httpFeed").hide();
-  $(document).on('click', '._view', function(e) {
-
-    //Passing values to nextPage 
-    //let id = $(this).attr("id");
-    let id = $('#stay_').val();
-
-    $("#loader_httpFeed").show();
-    $.ajax({
-      type: "POST",
-      url: "view/staff/view.php",
-      data: {
-        id: id
-      },
-      cache: false,
-      success: function(msg) {
-        $("#contentbar_inner").html(msg);
-        $("#loader_httpFeed").hide();
-      },
-      error: function(xhr) {
-        if (xhr.status == 404) {
-          $("#loader_httpFeed").hide();
-          dalert.alert("internet connection working");
-        } else {
-          $("#loader_httpFeed").hide();
-          dalert.alert("internet is down");
-        }
-      }
-    });
-    return false;
-    e.preventDefault();
-  });
-</script>

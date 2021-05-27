@@ -3,7 +3,9 @@
 require_once '../core/init.php';
 
 $user = new User();
+
 if (!$user->isLoggedIn()) {
+
     Redirect::to('../login/index');
 } else {
 
@@ -130,11 +132,11 @@ if (!$user->isLoggedIn()) {
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <ul class="navbar-nav my-lg-0">
+                        <ul class="navbar-nav mr-5">
                             <!-- ============================================================== -->
                             <!-- Profile -->
                             <!-- ============================================================== -->
-                            <li class="nav-item dropdown u-pro">
+                            <li class="nav-item dropdown u-pro mr-5">
                                 <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="assets/images/1.jpeg" alt="user" class="img-fluid" />
                                     <span class="hidden-md-down"><?php
@@ -154,7 +156,7 @@ if (!$user->isLoggedIn()) {
 
                                     </span>
                                 </a>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu mr-5">
 
                                     <div class="_mc">
                                         <a class="dropdown-item" href="javascript:void(0)" id="view/user">Profile Settings</a>
@@ -227,11 +229,87 @@ if (!$user->isLoggedIn()) {
                                                 <ul style="margin-left:-15px;">
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/staff" aria-expanded="false">
-                                                            <span class="hide-menu"> Record</span>
+                                                            <span class="hide-menu"> Staff info</span>
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Students
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/students" aria-expanded="false">
+                                                            <span class="hide-menu"> Student Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Payments Record</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Schools
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="console" aria-expanded="false">
+                                                            <span class="hide-menu"> Masters</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
+                                                            <span class="hide-menu"> Regular Programmes</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
+                                                            <span class="hide-menu"> Special Programmes</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Events
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
+                                                            <span class="hide-menu"> News Blog</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
+                                                            <span class="hide-menu"> Time Table</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="_mc">
+                                                <a class="waves-effect waves-dark menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                                    <span class="hide-menu"> Library</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php
+                        } else if ($userSyscategory == 2) {
+
+
+                        ?>
+                            <p class="px-4 py-3 text-light shadow bg-danger">Coordinator</p>
+                            <div class="tree">
+                                <ul id="sidebarnav">
+                                    <li><a>User Management</a>
+                                        <ul>
+
                                             <li>
                                                 <a class="waves-effect waves-dark menutree pl-4">
                                                     Students
@@ -298,7 +376,59 @@ if (!$user->isLoggedIn()) {
                                 </ul>
                             </div>
                         <?php
-                        } else if ($userSyscategory == 2) {
+                        } else if ($userSyscategory == 3) {
+
+
+                        ?>
+                            <p class="px-4 py-3 text-light shadow bg-danger">Finance</p>
+                            <div class="tree">
+                                <ul id="sidebarnav">
+                                    <li><a>User Management</a>
+                                        <ul>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Students
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/students" aria-expanded="false">
+                                                            <span class="hide-menu"> Record</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Payments</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php
+                        } else if ($userSyscategory == 4) {
+
+
+                        ?>
+                            <p class="px-4 py-3 text-light shadow bg-danger">Library</p>
+                            <div class="tree">
+                                <ul id="sidebarnav">
+                                    <li><a>User Management</a>
+                                        <ul>
+                                            <li class="_mc">
+                                                <a class="waves-effect waves-dark menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                                    <span class="hide-menu"> Library</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php
+                        } else if ($userSyscategory == 5) {
+
 
 
                         ?>
