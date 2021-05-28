@@ -44,7 +44,7 @@ if ($user->isLoggedIn()) {
             ?>
 
               <button class="view_payment_type border">
-                <span class="fa fa-search"> Payment Types</span>
+                <span class="fa fa-search"> Payment Titles</span>
               </button>
 
             <?php
@@ -55,7 +55,7 @@ if ($user->isLoggedIn()) {
                 <span class="fa fa-plus"> Add Payment</span>
               </button>
               <button class="view_payment_type border">
-                <span class="fa fa-search"> Payment Types</span>
+                <span class="fa fa-search"> Payment Titles</span>
               </button>
 
 
@@ -78,7 +78,7 @@ if ($user->isLoggedIn()) {
                           <th scope="col">Date</th>
                           <th scope="col">Student</th>
                           <th scope="col">Matric No.</th>
-                          <th scope="col">Payment Type</th>
+                          <th scope="col">Payment Title</th>
                           <th scope="col">Amount</th>
                           <th scope="col">Paid</th>
                           <th scope="col">Balance</th>

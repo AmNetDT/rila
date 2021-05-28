@@ -1,6 +1,6 @@
 .myModal {
     position: absolute;
-    top: 0;
+    top: 0%;
     left: 0;
     width: 100%;
     height: 100%;
@@ -12,6 +12,7 @@
 
 .myPop {
     position: absolute;
+    margin-top:1%;
     display: none;
 	z-index:6
 }
@@ -40,7 +41,7 @@
 
 .myPop-content {
     width: auto;
-	height: auto;
+	height: 450px;
     background: #FFFFFF;
     padding: 20px;
 	overflow:auto;

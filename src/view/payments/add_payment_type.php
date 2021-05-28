@@ -20,24 +20,13 @@
              <div class="px-3 text-center">
 
                  <p class="login-card-description mt-2">
-                     Add Payment Type</p>
+                     Add Payment Title</p>
                  <form method="POST" autocomplete="off">
                      <div class="form-group">
-                         <label for="name" class="sr-only">Campus Name</label>
-                         <input type="text" name="name" value="" id="name" class="form-control" placeholder="Campus Name" />
+                         <label for="name" class="sr-only">Payment Title</label>
+                         <input type="text" name="name" value="" id="name" class="form-control" placeholder="Payment Type Name" />
                      </div>
-                     <div class="form-group">
-                         <label for="username" class="sr-only">Location Address</label>
-                         <input type="text" name="address" id="address" value="" class="form-control" placeholder="Location Address" />
-                     </div>
-                     <div class="form-group">
-                         <label for="name" class="sr-only">Telephone</label>
-                         <input type="text" name="phone" value="" id="phone" class="form-control" placeholder="Telephone" />
-                     </div>
-                     <div class="form-group">
-                         <label for="username" class="sr-only">Email</label>
-                         <input type="text" name="email" id="email" value="" class="form-control" placeholder="Email" />
-                     </div>
+
                      <?php
                         $username = escape($user->data()->username);
 
@@ -45,10 +34,13 @@
                      <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
                      <div id="submitButton">
                          <button type="button" id="save" class="btn btn-light px-5 mb-3">
-                             Save
+                             Add Title
                          </button>
                      </div>
                  </form>
+             </div>
+             <div class="mt-3 mb-0 text-right">
+                 <button class='myPop-close btn-danger'><span class='fa fa-times text-white'></span> Close</button>
              </div>
          </div>
 
@@ -69,26 +61,20 @@
 
     ?>
  <script>
-     $(document).ready(function(event) {
+     $(document).ready(function(e) {
          $("#save").click(function() {
 
              var name = $('#name').val();
-             var address = $('#address').val();
-             var phone = $('#phone').val();
-             var email = $('#email').val();
              var added_by = $('#added_by').val();
 
              if (name != '' && added_by != '') {
                  $.ajax({
-                     url: "view/new_campus/server",
+                     url: "view/payments/add_payment_type_server.php",
                      method: 'POST',
                      data: {
 
-                         name: name,
-                         address: address,
-                         phone: phone,
-                         email: email,
-                         added_by: added_by
+                         'name': name,
+                         'added_by': added_by
 
                      },
                      success: function(data) {
@@ -99,9 +85,9 @@
                      }
                  });
              } else {
-                 dalert.alert("Location field is required");
+                 dalert.alert("Payment type name is required");
              }
          });
-         event.preventDefault();
+         e.preventDefault();
      });
  </script>

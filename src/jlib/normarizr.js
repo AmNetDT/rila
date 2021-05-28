@@ -7,6 +7,7 @@ let ajaxStaffDetailsView = false;
 let ajaxRegisterNewUser= false;
 let ajaxViewPayment=false;
 let ajaxAddPaymentType=false;
+let ajax_edit_payment_type=false;
 
 
 $(document).ready(function() {
@@ -57,7 +58,7 @@ $(document).ready(function() {
                 success: function (msg) {
                     $("#loader_httpFeed").hide();
                     new top.PopLayer({
-                        "title": "Add Payment Types",
+                        "title": "Add Payment Title",
                         "content": msg
                     });
 
@@ -92,7 +93,36 @@ $(document).ready(function() {
         }
         e.preventDefault();
     })
+
     
+    //Update Payment Type Pop up Window with Ajax jquery
+    $(document).on('click', '.edit_payment_type', function (e) {
+        $("#loader_httpFeed").show();
+        let id = $(this).attr("id");
+
+        if (!ajax_edit_payment_type) {
+
+            ajax_edit_payment_type = true;
+            $.ajax({
+                type: "POST",
+                data: {
+                    'id': id
+                },
+                url: "view/payments/edit_payment_type.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": `Update Payment Title`,
+                        "content": msg
+                    });
+                    ajax_edit_payment_type = false;
+                }
+            });
+        }
+        e.preventDefault();
+    })
+
     //Create Campus Pop up Window with Ajax jquery
     $(document).on('click', '.reg_campus', function () {
         $("#loader_httpFeed").show();

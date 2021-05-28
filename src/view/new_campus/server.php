@@ -15,7 +15,7 @@ $sql = $connection->prepare("INSERT INTO `locations`(`name`, `address`, `phone`,
 if($sql->execute(array($name, $address, $phone, $email, $added_by))){
 	echo "Successfully added a new Location";
 }else{
-	echo "Failed to added a new Location";
+	echo "Failed to add a new Location";
 }
 
 	
