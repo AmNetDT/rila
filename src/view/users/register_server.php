@@ -25,6 +25,9 @@ $user = new User();
         'location'        => array(
           'require'         => true
         ),
+        'added_by'        => array(
+          'require'         => true
+        ),
         'password'        => array(
           'require'         => true,
           'min'             => 6
@@ -45,6 +48,7 @@ $user = new User();
             'syscategory'   => Input::get('syscategory'),
             'school'        => Input::get('school'),
             'location'      => Input::get('location'),
+            'added_by'      => Input::get('added_by'),
             'password'      => Hash::make(Input::get('password'), $salt),
             'salt'          => $salt,
             'joined'        => date('Y-m-d H:i:s')
@@ -53,14 +57,16 @@ $user = new User();
         if(Input::get('syscategory') != 5){// syscategory 5 is student
 
                 $user->create('staff_record', array(
-                  'member_id' => Input::get('username')
+                  'member_id' => Input::get('username'),
+                  'added_by' => Input::get('added_by')
                 ));
                 echo 'You have successfully registered a staff';
 
         }else{
 
                 $user->create('students_record', array(
-                  'member_id' => Input::get('username')
+                  'member_id' => Input::get('username'),
+                  'added_by' => Input::get('added_by')
                 ));
                 echo 'You have successfully registered a student';
         }

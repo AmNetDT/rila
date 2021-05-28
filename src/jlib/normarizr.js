@@ -1,10 +1,12 @@
 // JavaScript Document
-var ajaxLoading = false;
-var ajaxLoadingIssue = false;
-var ajaxLoadingUsers = false;
-var ajaxLoadingUsersEdit = false;
-var ajaxStaffDetailsView = false;
-var ajaxRegisterNewUser= false;
+let ajaxLoading = false;
+let ajaxLoadingIssue = false;
+let ajaxLoadingUsers = false;
+let ajaxLoadingUsersEdit = false;
+let ajaxStaffDetailsView = false;
+let ajaxRegisterNewUser= false;
+let ajaxViewPayment=false;
+let ajaxAddPaymentType=false;
 
 
 $(document).ready(function() {
@@ -42,6 +44,55 @@ $(document).ready(function() {
         e.preventDefault();
     })
 
+    //Add Payment type Pop up Window with Ajax jquery
+    $(document).on('click', '.add_paymenttype', function (e) {
+        $("#loader_httpFeed").show();
+        if (!ajaxAddPaymentType) {
+
+            ajaxAddPaymentType = true;
+            $.ajax({
+                type: "POST",
+                url: "view/payments/add_payment_type.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Add Payment Types",
+                        "content": msg
+                    });
+
+                    ajaxAddPaymentType = false;
+                }
+            });
+        }
+        e.preventDefault();
+    })
+
+
+    //View Payment type Pop up Window with Ajax jquery
+    $(document).on('click', '.view_payment_type', function (e) {
+        $("#loader_httpFeed").show();
+        if (!ajaxViewPayment) {
+
+            ajaxViewPayment = true;
+            $.ajax({
+                type: "POST",
+                url: "view/payments/view_payment_types.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "View Payment Types",
+                        "content": msg
+                    });
+
+                    ajaxViewPayment = false;
+                }
+            });
+        }
+        e.preventDefault();
+    })
+    
     //Create Campus Pop up Window with Ajax jquery
     $(document).on('click', '.reg_campus', function () {
         $("#loader_httpFeed").show();

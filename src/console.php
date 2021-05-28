@@ -105,7 +105,7 @@ if (!$user->isLoggedIn()) {
         <div class="preloader">
             <div class="loader">
                 <div class="loader__figure"></div>
-                <p class="loader__label">Admin Wrap</p>
+                <p class="loader__label">Redeemer's International Leadership Academy - RILA</p>
             </div>
         </div>
         <!-- ============================================================== -->
@@ -139,20 +139,37 @@ if (!$user->isLoggedIn()) {
                             <li class="nav-item dropdown u-pro mr-5">
                                 <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="assets/images/1.jpeg" alt="user" class="img-fluid" />
-                                    <span class="hidden-md-down"><?php
+                                    <span class="hidden-md-down">
+                                        <?php
 
-                                                                    $username = escape($user->data()->username);
-                                                                    $staff = Db::getInstance()->query("SELECT * FROM `staff_record` WHERE `member_id`='$username'");
+                                        $username = escape($user->data()->username);
+                                        $userSyscategory = escape($user->data()->syscategory);
+                                        $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
 
-                                                                    if ($staff->count()) {
-                                                                        foreach ($staff->results() as $staff) {
+                                        if ($userSyscategory != 5) {
 
-                                                                            echo '<span class="card-title py-0 my-0">' . $staff->firstname . ' ' . $staff->lastname . '</span>';
-                                                                        }
-                                                                    } else {
-                                                                        echo '<span class="card-title py-0 my-0">' . $username . '</span>';
-                                                                    }
-                                                                    ?>
+                                            $staff = Db::getInstance()->query("SELECT * FROM `staff_record` WHERE `member_id`='$username'");
+
+                                            foreach ($staff->results() as $staff) {
+                                                if (!empty($staff->firstname)) {
+                                                    echo '<span class="card-title py-0 my-0">' . $staff->firstname . ' ' . $staff->lastname . '</span>';
+                                                } else {
+                                                    echo '<span class="card-title py-0 my-0">' . $staff->member_id . '</span>';
+                                                }
+                                            }
+                                        } else {
+
+                                            $studentdb = Db::getInstance()->query("SELECT * FROM `students_record` WHERE `member_id`='$username'");
+                                            foreach ($studentdb->results() as $stud) {
+                                                if (!empty($stud->firstname)) {
+                                                    echo '<span class="card-title py-0 my-0">' . $stud->firstname . ' ' . $stud->lastname . '</span>';
+                                                } else {
+                                                    echo '<span class="card-title py-0 my-0">' . $stud->member_id . '</span>';
+                                                }
+                                            }
+                                        }
+
+                                        ?>
 
                                     </span>
                                 </a>
@@ -160,6 +177,7 @@ if (!$user->isLoggedIn()) {
 
                                     <div class="_mc">
                                         <a class="dropdown-item" href="javascript:void(0)" id="view/user">Profile Settings</a>
+
                                     </div>
 
                                     <div class="dropdown-divider"></div>
@@ -210,11 +228,7 @@ if (!$user->isLoggedIn()) {
                                                     <span class="hide-menu">Manage Users</span>
                                                 </a>
                                                 <ul style="margin-left:-15px;">
-                                                    <!--li class="_mc">
-                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/register" aria-expanded="false">
-                                            <span class="hide-menu"> Add New User</span>
-                                        </a>
-                                    </li!-->
+                                                 
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/" aria-expanded="false">
                                                             <span class="hide-menu"> Users</span>
@@ -241,7 +255,7 @@ if (!$user->isLoggedIn()) {
                                                 <ul style="margin-left:-15px;">
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/students" aria-expanded="false">
-                                                            <span class="hide-menu"> Student Information</span>
+                                                            <span class="hide-menu"> Student Details</span>
                                                         </a>
                                                     </li>
                                                     <li class="_mc">
@@ -307,9 +321,26 @@ if (!$user->isLoggedIn()) {
                             <p class="px-4 py-3 text-light shadow bg-danger">Coordinator</p>
                             <div class="tree">
                                 <ul id="sidebarnav">
+
                                     <li><a>User Management</a>
                                         <ul>
-
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    <span class="hide-menu">Users Account</span>
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <!--li class="_mc">
+                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/register" aria-expanded="false">
+                                            <span class="hide-menu"> Add New User</span>
+                                        </a>
+                                    </li!-->
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/" aria-expanded="false">
+                                                            <span class="hide-menu"> Users</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                             <li>
                                                 <a class="waves-effect waves-dark menutree pl-4">
                                                     Students

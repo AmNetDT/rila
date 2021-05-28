@@ -2,66 +2,98 @@
 
 require_once '../../core/init.php';
 
-$id = $_POST['id'];
-
 $user = new User();
 if ($user->isLoggedIn()) {
+    $userSyscategory = escape($user->data()->syscategory);
+    $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
 
 ?>
+    <!-- Datatable !-->
 
-    <div id="body_general">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
-        <div id="accounttile">
-            <div class="col-sm-12 col-sm-6">
-                <span id="close" class="fa fa-close p-1 btn-danger text-lg"></span>
-            </div>
-        </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
+    <script>
+        $(document).ready(function() {
+            $('#ganiu').DataTable();
+        });
+    </script>
+    <!-- End datatable !-->
 
+
+    <div class="row m-0 p-0">
         <div class="container">
-            <div class="jumbotron jumbotron-fluid pt-3 bg-white">
-                <div id="accounttile" class="container">
-                    <h3>Staff View</h3>
-                    <?php
+            <div class="card" style="max-width: 100%;">
+                <div class="row no-gutters">
+                    <h6>Payment Types</h6>
 
-                    $staffa = Db::getInstance()->query("SELECT * FROM `staff_record` WHERE `id`=id");
+                    <div class="col-sm-12">
+                        <div style="float:right;">
+                            
+                            <button class="add_paymenttype border">
+                                <span class="fa fa-plus"> Add Payment Types</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive data-font">
+                                <table id="ganiu" class="table table-hover table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">S/No.</th>
+                                            <th scope="col">Types</th>
+                                            <th scope="col">Created By</th>
+                                            <th scope="col">Created</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 1;
+                                        $ptype = Db::getInstance()->query("SELECT * FROM `payment_type`");
 
-                    if ($staffa->count()) {
-                        foreach ($staffa->results() as $staff) {
+                                        if ($ptype->count()) {
+                                            foreach ($ptype->results() as $ptyp) {
 
-                    ?>
-                            <div class="row border-bottom">
-                                <div class="container my-4">
-                                    <div class="card mb-3" style="max-width: 100%;">
-                                        <div class="row no-gutters">
-                                            <div class="col-md-3 col-sm-3">
-                                                <img src="view/students/upload/<?php echo $staff->image ?>" class="card-img" alt="" style="width: 12rem;">
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <div class="card-body">
-                                            <?php
+                                        ?>
 
-                                            if ($staff->firstname != "" || $staff->lastname != "" || $staff->designation != "" || $staff->email != "" || $staff->location != "") {
-                                                echo '<h5 class="card-title py-0 my-0">' . $staff->firstname . ' ' . $staff->lastname . '</h5><p class="card-text py-0 my-0">' . $staff->member_id . '</p><p class="card-text py-0 my-0">' . $staff->designation . '</p><p class="card-text pt-2 my-0">' . $staff->email . '</p><p class="card-text py-0 my-0">' . $staff->location . '</p>';
-                                            } else {
-                                                echo '<span class="card-title py-0 my-0">' . $staff->member_id . '</span>';
+                                                <tr>
+                                                    <td><?php echo $i++; ?></td>
+                                                    <td><?php echo $ptyp->name; ?></td>
+                                                    <td><?php echo $ptyp->added_by; ?></td>
+                                                    <td><?php echo $ptyp->created; ?></td>
+                                                    <td>
+                                                        <div id="btn_c" style="float:left;">
+                                                            <button id="" class="edit_user btn btn-default border">
+                                                                <span class="fa fa-edit"></span>
+                                                            </button>
+                                                        </div>
+                                                        <div id="btn_c" style="float:left">
+                                                            <button id="" class="delete_user_or_student btn btn-default border">
+                                                                <span class="fa fa-trash"></span>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                        <?php
+
                                             }
                                         }
-                                    }
-                                            ?>
-
-
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 
 <?php
 

@@ -9,7 +9,6 @@ if ($user->isLoggedIn()) {
 
 
   <!-- Datatable !-->
-
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
@@ -19,10 +18,11 @@ if ($user->isLoggedIn()) {
   <script>
     $(document).ready(function() {
       $('#abdganiu').DataTable();
-      $('#ganiu').DataTable();
     });
   </script>
   <!-- End datatable !-->
+
+
 
   <div id="body_general">
     <div id="accounttile">
@@ -42,59 +42,33 @@ if ($user->isLoggedIn()) {
 
             if ($userSyscategory != 2) {
             ?>
-              <button class="reg_user border" type="submit">
+
+              <button class="view_payment_type border">
                 <span class="fa fa-search"> Payment Types</span>
               </button>
-
-              <button id="view/payments" class="_other_payment border" type="submit">
-                <span class="fa fa-search"> All Payments</span>
-              </button>
-
 
             <?php
             } else {
             ?>
 
-              <button class="reg_user border" type="submit">
+              <button class="reg_user border">
                 <span class="fa fa-plus"> Add Payment</span>
               </button>
-
-              <button class="reg_user border" type="submit">
+              <button class="view_payment_type border">
                 <span class="fa fa-search"> Payment Types</span>
               </button>
 
-              <button id="view/payments" class="_other_payment border" type="submit">
-                <span class="fa fa-search"> All Payments</span>
-              </button>
 
             <?php
             }
             ?>
           </div>
           <div class="row">
-            <div class="container">
-              <div class="row">
-                <div class="container">
-                  <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="col-md-6 my-3">
-                      <!-- Still empty!-->
-                    </div>
-                    <div class="btn-toolbar col-md-6 my-3 p-0">
-
-                      <!-- Still empty!-->
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-sm-12 px-0">
               <div class="card">
                 <div class="card-body">
                   <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                    <h6 class="card-title p-2">School Fees</h6>
+                    <h6 class="card-title p-2">All Payment Records</h6>
 
                   </div>
                   <div class="table-responsive data-font">
@@ -104,6 +78,7 @@ if ($user->isLoggedIn()) {
                           <th scope="col">Date</th>
                           <th scope="col">Student</th>
                           <th scope="col">Matric No.</th>
+                          <th scope="col">Payment Type</th>
                           <th scope="col">Amount</th>
                           <th scope="col">Paid</th>
                           <th scope="col">Balance</th>
@@ -121,6 +96,7 @@ if ($user->isLoggedIn()) {
                           <th scope="row">1</th>
                           <td>ST001212</td>
                           <td>RILA/2021/PL/PGD/002345-OT</td>
+                          <td>Matriculation</td>
                           <td>350,000</td>
                           <td>50,000</td>
                           <td>300,000</td>

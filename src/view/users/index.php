@@ -39,6 +39,12 @@ if ($user->isLoggedIn()) {
             <div class="table-responsive data-font">
               <?php
 
+                $username = escape($user->data()->username);
+                $userSyscategory = escape($user->data()->syscategory);
+                $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
+
+              if ($userSyscategory == 1) {
+
               $user = Db::getInstance()->query("SELECT * FROM users");
 
               if (!$user->count()) {
@@ -98,7 +104,7 @@ if ($user->isLoggedIn()) {
                             <button id="<?php echo $user->id; ?>" class="edit_user btn btn-default border rst<?php echo $user->id; ?>" lang="<?php echo $user->username; ?>"><span class="fa fa-edit"></span></button>
                           </div>
                           <div id="btn_c" style="float:left">
-                            <button id="" class="delete_user_or_student btn btn-default border" title="<?php echo $user->username; ?>" lang="<?php echo $user->syscategory; ?>"><span class="fa fa-trash"></span></button>
+                            <button class="delete_user_or_student btn btn-default border" title="<?php echo $user->username; ?>" lang="<?php echo $user->syscategory; ?>"><span class="fa fa-trash"></span></button>
                           </div>
                         </td>
                       </tr>
@@ -109,7 +115,82 @@ if ($user->isLoggedIn()) {
                   </tbody>
                 </table>
               <?php
+              } 
+            }else if($userSyscategory == 2){
+                
+              $user = Db::getInstance()->query("SELECT * FROM users WHERE username LIKE 'S%' AND added_by = '$username'");
+
+              if (!$user->count()) {
+                echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+              } else {
+
+              ?>
+                <table id="abdganiu" class="table table-hover table-bordered" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>SN</th>
+                      <th>Username</th>
+                      <th>Privilege</th>
+                      <th>School</th>
+                      <th>Location</th>
+                      <th>Created</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $i = 1;
+                    foreach ($user->results() as $user) {
+
+                    ?>
+
+                      <tr>
+                        <td><?php echo $i++; ?></td>
+                        <td><?php echo $user->username; ?></td>
+                        <td><?php
+
+                            $sysId = $user->syscategory;
+                            $syscategory = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id`=$sysId");
+                            foreach ($syscategory->results() as $sysName) {
+                              print $sysName->name;
+                            }
+                            ?></td>
+                        <td><?php
+
+                            $schoolId = $user->school;
+                            $schools = Db::getInstance()->query("SELECT * FROM `schools` WHERE `id`=$schoolId");
+                            foreach ($schools->results() as $school) {
+                              print $school->type;
+                            }
+                            ?></td>
+                        <td><?php
+
+                            $locationId = $user->location;
+                            $locations = Db::getInstance()->query("SELECT * FROM `locations` WHERE `id`=$locationId");
+                            foreach ($locations->results() as $location) {
+                              print $location->name;
+                            }
+                            ?></td>
+                        <td><?php echo $user->joined; ?></td>
+                        <td>
+                          <div id="btn_c" style="float:left;">
+                            <button id="<?php echo $user->id; ?>" class="edit_user btn btn-default border rst<?php echo $user->id; ?>" lang="<?php echo $user->username; ?>"><span class="fa fa-edit"></span></button>
+                          </div>
+                          <div id="btn_c" style="float:left">
+                            <button class="delete_user_or_student btn btn-default border" title="<?php echo $user->username; ?>" lang="<?php echo $user->syscategory; ?>"><span class="fa fa-trash"></span></button>
+                          </div>
+                        </td>
+                      </tr>
+                    <?php
+                    }
+                    ?>
+
+                  </tbody>
+                </table>
+               <?php 
+               }
               }
+              
               ?>
             </div>
           </div>

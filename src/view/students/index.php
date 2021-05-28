@@ -37,60 +37,124 @@ if ($user->isLoggedIn()) {
           <h3>Student</h3>
           <div class="row">
             <div class="container">
+              <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                <h6 class="card-title p-2">All Students Records</h6>
 
+              </div>
               <div class="table-responsive data-font">
                 <?php
 
-                $studenta = Db::getInstance()->query("SELECT * FROM students_record");
+                $username = escape($user->data()->username);
+                $userSyscategory = escape($user->data()->syscategory);
+                $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
 
-                if (!$studenta->count()) {
-                  echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
-                } else {
+                if ($userSyscategory == 1) {
+
+                  $studenta = Db::getInstance()->query("SELECT * FROM students_record");
+
+                  if (!$studenta->count()) {
+                    echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                  } else {
 
                 ?>
-                  <table id="abdganiu" class="table table-hover table-bordered" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th width="20">SN</th>
-                        <th width="150">Student ID</th>
-                        <th width="150">Matric No.</th>
-                        <th width="180">Full name</th>
-                        <th width="180">Mobile</th>
-                        <th width="100">Location</th>
-                        <th width="160">School</th>
-                        <th width="140">Created</th>
-                        <th width="30">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $i = 1;
-                      foreach ($studenta->results() as $student) {
-
-                      ?>
+                    <table id="abdganiu" class="table table-hover table-bordered" style="width:100%">
+                      <thead>
                         <tr>
-                          <td><?php echo $i++; ?></td>
-                          <td><?php echo $student->member_id; ?></td>
-                          <td><?php echo $student->matric_no; ?></td>
-                          <td><?php echo $student->firstname . " " . $student->lastname ?></td>
-                          <td><?php echo $student->phone ?></td>
-                          <td><?php echo $student->location ?></td>
-                          <td><?php echo $student->schools ?></td>
-                          <td><?php echo $student->created ?></td>
-                          <td>
-                            <div class="staff_student_view" id="<?php echo $student->member_id; ?>" lang="view/students">
-
-                              <button type="button" class=" fa fa-search btn btn-default border"></button>
-
-                            </div>
-                          </td>
+                          <th width="20">SN</th>
+                          <th width="150">Student ID</th>
+                          <th width="150">Matric No.</th>
+                          <th width="180">Full name</th>
+                          <th width="180">Mobile</th>
+                          <th width="100">Location</th>
+                          <th width="160">School</th>
+                          <th width="140">Created</th>
+                          <th width="30">Action</th>
                         </tr>
-                      <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $i = 1;
+                        foreach ($studenta->results() as $student) {
+
+                        ?>
+                          <tr>
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $student->member_id; ?></td>
+                            <td><?php echo $student->matric_no; ?></td>
+                            <td><?php echo $student->firstname . " " . $student->lastname ?></td>
+                            <td><?php echo $student->phone ?></td>
+                            <td><?php echo $student->location ?></td>
+                            <td><?php echo $student->schools ?></td>
+                            <td><?php echo $student->created ?></td>
+                            <td>
+                              <div class="staff_student_view" id="<?php echo $student->member_id; ?>" lang="view/students">
+
+                                <button type="button" class=" fa fa-search btn btn-default border"></button>
+
+                              </div>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  <?php
+                  }
+                } else if ($userSyscategory == 2) {
+
+                  $studenta = Db::getInstance()->query("SELECT * FROM students_record WHERE member_id LIKE 'S%' AND added_by = '$username'");
+
+                  if (!$studenta->count()) {
+                    echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                  } else {
+
+                  ?>
+                    <table id="abdganiu" class="table table-hover table-bordered" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th width="20">SN</th>
+                          <th width="150">Student ID</th>
+                          <th width="150">Matric No.</th>
+                          <th width="180">Full name</th>
+                          <th width="180">Mobile</th>
+                          <th width="100">Location</th>
+                          <th width="160">School</th>
+                          <th width="140">Created</th>
+                          <th width="30">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $i = 1;
+                        foreach ($studenta->results() as $student) {
+
+                        ?>
+                          <tr>
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $student->member_id; ?></td>
+                            <td><?php echo $student->matric_no; ?></td>
+                            <td><?php echo $student->firstname . " " . $student->lastname ?></td>
+                            <td><?php echo $student->phone ?></td>
+                            <td><?php echo $student->location ?></td>
+                            <td><?php echo $student->schools ?></td>
+                            <td><?php echo $student->created ?></td>
+                            <td>
+                              <div class="staff_student_view" id="<?php echo $student->member_id; ?>" lang="view/students">
+
+                                <button type="button" class=" fa fa-search btn btn-default border"></button>
+
+                              </div>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+
                 <?php
+                  }
                 }
 
                 ?>

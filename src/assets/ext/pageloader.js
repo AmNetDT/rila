@@ -21,22 +21,23 @@ $(document).ready(function(){
 	});
   
   //Payment view window
-	$(document).on('click', '._other_payment', function (e) {
+  //Not in use
+	// $(document).on('click', '._other_payment', function (e) {
 
-		let id = $(this).attr('id');
+	// 	let id = $(this).attr('id');
 
-		$.ajax({
-			type: "POST",
-			url: id + "/other_payment.php",
-			cache: false,
-			success: function (msg) {
-				$("#contentbar_inner").html(msg);
-				$("#loader_httpFeed").hide();
-			}
-		});
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: id + "/other_payment.php",
+	// 		cache: false,
+	// 		success: function (msg) {
+	// 			$("#contentbar_inner").html(msg);
+	// 			$("#loader_httpFeed").hide();
+	// 		}
+	// 	});
 
-		e.preventDefault();
-	});
+	// 	e.preventDefault();
+	// });
 
 
 	$(document).on('click', '.staff_student_view', async function () {

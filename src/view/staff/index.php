@@ -37,7 +37,10 @@ if ($user->isLoggedIn()) {
           <h3>Staff</h3>
           <div class="row">
             <div class="container">
+              <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                <h6 class="card-title p-2">All Staff Records</h6>
 
+              </div>
               <div class="table-responsive data-font">
                 <?php
 
