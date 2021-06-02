@@ -21,25 +21,27 @@ $(document).ready(function(){
 	});
   
   //Payment view window
-  //Not in use
-	// $(document).on('click', '._other_payment', function (e) {
+	$("#loader_httpFeed").hide();
+	$('._payment a').click(function (e) {
 
-	// 	let id = $(this).attr('id');
+		//Pssing values to nextPage 
+		var rsData = "eQvmTfgfru";
+		var dataString = "rsData=" + rsData;
+		$("#loader_httpFeed").show();
+		$.ajax({
+			type: "POST",
+			url: $(this).attr('id') + "/tuition.php",
+			data: dataString,
+			cache: false,
+			success: function (msg) {
+				$("#contentbar_inner").html(msg);
+				$("#loader_httpFeed").hide();
+			}
+		});
+		e.preventDefault();
+	});
 
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url: id + "/other_payment.php",
-	// 		cache: false,
-	// 		success: function (msg) {
-	// 			$("#contentbar_inner").html(msg);
-	// 			$("#loader_httpFeed").hide();
-	// 		}
-	// 	});
-
-	// 	e.preventDefault();
-	// });
-
-
+	
 	$(document).on('click', '.staff_student_view', async function () {
 
 		var member_id = $(this).attr('id');

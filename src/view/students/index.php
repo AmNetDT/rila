@@ -48,7 +48,7 @@ if ($user->isLoggedIn()) {
                 $userSyscategory = escape($user->data()->syscategory);
                 $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
 
-                if ($userSyscategory == 1) {
+                if ($userSyscategory != 2) {
 
                   $studenta = Db::getInstance()->query("SELECT * FROM students_record");
 

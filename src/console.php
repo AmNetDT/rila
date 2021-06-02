@@ -228,7 +228,7 @@ if (!$user->isLoggedIn()) {
                                                     <span class="hide-menu">Manage Users</span>
                                                 </a>
                                                 <ul style="margin-left:-15px;">
-                                                 
+
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/" aria-expanded="false">
                                                             <span class="hide-menu"> Users</span>
@@ -258,9 +258,14 @@ if (!$user->isLoggedIn()) {
                                                             <span class="hide-menu"> Student Details</span>
                                                         </a>
                                                     </li>
+                                                    <li class="_payment">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Tuition Fees</span>
+                                                        </a>
+                                                    </li>
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
-                                                            <span class="hide-menu"> Payments Record</span>
+                                                            <span class="hide-menu"> Other Payments</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -348,12 +353,17 @@ if (!$user->isLoggedIn()) {
                                                 <ul style="margin-left:-15px;">
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/students" aria-expanded="false">
-                                                            <span class="hide-menu"> Record</span>
+                                                            <span class="hide-menu"> Student Details</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_payment">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Tuition Fees</span>
                                                         </a>
                                                     </li>
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
-                                                            <span class="hide-menu"> Payments</span>
+                                                            <span class="hide-menu"> Other Payments</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -421,14 +431,14 @@ if (!$user->isLoggedIn()) {
                                                     Students
                                                 </a>
                                                 <ul style="margin-left:-15px;">
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/students" aria-expanded="false">
-                                                            <span class="hide-menu"> Record</span>
+                                                    <li class="_payment">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Tuition Fees</span>
                                                         </a>
                                                     </li>
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
-                                                            <span class="hide-menu"> Payments</span>
+                                                            <span class="hide-menu"> Other Payments</span>
                                                         </a>
                                                     </li>
                                                 </ul>

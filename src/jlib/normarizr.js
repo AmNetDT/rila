@@ -8,6 +8,7 @@ let ajaxRegisterNewUser= false;
 let ajaxViewPayment=false;
 let ajaxAddPaymentType=false;
 let ajax_edit_payment_type=false;
+let ajax_Add_Payment=false;
 
 
 $(document).ready(function() {
@@ -334,6 +335,41 @@ $(document).ready(function() {
     });
 
 
+    //Add Payment Pop up Window with Ajax jquery
+    $(document).on('click', '.add_payment', function () {
+        $("#loader_httpFeed").show();
+        let member_id = $(this).attr("id");
+
+        if (!ajax_Add_Payment) {
+
+            ajax_Add_Payment = true;
+            $.ajax({
+                type: "POST",
+                data:{
+                    'member_id': member_id
+                },
+                url: "view/payments/add_payment.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Add Payment",
+                        "content": msg
+                    });
+                    ajax_Add_Payment = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+    })
 
 });
 

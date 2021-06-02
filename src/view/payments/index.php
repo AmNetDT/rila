@@ -17,7 +17,8 @@ if ($user->isLoggedIn()) {
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
   <script>
     $(document).ready(function() {
-      $('#abdganiu').DataTable();
+      $('#abdusalaam').DataTable();
+      $('#abd').DataTable();
     });
   </script>
   <!-- End datatable !-->
@@ -37,31 +38,17 @@ if ($user->isLoggedIn()) {
           <h3>Payments</h3>
           <div id="btn_c" style="text-align: right;">
             <?php
+
+            $username = escape($user->data()->username);
             $userSyscategory = escape($user->data()->syscategory);
-            $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
+            //$privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
 
-            if ($userSyscategory != 2) {
             ?>
 
-              <button class="view_payment_type border">
-                <span class="fa fa-search"> Payment Titles</span>
-              </button>
+            <button class="view_payment_type border">
+              <span class="fa fa-search"> Titles</span>
+            </button>
 
-            <?php
-            } else {
-            ?>
-
-              <button class="reg_user border">
-                <span class="fa fa-plus"> Add Payment</span>
-              </button>
-              <button class="view_payment_type border">
-                <span class="fa fa-search"> Payment Titles</span>
-              </button>
-
-
-            <?php
-            }
-            ?>
           </div>
           <div class="row">
             <div class="col-sm-12 px-0">
@@ -69,61 +56,272 @@ if ($user->isLoggedIn()) {
                 <div class="card-body">
                   <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                     <h6 class="card-title p-2">All Payment Records</h6>
-
                   </div>
-                  <div class="table-responsive data-font">
-                    <table id="abdganiu" class="table table-hover table-bordered" style="width:100%">
-                      <thead>
-                        <tr>
-                          <th scope="col">Date</th>
-                          <th scope="col">Student</th>
-                          <th scope="col">Matric No.</th>
-                          <th scope="col">Payment Title</th>
-                          <th scope="col">Amount</th>
-                          <th scope="col">Paid</th>
-                          <th scope="col">Balance</th>
-                          <?php
-                          if ($userSyscategory == 2) {
-                          ?>
-                            <th scope="col">Action</th>
-                          <?php
-                          }
-                          ?>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>ST001212</td>
-                          <td>RILA/2021/PL/PGD/002345-OT</td>
-                          <td>Matriculation</td>
-                          <td>350,000</td>
-                          <td>50,000</td>
-                          <td>300,000</td>
-                          <?php
-                          if ($userSyscategory == 2) {
-                          ?>
-                            <td>
-                              <div id="btn_c" style="float:left;">
-                                <button id="<?php //echo $user->id; 
-                                            ?>" class="edit_user btn btn-default border rst<?php //echo $user->id; 
-                                                                                            ?>" lang="<?php //echo $user->username; 
-                                                                                                      ?>"><span class="fa fa-edit"></span></button>
-                              </div>
-                              <div id="btn_c" style="float:left">
-                                <button id="" class="delete_user_or_student btn btn-default border" title="<?php //echo $user->username; 
-                                                                                                            ?>" lang="<?php //echo $user->syscategory; 
-                                                                                                                      ?>"><span class="fa fa-trash"></span></button>
-                              </div>
-                            </td>
-                          <?php
-                          }
-                          ?>
 
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+
+                  <?php
+                  if ($userSyscategory == 2) {
+
+                    $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE added_by = '$username' AND payment_type !=1");
+                    if (!$paymenta->count()) {
+                      echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                    } else {
+
+                  ?>
+
+                      <div class="table-responsive data-font">
+                        <table id="abdusalaam" class="table table-hover table-bordered" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th scope="col">SN</th>
+                              <th scope="col">Created</th>
+                              <th scope="col">Modified</th>
+                              <th scope="col">Matric No.</th>
+                              <th scope="col">Title</th>
+                              <th scope="col">Amount</th>
+                              <th scope="col">Paid</th>
+                              <th scope="col">Balance</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+
+                            $i = 1;
+                            foreach ($paymenta->results() as $payment) {
+
+                            ?>
+                              <tr>
+                                <td><?php echo $i++; ?></td>
+                                <td><?php echo $payment->created; ?></td>
+                                <td><?php echo $payment->modified; ?></td>
+                                <td><?php echo $payment->matric_no; ?></td>
+                                <td><?php
+                                    $payment_type = $payment->payment_type;
+
+                                    ?>
+
+                                  <?php
+
+                                  $paymentsty = Db::getInstance()->query("SELECT * FROM `payment_type` WHERE id = $payment_type");
+                                  if (!$paymentsty->count()) {
+                                    echo "<h4 class='my-5 text-center'>Not available</h4>";
+                                  } else {
+                                    foreach ($paymentsty->results() as $paymentst) {
+                                      echo $paymentst->name;
+                                    }
+                                  }
+                                  ?>
+
+                                </td>
+                                <td><?php echo $payment->amount; ?></td>
+                                <td><?php echo $payment->paid; ?></td>
+                                <td><?php echo $payment->balance; ?></td>
+                                <td>
+                                  <div id="btn_c" style="float:left;">
+                                    <button class="edit_user btn btn-default border"><span class="fa fa-edit"></span></button>
+                                  </div>
+                                </td>
+                              </tr>
+                            <?php
+                            }
+                            ?>
+
+                          </tbody>
+                        </table>
+
+                        <table class="table table-hover table-bordered mt-2" style="width:100%">
+                          <tbody>
+                            <tr>
+                              <td style="width:55%">&nbsp;</td>
+                              <td><strong>Total</strong></td>
+                              <td>
+                                Amount: &nbsp;
+                                <?php
+
+                                $totalpaymenta = Db::getInstance()->query("SELECT sum(amount) as total FROM `payment` WHERE added_by = '$username' AND payment_type !=1");
+                                if (!$totalpaymenta->count()) {
+                                  echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                                } else {
+                                  foreach ($totalpaymenta->results() as $totalpayment) {
+                                    echo $totalpayment->total;
+                                  }
+                                }
+
+                                ?>
+                              </td>
+                              <td>
+                                Paid: &nbsp;
+                                <?php
+
+                                $totalpaymenta = Db::getInstance()->query("SELECT sum(paid) as total FROM `payment` WHERE added_by = '$username' AND payment_type !=1");
+                                if (!$totalpaymenta->count()) {
+                                  echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                                } else {
+                                  foreach ($totalpaymenta->results() as $totalpayment) {
+                                    echo $totalpayment->total;
+                                  }
+                                }
+
+                                ?>
+                              </td>
+                              <td>
+                                Balance: &nbsp;
+                                <?php
+
+                                $totalpaymenta = Db::getInstance()->query("SELECT sum(balance) as total FROM `payment` WHERE added_by = '$username' AND payment_type !=1");
+                                if (!$totalpaymenta->count()) {
+                                  echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                                } else {
+                                  foreach ($totalpaymenta->results() as $totalpayment) {
+                                    echo $totalpayment->total;
+                                  }
+                                }
+
+                                ?>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                    <?php
+                    }
+                  } else {
+
+                    $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE payment_type !=1");
+                    if (!$paymenta->count()) {
+                      echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                    } else {
+
+                    ?>
+                      <div class="table-responsive data-font">
+                        <table id="abd" class="table table-hover table-bordered" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th scope="col">SN</th>
+                              <th scope="col">Created</th>
+                              <th scope="col">Modified</th>
+                              <th scope="col">Matric No.</th>
+                              <th scope="col">Campus</th>
+                              <th scope="col">Title</th>
+                              <th scope="col">Amount</th>
+                              <th scope="col">Paid</th>
+                              <th scope="col">Balance</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+
+                            $i = 1;
+                            foreach ($paymenta->results() as $payment) {
+
+                            ?>
+                              <tr>
+                                <td><?php echo $i++; ?></td>
+                                <td><?php echo $payment->created; ?></td>
+                                <td><?php echo $payment->modified; ?></td>
+                                <td><?php echo $payment->matric_no; ?></td>
+                                <td>
+                                  <?php
+                                  //echo $payment->added_by;
+                                  $campu = $payment->added_by;
+                                  $cmpuspay = Db::getInstance()->query("SELECT l.name AS campusname FROM `users` AS u, `locations` AS l WHERE u.username = '$campu' AND l.id=u.location");
+                                  foreach ($cmpuspay->results() as $campuspa) {
+
+                                   echo $campuspa->campusname;
+                                   
+                                  }
+
+                                  ?>
+                                </td>
+                                <td><?php
+                                    $payment_type = $payment->payment_type;
+
+                                    ?>
+
+                                  <?php
+
+                                  $paymentsty = Db::getInstance()->query("SELECT * FROM `payment_type` WHERE id = $payment_type");
+                                  if (!$paymentsty->count()) {
+                                    echo "<h4 class='my-5 text-center'>Not available</h4>";
+                                  } else {
+                                    foreach ($paymentsty->results() as $paymentst) {
+                                      echo $paymentst->name;
+                                    }
+                                  }
+                                  ?>
+
+                                </td>
+                                <td><?php echo $payment->amount; ?></td>
+                                <td><?php echo $payment->paid; ?></td>
+                                <td><?php echo $payment->balance; ?></td>
+                              </tr>
+
+                            <?php
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                        <table class="table table-hover table-bordered mt-2" style="width:100%">
+                          <tbody>
+                            <tr>
+                              <td style="width:60%">&nbsp;</td>
+                              <td><strong>Total</strong></td>
+                              <td>
+                                Amount: &nbsp;
+                                <?php
+
+                                $totalpaymenta = Db::getInstance()->query("SELECT sum(amount) as total FROM `payment` WHERE payment_type !=1");
+                                if (!$totalpaymenta->count()) {
+                                  echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                                } else {
+                                  foreach ($totalpaymenta->results() as $totalpayment) {
+                                    echo $totalpayment->total;
+                                  }
+                                }
+
+                                ?>
+                              </td>
+                              <td>
+                                Paid: &nbsp;
+                                <?php
+
+                                $totalpaymenta = Db::getInstance()->query("SELECT sum(paid) as total FROM `payment` WHERE payment_type !=1");
+                                if (!$totalpaymenta->count()) {
+                                  echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                                } else {
+                                  foreach ($totalpaymenta->results() as $totalpayment) {
+                                    echo $totalpayment->total;
+                                  }
+                                }
+
+                                ?>
+                              </td>
+                              <td>
+                                Balance: &nbsp;
+                                <?php
+
+                                $totalpaymenta = Db::getInstance()->query("SELECT sum(balance) as total FROM `payment` WHERE payment_type !=1");
+                                if (!$totalpaymenta->count()) {
+                                  echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                                } else {
+                                  foreach ($totalpaymenta->results() as $totalpayment) {
+                                    echo $totalpayment->total;
+                                  }
+                                }
+
+                                ?>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                  <?php
+                    }
+                  }
+                  ?>
                 </div>
               </div>
             </div>

@@ -60,6 +60,35 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row no-gutters">
+                                            <div class="col-md-3 col-sm-3">
+
+                                                <!-- Empty !-->
+
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="card-body">
+                                                    <?php
+                                                    $userSyscategory = escape($user->data()->syscategory);
+                                                    $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
+
+                                                    if ($userSyscategory == 2) {
+                                                    ?>
+
+                                                        <div id="<?php echo $staff->member_id; ?>" class="add_payment">
+                                                            <button class="border">
+                                                                <span class="fa fa-plus"> Add Payment</span>
+                                                            </button>
+                                                        </div>
+
+                                                    <?php
+                                                    }
+                                                    ?>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
