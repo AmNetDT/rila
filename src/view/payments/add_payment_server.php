@@ -5,7 +5,7 @@ include('../../core/db.php');
 If(empty($_POST['matric_no']) || empty($_POST['amount']) || empty($_POST['payment_type']) || empty($_POST['paid'])){
 
     echo "All field required";
-
+ 
 }else{
 
 $member_id = $_POST['member_id'];

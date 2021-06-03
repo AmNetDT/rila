@@ -62,7 +62,7 @@ if ($user->isLoggedIn()) {
                   <?php
                   if ($userSyscategory == 2) {
 
-                    $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE added_by = '$username' AND payment_type !=1");
+                    $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE added_by = '$username' AND payment_type !=1 ORDER BY id DESC");
                     if (!$paymenta->count()) {
                       echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
                     } else {
@@ -105,7 +105,7 @@ if ($user->isLoggedIn()) {
 
                                   $paymentsty = Db::getInstance()->query("SELECT * FROM `payment_type` WHERE id = $payment_type");
                                   if (!$paymentsty->count()) {
-                                    echo "<h4 class='my-5 text-center'>Not available</h4>";
+                                    echo "Not specified";
                                   } else {
                                     foreach ($paymentsty->results() as $paymentst) {
                                       echo $paymentst->name;
@@ -118,8 +118,10 @@ if ($user->isLoggedIn()) {
                                 <td><?php echo $payment->paid; ?></td>
                                 <td><?php echo $payment->balance; ?></td>
                                 <td>
-                                  <div id="btn_c" style="float:left;">
-                                    <button class="edit_user btn btn-default border"><span class="fa fa-edit"></span></button>
+                                  <div id="<?php echo $payment->id ?>" land="<?php echo $payment->matric_no ?>" class="edit_payment" style="float:left;">
+                                    <button class="btn btn-default border">
+                                      <span class="fa fa-edit"></span>
+                                    </button>
                                   </div>
                                 </td>
                               </tr>
@@ -189,7 +191,7 @@ if ($user->isLoggedIn()) {
                     }
                   } else {
 
-                    $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE payment_type !=1");
+                    $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE payment_type !=1 ORDER BY id DESC");
                     if (!$paymenta->count()) {
                       echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
                     } else {
@@ -229,8 +231,7 @@ if ($user->isLoggedIn()) {
                                   $cmpuspay = Db::getInstance()->query("SELECT l.name AS campusname FROM `users` AS u, `locations` AS l WHERE u.username = '$campu' AND l.id=u.location");
                                   foreach ($cmpuspay->results() as $campuspa) {
 
-                                   echo $campuspa->campusname;
-                                   
+                                    echo $campuspa->campusname;
                                   }
 
                                   ?>

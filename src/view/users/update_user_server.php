@@ -3,6 +3,7 @@
 require_once '../../core/init.php';
 
 $id = $_POST['user_id'];
+$member_id = $_POST['username'];
 
 if (Input::exists()) {
     if (Token::check(Input::get('token'))) {
@@ -46,7 +47,31 @@ if (Input::exists()) {
                     'salt' => $salt,
                     'joined' => date('Y-m-d H:i:s')
                 ));
-                echo 'You have successfully registered';
+
+
+                if (Input::get('syscategory') != 5) { // syscategory 5 is student
+
+                    $user->update('staff_record', $member_id, array(
+                        'member_id' => Input::get('username'),
+                        'added_by' => Input::get('added_by')
+                    ));
+                    echo 'You have successfully registered a staff';
+                } else {
+
+                    $user->update('students_record', $member_id, array(
+                        'member_id' => Input::get('username'),
+                        'added_by' => Input::get('added_by')
+                    ));
+
+                    $user->update('payment', $member_id, array(
+                        'member_id' => Input::get('username'),
+                        'added_by' => Input::get('added_by')
+                    ));
+
+                    echo 'You have successfully registered a student';
+                }
+          
+                
             } catch (Exception $e) {
                 die($e->getMessage());
             }

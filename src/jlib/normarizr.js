@@ -9,6 +9,7 @@ let ajaxViewPayment=false;
 let ajaxAddPaymentType=false;
 let ajax_edit_payment_type=false;
 let ajax_Add_Payment=false;
+let ajax_edit_payment=false;
 
 
 $(document).ready(function() {
@@ -64,6 +65,39 @@ $(document).ready(function() {
                     });
 
                     ajaxAddPaymentType = false;
+                }
+            });
+        }
+        e.preventDefault();
+    })
+
+
+    //Update Payment Pop up Window with Ajax jquery
+    $(document).on('click', '.edit_payment', function (e) {
+        $("#loader_httpFeed").show();
+
+        
+        let id = $(this).attr("id");
+        let matric_no = $(this).attr("land");
+
+        //alert(matric_no)
+        if (!ajax_edit_payment) {
+
+            ajax_edit_payment = true;
+            $.ajax({
+                type: "POST",
+                data: {
+                    'id': id
+                },
+                url: "view/payments/edit_payment.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": `Update Payment -> ${matric_no.toUpperCase()}`,
+                        "content": msg
+                    });
+                    ajax_edit_payment = false;
                 }
             });
         }

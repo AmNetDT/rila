@@ -62,7 +62,7 @@ if ($user->isLoggedIn()) {
                                     <?php
                                     if ($userSyscategory == 2) {
 
-                                        $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE added_by = '$username' AND payment_type=1");
+                                        $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE added_by = '$username' AND payment_type=1 ORDER BY id DESC");
                                         if (!$paymenta->count()) {
                                             echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
                                         } else {
@@ -169,7 +169,7 @@ if ($user->isLoggedIn()) {
                                         }
                                     } else {
 
-                                        $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE payment_type=1");
+                                        $paymenta = Db::getInstance()->query("SELECT * FROM `payment` WHERE payment_type=1 ORDER BY id DESC");
                                         if (!$paymenta->count()) {
                                             echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
                                         } else {

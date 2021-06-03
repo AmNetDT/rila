@@ -46,7 +46,7 @@ if ($user->isLoggedIn()) {
                                 <div class="form-group">
                                     <label for="payment_type" class="sr-only"> Paymnet Title</label>
                                     <select class="form-control" name="payment_type" id="payment_type">
-                                        <option selected>Paymnet Title</option>
+                                        <option value="" selected>--Paymnet Title--</option>
                                         <?php
 
                                         $payments = Db::getInstance()->query("SELECT * FROM `payment_type` ORDER BY `id` DESC");
@@ -83,7 +83,7 @@ if ($user->isLoggedIn()) {
                     ?>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
@@ -111,39 +111,39 @@ if ($user->isLoggedIn()) {
             let balance = $('#balance').val();
             let remark = $('#remark').val();
             let added_by = $('#added_by').val();
+            
 
+                $.ajax({
+                    url: "view/payments/add_payment_server.php",
+                    method: 'POST',
+                    data: {
 
-            $.ajax({
-                url: "view/payments/add_payment_server.php",
-                method: 'POST',
-                data: {
+                        'matric_no': matric_no,
+                        'member_id': member_id,
+                        'amount': amount,
+                        'payment_type': payment_type,
+                        'paid': paid,
+                        'balance': balance,
+                        'remark': remark,
+                        'added_by': added_by
 
-                    'matric_no': matric_no,
-                    'member_id': member_id,
-                    'amount': amount,
-                    'payment_type': payment_type,
-                    'paid': paid,
-                    'balance': balance,
-                    'remark': remark,
-                    'added_by': added_by
+                    },
+                    success: function(data) {
 
-                },
-                success: function(data) {
+                        dalert.alert(data);
 
-                    dalert.alert(data);
-
-                },
-                error: function(xhr) {
-                    if (xhr.status == 404) {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet connection working");
-                    } else {
-                        $("#loader_httpFeed").hide();
-                        dalert.alert("internet is down");
+                    },
+                    error: function(xhr) {
+                        if (xhr.status == 404) {
+                            $("#loader_httpFeed").hide();
+                            dalert.alert("internet connection working");
+                        } else {
+                            $("#loader_httpFeed").hide();
+                            dalert.alert("internet is down");
+                        }
                     }
-                }
 
-            });
+                });
 
         });
         event.preventDefault();

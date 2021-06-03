@@ -17,8 +17,7 @@ require_once '../core/db.php';
 			$query = $connection->prepare($del);
 			if ($query->execute(array($member_id))) {
 
-				echo "Staff records deleted <br />";
-				echo "Staff login details deleted";
+				echo "Staff deleted successfully";
 			}
 	
 		}
@@ -27,17 +26,23 @@ require_once '../core/db.php';
 
 			}else{
 
-
+//Delete User Login details
 	$del_user = "DELETE FROM `users` WHERE `username` = ?";
 	$query = $connection->prepare($del_user);
 	if ($query->execute(array($member_id))) {
 
+//Delete User Student record
 		$del = "DELETE FROM `students_record` WHERE `member_id` = ?";
 		$query = $connection->prepare($del);
 		if ($query->execute(array($member_id))) {
 
-			echo "Staff records deleted <br />";
-			echo "Staff login details deleted";
+//Delete User Payment record			
+			$del = "DELETE FROM `payment` WHERE `member_id` = ?";
+			$query = $connection->prepare($del);
+			if ($query->execute(array($member_id))) {
+
+			echo "Student deleted successfully";
+			}
 		}
 	}
 

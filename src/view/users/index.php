@@ -132,7 +132,6 @@ if ($user->isLoggedIn()) {
                       <th>Username</th>
                       <th>Privilege</th>
                       <th>School</th>
-                      <th>Location</th>
                       <th>Created</th>
                       <th>Action</th>
                     </tr>
@@ -161,14 +160,6 @@ if ($user->isLoggedIn()) {
                             $schools = Db::getInstance()->query("SELECT * FROM `schools` WHERE `id`=$schoolId");
                             foreach ($schools->results() as $school) {
                               print $school->type;
-                            }
-                            ?></td>
-                        <td><?php
-
-                            $locationId = $user->location;
-                            $locations = Db::getInstance()->query("SELECT * FROM `locations` WHERE `id`=$locationId");
-                            foreach ($locations->results() as $location) {
-                              print $location->name;
                             }
                             ?></td>
                         <td><?php echo $user->joined; ?></td>

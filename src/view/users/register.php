@@ -6,7 +6,7 @@ $user = new User();
 if ($user->isLoggedIn()) {
 
 ?>
-
+ 
   <div class="container">
     <div class="jumbotron jumbotron-fluid pt-1 bg-white">
       <div id="accounttile" class="container">
@@ -124,7 +124,7 @@ if ($user->isLoggedIn()) {
                     <option selected>--Type of School--</option>
                     <?php
 
-                    $schools = Db::getInstance()->query("SELECT * FROM `schools` ORDER BY `id` DESC");
+                    $schools = Db::getInstance()->query("SELECT * FROM `schools` WHERE id!=4 ORDER BY `id` DESC");
                     foreach ($schools->results() as $schools) {
 
                     ?>

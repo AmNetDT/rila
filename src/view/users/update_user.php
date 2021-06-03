@@ -21,82 +21,142 @@
 
                  <?php
 
-                    $users = Db::getInstance()->query("SELECT * FROM users WHERE id=$user_id");
-                    foreach ($users->results() as $use) {
+                    $username = escape($user->data()->username);
+                    $locating = escape($user->data()->location);
+                    $userSyscategory = escape($user->data()->syscategory);
+                    $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
+
+                    if ($userSyscategory == 1) {
+
+                        $users = Db::getInstance()->query("SELECT * FROM users WHERE id=$user_id");
+                        foreach ($users->results() as $use) {
 
                     ?>
-                     <form method="POST" autocomplete="off">
-                         <div class="form-group">
-                             <label for="username" class="sr-only">User_id</label>
-                             <input type="text" name="username" value="<?php echo $use->username; ?>" id="username" class="form-control" />
-                         </div>
-                         <div class="form-group">
-                             <label for="syscategory" class="sr-only">Privilege</label>
-                             <select class="form-control" name="syscategory" id="syscategory">
-                                 <option selected>--Select Privilege--</option>
-                                 <?php
+                         <form method="POST" autocomplete="off">
+                             <div class="form-group">
+                                 <label for="username" class="sr-only">User_id</label>
+                                 <input type="text" name="username" value="<?php echo $use->username; ?>" id="username" class="form-control" />
+                             </div>
+                             <div class="form-group">
+                                 <label for="syscategory" class="sr-only">Privilege</label>
+                                 <select class="form-control" name="syscategory" id="syscategory">
+                                     <option selected>--Select Privilege--</option>
+                                     <?php
 
-                                    $Syscategory = Db::getInstance()->query("SELECT * FROM `syscategory` ORDER BY `id` ASC");
-                                    foreach ($Syscategory->results() as $Syscategory) {
+                                        $Syscategory = Db::getInstance()->query("SELECT * FROM `syscategory` ORDER BY `id` ASC");
+                                        foreach ($Syscategory->results() as $Syscategory) {
 
-                                    ?>
+                                        ?>
 
-                                     <option value="<?php echo $Syscategory->id; ?>"><?php echo $Syscategory->name; ?></option>
-                                 <?php
-                                    }
-                                    ?>
-                             </select>
-                         </div>
-                         <div class="form-group">
-                             <label for="school" class="sr-only">School</label>
-                             <select class="form-control" name="school" id="school">
-                                 <option selected>--Type of School--</option>
-                                 <?php
+                                         <option value="<?php echo $Syscategory->id; ?>"><?php echo $Syscategory->name; ?></option>
+                                     <?php
+                                        }
+                                        ?>
+                                 </select>
+                             </div>
+                             <div class="form-group">
+                                 <label for="school" class="sr-only">School</label>
+                                 <select class="form-control" name="school" id="school">
+                                     <option selected>--Type of School--</option>
+                                     <?php
 
-                                    $schools = Db::getInstance()->query("SELECT * FROM `schools` ORDER BY `id` DESC");
-                                    foreach ($schools->results() as $schools) {
+                                        $schools = Db::getInstance()->query("SELECT * FROM `schools` ORDER BY `id` DESC");
+                                        foreach ($schools->results() as $schools) {
 
-                                    ?>
-                                     <option value="<?php echo $schools->id; ?>"><?php echo $schools->type; ?></option>
-                                 <?php
-                                    }
-                                    ?>
-                             </select>
-                         </div>
-                         <div class="form-group">
-                             <label for="location" class="sr-only">Location</label>
-                             <select class="form-control" name="location" id="location">
-                                 <option selected>--Campus--</option>
-                                 <?php
+                                        ?>
+                                         <option value="<?php echo $schools->id; ?>"><?php echo $schools->type; ?></option>
+                                     <?php
+                                        }
+                                        ?>
+                                 </select>
+                             </div>
+                             <div class="form-group">
+                                 <label for="location" class="sr-only">Location</label>
+                                 <select class="form-control" name="location" id="location">
+                                     <option selected>--Campus--</option>
+                                     <?php
 
-                                    $location = Db::getInstance()->query("SELECT * FROM `locations` ORDER BY `id` DESC");
-                                    foreach ($location->results() as $location) {
+                                        $location = Db::getInstance()->query("SELECT * FROM `locations` ORDER BY `id` DESC");
+                                        foreach ($location->results() as $location) {
 
-                                    ?>
-                                     <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
-                                 <?php
-                                    }
-                                    ?>
-                             </select>
-                         </div>
-                         <div class="form-group">
-                             <label for="password" class="sr-only">Password</label>
-                             <input type="password" name="password" id="password" class="form-control" />
-                         </div>
-                         <div class="form-group">
-                             <label for="confirm_password" class="sr-only">Confirm Password</label>
-                             <input type="password" name="confirm_password" id="confirm_password" class="form-control" />
-                         </div>
-                         <input type="hidden" name="user_id" id="user_id" value="<?php echo $use->id; ?>" />
-                         <div id="submitButton">
-                             <button type="button" id="save" class="btn btn-light mb-3">
-                                 <span class="fa fa-edit"> Update</span>
-                             </button>
-                             <input type="hidden" name="token" id="token" value="<?php echo Token::generate() ?>" />
-                         </div>
-                     <?php } ?>
-                     </form>
-                     <span style="font-size:small">Note: New password is mandatory.</span>
+                                        ?>
+                                         <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
+                                     <?php
+                                        }
+                                        ?>
+                                 </select>
+                             </div>
+                             <div class="form-group">
+                                 <label for="password" class="sr-only">Password</label>
+                                 <input type="password" name="password" id="password" class="form-control" />
+                             </div>
+                             <div class="form-group">
+                                 <label for="confirm_password" class="sr-only">Confirm Password</label>
+                                 <input type="password" name="confirm_password" id="confirm_password" class="form-control" />
+                             </div>
+                             <input type="hidden" name="user_id" id="user_id" value="<?php echo $use->id; ?>" />
+                             <div id="submitButton">
+                                 <button type="button" id="save" class="btn btn-light mb-3">
+                                     <span class="fa fa-edit"> Update</span>
+                                 </button>
+                                 <input type="hidden" name="token" id="token" value="<?php echo Token::generate() ?>" />
+                             </div>
+
+                         </form>
+                     <?php }
+                    } else if ($userSyscategory == 2) {
+
+                        $users = Db::getInstance()->query("SELECT * FROM users WHERE id=$user_id");
+                        foreach ($users->results() as $use) {
+
+                        ?>
+                         <form method="POST" autocomplete="off">
+                             <div class="form-group">
+                                 <label for="username" class="sr-only">User_id</label>
+                                 <input type="text" name="username" value="<?php echo $use->username; ?>" id="username" class="form-control" />
+                             </div>
+                             <input type="hidden" value="5" name="syscategory" id="syscategory" />
+                             <input type="hidden" value="<?php echo $locating; ?>" name="location" id="location" />
+                             <div class="form-group">
+                                 <label for="school" class="sr-only">School</label>
+                                 <select class="form-control" name="school" id="school">
+                                     <option selected>--Type of School--</option>
+                                     <?php
+
+                                        $schools = Db::getInstance()->query("SELECT * FROM `schools` WHERE id!=4 ORDER BY `id` DESC");
+                                        foreach ($schools->results() as $schools) {
+
+                                        ?>
+                                         <option value="<?php echo $schools->id; ?>"><?php echo $schools->type; ?></option>
+                                     <?php
+                                        }
+                                        ?>
+                                 </select>
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="password" class="sr-only">Password</label>
+                                 <input type="password" name="password" id="password" placeholder="Password" class="form-control" />
+                             </div>
+                             <div class="form-group">
+                                 <label for="confirm_password" class="sr-only">Confirm Password</label>
+                                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" class="form-control" />
+                             </div>
+                             <input type="hidden" name="user_id" id="user_id" value="<?php echo $use->id; ?>" />
+                             <div id="submitButton">
+                                 <button type="button" id="save" class="btn btn-light mb-3">
+                                     <span class="fa fa-edit"> Update</span>
+                                 </button>
+                                 <input type="hidden" name="token" id="token" value="<?php echo Token::generate() ?>" />
+                             </div>
+
+                         </form>
+                 <?php
+                        }
+                    }
+
+                    ?>
+                 <span style="font-size:small">Note: New password is mandatory.</span>
              </div>
          </div>
 
