@@ -55,7 +55,7 @@ if (Input::exists()) {
                         'member_id' => Input::get('username'),
                         'added_by' => Input::get('added_by')
                     ));
-                    echo 'You have successfully registered a staff';
+                    echo 'You have successfully update a staff';
                 } else {
 
                     $user->update('students_record', $member_id, array(
@@ -68,7 +68,7 @@ if (Input::exists()) {
                         'added_by' => Input::get('added_by')
                     ));
 
-                    echo 'You have successfully registered a student';
+                    echo 'You have successfully update a student';
                 }
           
                 

@@ -6,7 +6,7 @@ $user = new User();
 if ($user->isLoggedIn()) {
 
 ?>
- 
+
   <div class="container">
     <div class="jumbotron jumbotron-fluid pt-1 bg-white">
       <div id="accounttile" class="container">
@@ -33,16 +33,17 @@ if ($user->isLoggedIn()) {
                 <div class="form-group">
                   <label for="syscategory" class="sr-only">Privilege</label>
                   <select class="form-control" name="syscategory" id="syscategory">
-                    <option selected>--Select Privilege--</option>
+                    <option selected>--Select Permission--</option>
                     <?php
-
-                    $Syscategory = Db::getInstance()->query("SELECT * FROM `syscategory` ORDER BY `id` ASC");
-                    foreach ($Syscategory->results() as $Syscategory) {
+                    if ($userSyscategory == 1) {
+                      $Syscategory = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE id !=5 ORDER BY `id` ASC");
+                      foreach ($Syscategory->results() as $Syscategory) {
 
                     ?>
 
-                      <option value="<?php echo $Syscategory->id; ?>"><?php echo $Syscategory->name; ?></option>
-                    <?php
+                        <option value="<?php echo $Syscategory->id; ?>"><?php echo $Syscategory->name; ?></option>
+                      <?php
+                      }
                     }
                     ?>
                   </select>

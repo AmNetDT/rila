@@ -99,9 +99,10 @@ if ($user->isLoggedIn()) {
                                                                 <td><?php echo $payment->paid; ?></td>
                                                                 <td><?php echo $payment->balance; ?></td>
                                                                 <td>
-                                                                    <div id="btn_c" style="float:left;">
-                                                                        <button class="edit_user btn btn-default border"><span class="fa fa-edit"></span></button>
-                                                                    </div>
+                                                                    <div id="<?php echo $payment->id ?>" land="<?php echo $payment->matric_no ?>" class="edit_payment" style="float:left;">
+                                                                        <button class="btn btn-default border">
+                                                                            <span class="fa fa-edit"></span>
+                                                                        </button>
                                                                 </td>
                                                             <?php
                                                         }

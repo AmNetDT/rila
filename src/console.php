@@ -276,18 +276,8 @@ if (!$user->isLoggedIn()) {
                                                 </a>
                                                 <ul style="margin-left:-15px;">
                                                     <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="console" aria-expanded="false">
-                                                            <span class="hide-menu"> Masters</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
-                                                            <span class="hide-menu"> Regular Programmes</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
-                                                            <span class="hide-menu"> Special Programmes</span>
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/schools" aria-expanded="false">
+                                                            <span class="hide-menu"> Programmes</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -374,18 +364,8 @@ if (!$user->isLoggedIn()) {
                                                 </a>
                                                 <ul style="margin-left:-15px;">
                                                     <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="console" aria-expanded="false">
-                                                            <span class="hide-menu"> Masters</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
-                                                            <span class="hide-menu"> Regular Programmes</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
-                                                            <span class="hide-menu"> Special Programmes</span>
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/schools" aria-expanded="false">
+                                                            <span class="hide-menu"> Programmes</span>
                                                         </a>
                                                     </li>
                                                 </ul>

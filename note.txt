@@ -3,24 +3,37 @@ Student and staff full detail can be seen by the admin users but can edit.
 ////////////////////////////////////////////////////////
 Admin Users as follow:
 1. Administrator
-2. coordinator
+2. Coordinator
+3. Finance
+4. Library
 .......................................................................
-Can edit user login details, view user details (can't edit) and delete user and user details,
+1. Administrator
+2. Coordinator
 
-
+1. Admin Users can add student payment after they have confirmed the payment.
+2. Can edit user login details, view user records (can't edit) and delete user and user records,
+.......................................................................
 
 ////////////////////////////////////////////////////////
 Payment.
 .........................................................................
-1. Admin Users can add student payment after they have confirmed the payment.
+
 2. Student can view their payment status on their dashboard
 
-
-
 ///////////////////////////////////////////////////////
+Administrator
+.........................................................................
+1. Administrator can create:
+a). new campus and also edit campus
+b). staff user account, delete and edit staff user account
+c). 
+.........................................................................
 Coordinator.
 .........................................................................
-1. Coordinator can only create a student user account, can't create a staff user account
+1. Coordinator can create:
+ a). student user account
+ b). Record student payment
+ c). not staff user account
 
 
 
