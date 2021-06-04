@@ -31,7 +31,7 @@ if ($user->isLoggedIn()) {
                   <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
                 </div>
                 <div class="form-group">
-                  <label for="syscategory" class="sr-only">Privilege</label>
+                  <label for="syscategory" id="labelSyscategory" class="sr-only">Privilege</label>
                   <select class="form-control" name="syscategory" id="syscategory">
                     <option selected>--Select Permission--</option>
                     <?php
