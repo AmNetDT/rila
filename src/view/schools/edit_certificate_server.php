@@ -8,11 +8,14 @@ if (Input::exists()) {
 
     $validate = new Validate();
     $validation = $validate->check($_POST, array(
-        'Category'         => array(
+        'title'         => array(
         'required'      => true
         ),
-        'added_by' => array(
-            'require' => true
+        'duration'      => array(
+        'required'      => true
+        ),
+        'added_by'      =>  array(
+        'required'      =>  true
         )
     ));
 
@@ -21,8 +24,9 @@ if (Input::exists()) {
 
         try {
             $user->insert('programmes', array(
-                'category'     => Input::get('Category'),
-                'added_by' => input::get('added_by')
+                'title'     => Input::get('title'),
+                'duration'  => Input::get('duration'),
+                'added_by'  => Input::get('added_by')
             ));
 
             echo 'Programme added successfully';

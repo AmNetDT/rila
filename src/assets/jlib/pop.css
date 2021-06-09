@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 50%;
-    height: 50%;
+    height: auto;
     background: #000000;
     opacity: 0.3;
     display: none;
@@ -29,13 +29,13 @@
 .myPop-close {
     float: right;
     cursor: pointer;
-	font-size: 15px;
+	font-size: 13px;
 }
 
 .myPop-expand {
     float: right;
     cursor: pointer;
-	font-size: 15px;
+	font-size: 13px;
 }
 
 .myPop-content {
@@ -44,7 +44,6 @@
     background: #FFFFFF;
     padding: 20px;
 	overflow:auto;
-	padding-top:20px;
 }
 
 

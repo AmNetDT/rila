@@ -38,9 +38,7 @@ if ($user->isLoggedIn()) {
                     if ($userSyscategory == 1) {
                       $Syscategory = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE id !=5 ORDER BY `id` ASC");
                       foreach ($Syscategory->results() as $Syscategory) {
-
                     ?>
-
                         <option value="<?php echo $Syscategory->id; ?>"><?php echo $Syscategory->name; ?></option>
                       <?php
                       }
@@ -56,16 +54,16 @@ if ($user->isLoggedIn()) {
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="school" class="sr-only">School</label>
-                  <select class="form-control" name="school" id="school">
-                    <option selected>--Type of School--</option>
+                  <label for="programme" class="sr-only">programme</label>
+                  <select class="form-control" name="programme" id="programme">
+                    <option selected>--Type of programme--</option>
                     <?php
 
-                    $schools = Db::getInstance()->query("SELECT * FROM `schools` ORDER BY `id` DESC");
-                    foreach ($schools->results() as $schools) {
+                    $programmes = Db::getInstance()->query("SELECT * FROM `programmes` ORDER BY `id` DESC");
+                    foreach ($programmes->results() as $programmes) {
 
                     ?>
-                      <option value="<?php echo $schools->id; ?>"><?php echo $schools->type; ?></option>
+                      <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->type; ?></option>
                     <?php
                     }
                     ?>
@@ -120,16 +118,16 @@ if ($user->isLoggedIn()) {
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="school" class="sr-only">School</label>
-                  <select class="form-control" name="school" id="school">
-                    <option selected>--Type of School--</option>
+                  <label for="programme" class="sr-only">Programme</label>
+                  <select class="form-control" name="programme" id="programme">
+                    <option selected>--Type of programme--</option>
                     <?php
 
-                    $schools = Db::getInstance()->query("SELECT * FROM `schools` WHERE id!=4 ORDER BY `id` DESC");
-                    foreach ($schools->results() as $schools) {
+                    $programmes = Db::getInstance()->query("SELECT * FROM `programmes` WHERE id!=4 ORDER BY `id` DESC");
+                    foreach ($programmes->results() as $programmes) {
 
                     ?>
-                      <option value="<?php echo $schools->id; ?>"><?php echo $schools->type; ?></option>
+                      <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->type; ?></option>
                     <?php
                     }
                     ?>
@@ -179,7 +177,7 @@ if ($user->isLoggedIn()) {
 
       let username = $('#username').val();
       let syscategory = $('#syscategory').val();
-      let school = $('#school').val();
+      let programme = $('#programme').val();
       let location = $('#location').val();
       let password = $('#password').val();
       let confirm_password = $('#confirm_password').val();
@@ -194,7 +192,7 @@ if ($user->isLoggedIn()) {
 
           'username': username,
           'syscategory': syscategory,
-          'school': school,
+          'programme': programme,
           'location': location,
           'password': password,
           'confirm_password': confirm_password,

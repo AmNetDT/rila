@@ -10,6 +10,8 @@ let ajaxAddPaymentType=false;
 let ajax_edit_payment_type=false;
 let ajax_Add_Payment=false;
 let ajax_edit_payment=false;
+let ajaxAddProgramme=false;
+let ajaxAddCertificate=false;
 
 
 $(document).ready(function() {
@@ -75,7 +77,6 @@ $(document).ready(function() {
     //Update Payment Pop up Window with Ajax jquery
     $(document).on('click', '.edit_payment', function (e) {
         $("#loader_httpFeed").show();
-
         
         let id = $(this).attr("id");
         let matric_no = $(this).attr("land");
@@ -404,6 +405,75 @@ $(document).ready(function() {
             });
         }
     })
+
+
+    //Add Programme type Pop up Window with Ajax jquery
+    $(document).on('click', '.add_programme', function (e) {
+        $("#loader_httpFeed").show();
+
+        if (!ajaxAddProgramme) {
+
+            ajaxAddProgramme = true;
+            $.ajax({
+                type: "POST",
+                url: "view/schools/add_programme.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Add Programme Title",
+                        "content": msg
+                    });
+                    ajaxAddProgramme = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+        e.preventDefault();
+    })
+
+    //Add Programme type Pop up Window with Ajax jquery
+    $(document).on('click', '.add_certificate', function (e) {
+        $("#loader_httpFeed").show();
+
+        if (!ajaxAddCertificate) {
+
+            ajaxAddCertificate = true;
+            $.ajax({
+                type: "POST",
+                url: "view/schools/add_certificate.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Add Certificate Title",
+                        "content": msg
+                    });
+                    ajaxAddCertificate = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+        e.preventDefault();
+    })
+
+
 
 });
 

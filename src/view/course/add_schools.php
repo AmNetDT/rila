@@ -33,11 +33,14 @@
                         ?>
                      <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
                      <div id="submitButton">
-                         <button type="button" id="save" class="btn btn-light">
-                             <span class=" fa fa-save"> Save</span>
+                         <button type="button" id="save" class="btn btn-light px-5 mb-3">
+                             Add Title
                          </button>
                      </div>
                  </form>
+             </div>
+             <div class="mt-3 mb-0 text-right">
+                 <button class='myPop-close btn-danger'><span class='fa fa-times text-white'></span> Close</button>
              </div>
          </div>
 

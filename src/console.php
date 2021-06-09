@@ -280,6 +280,11 @@ if (!$user->isLoggedIn()) {
                                                             <span class="hide-menu"> Programmes</span>
                                                         </a>
                                                     </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/course" aria-expanded="false">
+                                                            <span class="hide-menu"> Courses</span>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li>
@@ -366,6 +371,11 @@ if (!$user->isLoggedIn()) {
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/schools" aria-expanded="false">
                                                             <span class="hide-menu"> Programmes</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/course" aria-expanded="false">
+                                                            <span class="hide-menu"> Courses</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -550,7 +560,7 @@ if (!$user->isLoggedIn()) {
                                         <div class="row text-center justify-content-md-center">
                                             <div class="col-4"><a href="javascript:void(0)" class="link">
                                                     <i class="fa fa-users"></i>
-                                                    <font class="font-medium">23</font>
+                                                    <span class="font-medium">23</span>
                                                 </a></div>
                                         </div>
                                     </div>
@@ -568,7 +578,7 @@ if (!$user->isLoggedIn()) {
                                         <div class="row text-center justify-content-md-center">
                                             <div class="col-4"><a href="javascript:void(0)" class="link">
                                                     <i class="fa fa-institution"></i>
-                                                    <font class="font-medium">3</font>
+                                                    <span class="font-medium">3</span>
                                                 </a></div>
                                         </div>
                                     </div>
@@ -605,7 +615,7 @@ if (!$user->isLoggedIn()) {
                                         <div class="row text-center justify-content-md-center">
                                             <div class="col-4"><a href="javascript:void(0)" class="link">
                                                     <i class="fa fa-send"></i>
-                                                    <font class="font-medium">254</font>
+                                                    <span class="font-medium">254</span>
                                                 </a></div>
                                         </div>
                                     </div>
