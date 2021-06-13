@@ -27,7 +27,7 @@ if ($user->isLoggedIn()) {
 
                     if ($staffa->count()) {
                         foreach ($staffa->results() as $staff) {
-
+                        
                     ?>
                             <div class="row border-bottom">
                                 <div class="container my-4">
@@ -39,7 +39,13 @@ if ($user->isLoggedIn()) {
                                                 } else {
                                                     echo "";
                                                 } ?>
-                                                <h6><?php echo '<span class="card-title py-0 my-0">' . $staff->member_id . '</span>'; ?></h6>
+                                                <h6><span class="card-title py-0 my-0"><?php
+                        $u = $staff->member_id;
+                        $username = Db::getInstance()->get('users', array('id', '=', $u));
+                        if ($username->count()) {
+                            echo escape($username->results()[0]->username);
+                        }
+                                                ?></span></h6>
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="card-body">
@@ -47,9 +53,7 @@ if ($user->isLoggedIn()) {
 
                                                     if ($staff->firstname != "" || $staff->lastname != "" || $staff->schools != "" || $staff->email != "" || $staff->location != "") {
                                                         echo '<h5 class="card-title py-0 my-0">' . $staff->firstname . ' ' . $staff->lastname . '</h5><p class="card-text py-0 my-0">' . $staff->member_id . '</p><p class="card-text py-0 my-0">' . $staff->schools . '</p><p class="card-text pt-2 my-0">' . $staff->email . '</p><p class="card-text py-0 my-0">' . $staff->location . '</p>';
-                                                    } else {
-                                                        echo '<span class="card-title py-0 my-0">' . $staff->member_id . '</span>';
-                                                    }
+                                                    } 
 
 
                                                     ?>

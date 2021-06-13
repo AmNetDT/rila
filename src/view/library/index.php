@@ -75,7 +75,14 @@ if ($library->isLoggedIn()) {
                           <td><?php echo $library->author; ?></td>
                           <td><?php echo $library->category; ?></td>
                           <td><?php echo $library->quantity; ?></td>
-                          <td><?php echo $library->added_by; ?></td>
+                          <td><?php
+
+                              $u = $library->added_by;
+                              $username = Db::getInstance()->get('users', array('id', '=', $u));
+                              if ($username->count()) {
+                                echo escape($username->results()[0]->username);
+                              }
+                              ?></td>
                           <td><?php echo $library->created; ?></td>
                           <td>
                             <div id="btn_c">

@@ -16,7 +16,7 @@ if ($user->isLoggedIn()) {
             Register a new user account</p>
           <?php
 
-          $username = escape($user->data()->username);
+          
           $locating = escape($user->data()->location);
           $userSyscategory = escape($user->data()->syscategory);
           $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
@@ -54,16 +54,16 @@ if ($user->isLoggedIn()) {
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="programme" class="sr-only">programme</label>
-                  <select class="form-control" name="programme" id="programme">
+                  <label for="school" class="sr-only">Programme</label>
+                  <select class="form-control" name="school" id="school">
                     <option selected>--Type of programme--</option>
                     <?php
 
-                    $programmes = Db::getInstance()->query("SELECT * FROM `programmes` ORDER BY `id` DESC");
+                    $programmes = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY `id` DESC");
                     foreach ($programmes->results() as $programmes) {
 
                     ?>
-                      <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->type; ?></option>
+                      <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->title; ?></option>
                     <?php
                     }
                     ?>
@@ -91,7 +91,7 @@ if ($user->isLoggedIn()) {
                   <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" />
                   <input type="hidden" name="token" id="token" value="<?php echo Token::generate(); ?>" />
 
-                  <input type="hidden" name="added_by" id="added_by" value="<?php echo escape($user->data()->username); ?>" />
+                  <input type="hidden" name="added_by" id="added_by" value="<?php echo escape($user->data()->id); ?>" />
                 </div>
               </div>
               <div id="submitButton">
@@ -118,16 +118,16 @@ if ($user->isLoggedIn()) {
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="programme" class="sr-only">Programme</label>
-                  <select class="form-control" name="programme" id="programme">
+                  <label for="school" class="sr-only">Programme</label>
+                  <select class="form-control" name="school" id="school">
                     <option selected>--Type of programme--</option>
                     <?php
 
-                    $programmes = Db::getInstance()->query("SELECT * FROM `programmes` WHERE id!=4 ORDER BY `id` DESC");
+                    $programmes = Db::getInstance()->query("SELECT * FROM `certificates` WHERE id!=4 ORDER BY `id` DESC");
                     foreach ($programmes->results() as $programmes) {
 
                     ?>
-                      <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->type; ?></option>
+                      <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->title; ?></option>
                     <?php
                     }
                     ?>
@@ -140,7 +140,7 @@ if ($user->isLoggedIn()) {
                   <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" />
                   <input type="hidden" name="token" id="token" value="<?php echo Token::generate(); ?>" />
 
-                  <input type="hidden" name="added_by" id="added_by" value="<?php echo escape($user->data()->username); ?>" />
+                  <input type="hidden" name="added_by" id="added_by" value="<?php echo escape($user->data()->id); ?>" />
                 </div>
               </div>
               <div id="submitButton">
@@ -177,7 +177,7 @@ if ($user->isLoggedIn()) {
 
       let username = $('#username').val();
       let syscategory = $('#syscategory').val();
-      let programme = $('#programme').val();
+      let school = $('#school').val();
       let location = $('#location').val();
       let password = $('#password').val();
       let confirm_password = $('#confirm_password').val();
@@ -192,7 +192,7 @@ if ($user->isLoggedIn()) {
 
           'username': username,
           'syscategory': syscategory,
-          'programme': programme,
+          'school': school,
           'location': location,
           'password': password,
           'confirm_password': confirm_password,

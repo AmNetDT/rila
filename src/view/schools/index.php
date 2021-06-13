@@ -44,7 +44,7 @@ if ($user->isLoggedIn()) {
 
           ?>
             <div class="row my-4">
-              
+
               <div class="col-md-12 text-right">
                 <button class="add_certificate border">
                   <span class="fa fa-plus"> Add Certificate</span>
@@ -92,12 +92,18 @@ if ($user->isLoggedIn()) {
                               <tr>
                                 <td><?php echo $programme->modified; ?></td>
                                 <td><?php echo $programme->category; ?></td>
-                                <td><?php echo $programme->added_by; ?></td>
+                                <td><?php
+
+                                    $u = $programme->added_by;
+                                    $username = Db::getInstance()->get('users', array('id', '=', $u));
+                                    if ($username->count()) {
+                                      echo escape($username->results()[0]->username);
+                                    }
+                                    ?></td>
                                 <td>
-                                  <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
-                                    <button class="btn btn-default border">
-                                      <span class="fa fa-edit"></span>
-                                    </button>
+                                  <div id="<?php echo $programme->id; ?>" lang="<?php echo $programme->category; ?>" class="edit_programme" style="float:left;">
+                                    <button class=" btn btn-default border">
+                                      <span class="fa fa-edit"></span></button>
                                   </div>
                                 </td>
                               </tr>
@@ -155,13 +161,20 @@ if ($user->isLoggedIn()) {
                                 <td><?php echo $programme->modified; ?></td>
                                 <td><?php echo $programme->title; ?></td>
                                 <td><?php echo $programme->duration; ?></td>
-                                <td><?php echo $programme->added_by; ?></td>
+                                <td><?php
+
+                                    $u = $programme->added_by;
+                                    $username = Db::getInstance()->get('users', array('id', '=', $u));
+                                    if ($username->count()) {
+                                      echo escape($username->results()[0]->username);
+                                    }
+                                    ?></td>
                                 <td>
-                                  <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
-                                    <button class="btn btn-default border">
-                                      <span class="fa fa-edit"></span>
-                                    </button>
+                                  <div id="<?php echo $programme->id; ?>" lang="<?php echo $programme->title; ?>" class="edit_certificate" style="float:left;">
+                                    <button class=" btn btn-default border">
+                                      <span class="fa fa-edit"></span></button>
                                   </div>
+
                                 </td>
                               </tr>
                             <?php
@@ -187,7 +200,7 @@ if ($user->isLoggedIn()) {
           ?>
 
             <div class="row">
-              <div class="col-md-6 px-0">
+              <div class="col-md-12 px-0">
                 <div class="card">
                   <div class="card-body">
                     <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
@@ -198,7 +211,7 @@ if ($user->isLoggedIn()) {
                     <?php
 
 
-                    $programmea = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY id DESC");
+                    $programmea = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY programme DESC");
                     if (!$programmea->count()) {
                       echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
                     } else {
@@ -209,98 +222,36 @@ if ($user->isLoggedIn()) {
                         <table id="abdusalaam" class="table table-hover table-bordered" style="width:100%">
                           <thead>
                             <tr>
-                              <th scope="col">Created</th>
-                              <th scope="col">Modified</th>
+                              <th scope="col">SN</th>
                               <th scope="col">Title</th>
-                              <th scope="col">Course Duration</th>
-                              <th scope="col">Created BY</th>
-                              <th scope="col">Action</th>
+                              <th scope="col">Duration</th>
+                              <th scope="col">Programme</th>
+                              <th scope="col">Modified</th>
                             </tr>
                           </thead>
                           <tbody>
                             <?php
-
+                            $i = 1;
                             foreach ($programmea->results() as $programme) {
 
                             ?>
                               <tr>
-                                <td><?php echo $programme->created; ?></td>
-                                <td><?php echo $programme->modified; ?></td>
+                                <td><?php echo $i++; ?></td>
                                 <td><?php echo $programme->title; ?></td>
                                 <td><?php echo $programme->duration; ?></td>
-                                <td><?php echo $programme->added_by; ?></td>
-                                <td>
-                                  <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
-                                    <button class="btn btn-default border">
-                                      <span class="fa fa-edit"></span>
-                                    </button>
-                                  </div>
-                                </td>
-                              </tr>
-                            <?php
-                            }
-                            ?>
+                                <td><?php
 
-                          </tbody>
-                        </table>
-
-                      </div>
-
-                    <?php
-                    }
-                    ?>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 px-0">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                      <h6 class="card-title p-2">All Certificates</h6>
-                    </div>
-
-
-                    <?php
-
-
-                    $programmea = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY id DESC");
-                    if (!$programmea->count()) {
-                      echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
-                    } else {
-
-                    ?>
-
-                      <div class="table-responsive data-font">
-                        <table id="rahmatullah" class="table table-hover table-bordered" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th scope="col">Created</th>
-                              <th scope="col">Modified</th>
-                              <th scope="col">Title</th>
-                              <th scope="col">Course Duration</th>
-                              <th scope="col">Created BY</th>
-                              <th scope="col">Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-
-                            foreach ($programmea->results() as $programme) {
-
-                            ?>
-                              <tr>
-                                <td><?php echo $programme->created; ?></td>
+                                    $program = $programme->programme;
+                                    $prog = Db::getInstance()->query("SELECT * FROM `programmes` WHERE id=$program");
+                                    if ($prog->count()) {
+                                      foreach ($prog->results() as $pro) {
+                                        echo $pro->category;
+                                      }
+                                    } else {
+                                      echo 'Nothing to display';
+                                    }
+                                    ?></td>
                                 <td><?php echo $programme->modified; ?></td>
-                                <td><?php echo $programme->title; ?></td>
-                                <td><?php echo $programme->duration; ?></td>
-                                <td><?php echo $programme->added_by; ?></td>
-                                <td>
-                                  <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
-                                    <button class="btn btn-default border">
-                                      <span class="fa fa-edit"></span>
-                                    </button>
-                                  </div>
-                                </td>
                               </tr>
                             <?php
                             }

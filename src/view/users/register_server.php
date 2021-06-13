@@ -19,7 +19,7 @@ $user = new User();
         'syscategory'     => array(
           'require'         => true
         ),
-        'school'          => array(
+      'school'          => array(
           'require'         => true
         ),
         'location'        => array(

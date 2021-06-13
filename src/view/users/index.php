@@ -48,7 +48,7 @@ if ($user->isLoggedIn()) {
               <div class="table-responsive data-font">
                 <?php
 
-                $username = escape($user->data()->username);
+                $username = escape($user->data()->id);
                 $userSyscategory = escape($user->data()->syscategory);
                 $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
 
@@ -68,6 +68,7 @@ if ($user->isLoggedIn()) {
                           <th>Username</th>
                           <th>Privilege</th>
                           <th>School</th>
+                          <th>Programme</th>
                           <th>Location</th>
                           <th>Created</th>
                           <th>&nbsp;</th>
@@ -94,9 +95,20 @@ if ($user->isLoggedIn()) {
                             <td><?php
 
                                 $schoolId = $user->school;
-                                $schools = Db::getInstance()->query("SELECT * FROM `schools` WHERE `id`=$schoolId");
+                                $schools = Db::getInstance()->query("SELECT * FROM `certificates` WHERE `id`=$schoolId");
                                 foreach ($schools->results() as $school) {
-                                  print $school->type;
+                                  print $school->title;
+                                }
+                                ?></td>
+                            <td><?php
+
+                                $schools = Db::getInstance()->query("SELECT * FROM `certificates` WHERE `id`=$schoolId");
+                                foreach ($schools->results() as $school) {
+                                  $p = $school->programme;
+                                  $programme = Db::getInstance()->get('programmes', array('id', '=', $p));
+                                  if ($programme->count()) {
+                                    echo escape($programme->results()[0]->category);
+                                  }
                                 }
                                 ?></td>
                             <td><?php
@@ -139,8 +151,8 @@ if ($user->isLoggedIn()) {
                         <tr>
                           <th>SN</th>
                           <th>Username</th>
-                          <th>Privilege</th>
                           <th>School</th>
+                          <th>Programme</th>
                           <th>Created</th>
                           <th>Action</th>
                         </tr>
@@ -155,22 +167,26 @@ if ($user->isLoggedIn()) {
                           <tr>
                             <td><?php echo $i++; ?></td>
                             <td><?php echo $user->username; ?></td>
-                            <td><?php
-
-                                $sysId = $user->syscategory;
-                                $syscategory = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id`=$sysId");
-                                foreach ($syscategory->results() as $sysName) {
-                                  print $sysName->name;
-                                }
-                                ?></td>
-                            <td><?php
-
-                                $schoolId = $user->school;
-                                $schools = Db::getInstance()->query("SELECT * FROM `schools` WHERE `id`=$schoolId");
+                        <td><?php
+                          $schoolId = $user->school;
+                                $schools = Db::getInstance()->query("SELECT * FROM `certificates` WHERE `id`=$schoolId");
                                 foreach ($schools->results() as $school) {
-                                  print $school->type;
+                                  $p = $school->programme;
+                                  $programme = Db::getInstance()->get('programmes', array('id', '=', $p));
+                                  if ($programme->count()) {
+                                    echo escape($programme->results()[0]->category);
+                                  }
                                 }
                                 ?></td>
+                            <td><?php
+
+                               
+                                $schools = Db::getInstance()->query("SELECT * FROM `certificates` WHERE `id`=$schoolId");
+                                foreach ($schools->results() as $school) {
+                                  print $school->title;
+                                }
+                                ?></td>
+                            
                             <td><?php echo $user->joined; ?></td>
                             <td>
                               <div id="btn_c" style="float:left;">

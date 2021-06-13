@@ -20,27 +20,19 @@
              <div class="px-3 text-center">
 
                  <p class="login-card-description mt-2">
-                     Add Payment Title</p>
+                     Add School Title</p>
                  <form method="POST" autocomplete="off">
                      <div class="form-group">
-                         <label for="name" class="sr-only">Payment Title</label>
-                         <input type="text" name="name" value="" id="name" class="form-control" placeholder="Payment Type Name" />
+                         <label for="title" class="sr-only">School Title</label>
+                         <input type="text" name="title" id="title" class="form-control" placeholder="School Name" />
                      </div>
 
-                     <?php
-                        $username = escape($user->data()->username);
-
-                        ?>
-                     <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
                      <div id="submitButton">
-                         <button type="button" id="save" class="btn btn-light px-5 mb-3">
-                             Add Title
+                         <button type="button" id="save" class="btn btn-light">
+                             <span class="fa fa-save"> Save</span>
                          </button>
                      </div>
                  </form>
-             </div>
-             <div class="mt-3 mb-0 text-right">
-                 <button class='myPop-close btn-danger'><span class='fa fa-times text-white'></span> Close</button>
              </div>
          </div>
 
@@ -64,28 +56,23 @@
      $(document).ready(function(e) {
          $("#save").click(function() {
 
-             var name = $('#name').val();
-             var added_by = $('#added_by').val();
-
-             if (name != '' && added_by != '') {
+             var Title = $('#title').val();
+             
+             if (Title != '') {
                  $.ajax({
-                     url: "view/payments/add_payment_type_server.php",
+                     url: "view/course/add_schools_server.php",
                      method: 'POST',
                      data: {
-
-                         'name': name,
-                         'added_by': added_by
-
+                         'Title': Title
                      },
                      success: function(data) {
 
                          dalert.alert(data);
-                         //dataTable.ajax.reload("index");
 
                      }
                  });
              } else {
-                 dalert.alert("Payment type name is required");
+                 dalert.alert("School name is required");
              }
          });
          e.preventDefault();

@@ -21,7 +21,7 @@
 
                  <?php
 
-                    $username = escape($user->data()->username);
+                    //$username = escape($user->data()->id);
                     $locating = escape($user->data()->location);
                     $userSyscategory = escape($user->data()->syscategory);
                     $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
@@ -55,16 +55,16 @@
                                  </select>
                              </div>
                              <div class="form-group">
-                                 <label for="school" class="sr-only">School</label>
+                                 <label for="school" class="sr-only">Certificate</label>
                                  <select class="form-control" name="school" id="school">
-                                     <option selected>--Type of School--</option>
+                                     <option selected>--Type of Certificate--</option>
                                      <?php
 
-                                        $schools = Db::getInstance()->query("SELECT * FROM `schools` ORDER BY `id` DESC");
+                                        $schools = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY `id` DESC");
                                         foreach ($schools->results() as $schools) {
 
                                         ?>
-                                         <option value="<?php echo $schools->id; ?>"><?php echo $schools->type; ?></option>
+                                         <option value="<?php echo $schools->id; ?>"><?php echo $schools->title; ?></option>
                                      <?php
                                         }
                                         ?>
@@ -118,16 +118,16 @@
                              <input type="hidden" value="5" name="syscategory" id="syscategory" />
                              <input type="hidden" value="<?php echo $locating; ?>" name="location" id="location" />
                              <div class="form-group">
-                                 <label for="school" class="sr-only">School</label>
+                                 <label for="school" class="sr-only">Certificate</label>
                                  <select class="form-control" name="school" id="school">
-                                     <option selected>--Type of School--</option>
+                                     <option selected>--Type of Certificate--</option>
                                      <?php
 
-                                        $schools = Db::getInstance()->query("SELECT * FROM `schools` WHERE id!=4 ORDER BY `id` DESC");
+                                        $schools = Db::getInstance()->query("SELECT * FROM `certificates` WHERE id!=4 ORDER BY `id` DESC");
                                         foreach ($schools->results() as $schools) {
 
                                         ?>
-                                         <option value="<?php echo $schools->id; ?>"><?php echo $schools->type; ?></option>
+                                         <option value="<?php echo $schools->id; ?>"><?php echo $schools->title; ?></option>
                                      <?php
                                         }
                                         ?>

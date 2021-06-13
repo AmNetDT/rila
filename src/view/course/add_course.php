@@ -20,21 +20,48 @@
              <div class="px-3 text-center">
 
                  <p class="login-card-description mt-2">
-                     Add Payment Title</p>
+                     Add Course</p>
                  <form method="POST" autocomplete="off">
                      <div class="form-group">
-                         <label for="name" class="sr-only">Payment Title</label>
-                         <input type="text" name="name" value="" id="name" class="form-control" placeholder="Payment Type Name" />
+                         <label for="Title" class="sr-only">Course Title</label>
+                         <input type="text" name="title" value="" id="title" class="form-control" placeholder="Course Title" />
                      </div>
+                     <div class="form-group">
+                         <label for="school" class="sr-only">School</label>
+                          <select class="form-control" name="school" id="school">
+                             <option selected>--Type of School--</option>
+                             <?php
 
+                                $programmes = Db::getInstance()->query("SELECT * FROM `schools` ORDER BY id DESC");
+                                foreach ($programmes->results() as $programmes) {
+
+                                ?>
+                                 <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->title; ?></option>
+                             <?php
+                                }
+                                ?>
+                         </select>
+                     </div>
+                     <div class="form-group">
+                         <label for="lecturer" class="sr-only">Lecturer</label>
+                         <input type="text" name="lecturer" value="" id="lecturer" class="form-control" placeholder="Lecturer Name" />
+                     </div>
+                     <div class="form-group">
+                         <label for="test" class="sr-only">Test Total</label>
+                         <input type="text" name="test" value="" id="test" class="form-control" placeholder="Test Total" />
+                     </div>
+                     <div class="form-group">
+                         <label for="exam" class="sr-only">Exam</label>
+                         <input type="text" name="exam" value="" id="exam" class="form-control" placeholder="Exam Total" />
+                     </div>
                      <?php
-                        $username = escape($user->data()->username);
+                        $username = escape($user->data()->id);
 
                         ?>
                      <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
                      <div id="submitButton">
-                         <button type="button" id="save" class="btn btn-light px-5 mb-3">
-                             Add Title
+                         <button type="button" id="save" class="border">
+                             <span class="fa fa-save"> Save</span>
                          </button>
                      </div>
                  </form>
@@ -64,16 +91,24 @@
      $(document).ready(function(e) {
          $("#save").click(function() {
 
-             var name = $('#name').val();
+             var title = $('#title').val();
+             var school = $('#school').val();
+             var lecturer = $('#lecturer').val();
+             var test = $('#test').val();
+             var exam = $('#exam').val();
              var added_by = $('#added_by').val();
 
-             if (name != '' && added_by != '') {
+             if (title != '' || school != '') {
                  $.ajax({
-                     url: "view/payments/add_payment_type_server.php",
+                     url: "view/course/add_course_server.php",
                      method: 'POST',
                      data: {
 
-                         'name': name,
+                         'title': title,
+                         'school': school,
+                         'lecturer': lecturer,
+                         'test': test,
+                         'exam': exam,
                          'added_by': added_by
 
                      },
@@ -85,7 +120,7 @@
                      }
                  });
              } else {
-                 dalert.alert("Payment type name is required");
+                 dalert.alert("Course title and school name are required.");
              }
          });
          e.preventDefault();

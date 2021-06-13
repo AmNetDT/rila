@@ -1,16 +1,34 @@
 <?php
 
-include('../../core/db.php');
-	
-$name = $_POST['name'];
-$added_by = $_POST['added_by'];
+require_once '../../core/init.php';
 
 
 
+if (Input::exists()) {
 
-$sql = $connection->prepare("INSERT INTO `payment_type`(`name`, `added_by`) VALUES (?,?)");
-if($sql->execute(array($name, $added_by))){
-	echo "Successfully added a new Payment Title";
-}else{
-	echo "Failed to add a new Payment Title";
+	$validate = new Validate();
+	$validation = $validate->check($_POST, array(
+		'Title'         => array(
+		'required'      => true
+		)
+	));
+
+	if ($validation->passed()) {
+		$user = Db::getInstance();
+
+		try {
+			$user->insert('schools', array(
+				'title'     => Input::get('Title')
+			));
+
+			echo 'School added successfully';
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+	} else {
+
+		foreach ($validation->errors() as $error) {
+			echo $error . '<br />';
+		}
+	}
 }

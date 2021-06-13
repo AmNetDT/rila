@@ -18,7 +18,7 @@ if ($user->isLoggedIn()) {
                         Add New Payment</p>
                     <?php
 
-                    $username = escape($user->data()->username);
+                    $username = escape($user->data()->id);
                     $userSyscategory = escape($user->data()->syscategory);
                     $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
                     if ($userSyscategory == 2) {
@@ -67,7 +67,7 @@ if ($user->isLoggedIn()) {
                                     <label for="balance" class="sr-only">Remark</label>
                                     <textarea id="remark" name="remark" class="form-control" rows="3"></textarea>
                                 </div>
-                                <input type="hidden" name="added_by" id="added_by" value="<?php echo escape($user->data()->username); ?>" />
+                                <input type="hidden" name="added_by" id="added_by" value="<?php echo escape($user->data()->id); ?>" />
 
                             </div>
                             <div id="submitButton">
@@ -101,7 +101,6 @@ if ($user->isLoggedIn()) {
 <script>
     $(document).ready(function(event) {
         $("#save").click(function() {
-
 
             let matric_no = $('#matric_no').val();
             let member_id = $('#member_id').val();

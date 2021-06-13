@@ -12,6 +12,11 @@ let ajax_Add_Payment=false;
 let ajax_edit_payment=false;
 let ajaxAddProgramme=false;
 let ajaxAddCertificate=false;
+let ajaxAddSchool=false;
+let ajaxAddCourse=false;
+let ajaxEditProgramme=false;
+let ajaxEditCertificate=false;
+
 
 
 $(document).ready(function() {
@@ -440,7 +445,7 @@ $(document).ready(function() {
         e.preventDefault();
     })
 
-    //Add Programme type Pop up Window with Ajax jquery
+    //Add Certificate type Pop up Window with Ajax jquery
     $(document).on('click', '.add_certificate', function (e) {
         $("#loader_httpFeed").show();
 
@@ -474,6 +479,150 @@ $(document).ready(function() {
     })
 
 
+    //Add Schools type Pop up Window with Ajax jquery
+    $(document).on('click', '.add_school', function (e) {
+        $("#loader_httpFeed").show();
+
+        if (!ajaxAddSchool) {
+
+            ajaxAddSchool = true;
+            $.ajax({
+                type: "POST",
+                url: "view/course/add_schools.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Add School",
+                        "content": msg
+                    });
+                    ajaxAddSchool = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+        e.preventDefault();
+    })
+
+
+    //Add Schools type Pop up Window with Ajax jquery
+    $(document).on('click', '.add_course', function (e) {
+        $("#loader_httpFeed").show();
+
+        if (!ajaxAddCourse) {
+
+            ajaxAddCourse = true;
+            $.ajax({
+                type: "POST",
+                url: "view/course/add_course.php",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Add Couse",
+                        "content": msg
+                    });
+                    ajaxAddCourse = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+        e.preventDefault();
+    })
+
+    //Update Programme Pop up Window with Ajax jquery
+    $(document).on('click', '.edit_programme', function () {
+        $("#loader_httpFeed").show();
+        let category = $(this).attr("lang");
+        let id = $(this).attr("id");
+
+
+        if (!ajaxEditProgramme) {
+
+            ajaxEditProgramme = true;
+            $.ajax({
+                type: "POST",
+                url: "view/schools/edit_programme",
+                data: {
+                    id: id
+                },
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": `Update Programme -> ${category.toUpperCase()}`,
+                        "content": msg
+                    });
+                    ajaxEditProgramme = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+    })
+
+
+    //Update Programme Pop up Window with Ajax jquery
+    $(document).on('click', '.edit_certificate', function () {
+        $("#loader_httpFeed").show();
+        let Title = $(this).attr("lang");
+        let id = $(this).attr("id");
+
+
+        if (!ajaxEditCertificate) {
+
+            ajaxEditCertificate = true;
+            $.ajax({
+                type: "POST",
+                url: "view/schools/edit_certificate",
+                data: {
+                    id: id
+                },
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": `Update Programme -> ${Title.toUpperCase()}`,
+                        "content": msg
+                    });
+                    ajaxEditCertificate = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+    })
+    
 
 });
 

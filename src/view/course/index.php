@@ -38,23 +38,154 @@ if ($user->isLoggedIn()) {
                     <h3>Courses</h3>
                     <?php
 
-                    $username = escape($user->data()->username);
+
                     $userSyscategory = escape($user->data()->syscategory);
                     if ($userSyscategory == 1) {
 
                     ?>
                         <div class="row my-4">
                             <div class="col-md-12 text-right">
-                                <button class="view_programme_type border">
+                                <button class="add_course border">
                                     <span class="fa fa-plus"> Add Course</span>
                                 </button>
-                                <button class="add_programme border">
+                                <button class="add_school border">
                                     <span class="fa fa-plus"> Add School</span>
                                 </button>
                             </div>
                         </div>
                         <div class="row">
-                          
+
+                            <div class="col-md-12 px-0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                                            <h6 class="card-title p-2">All Courses</h6>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <?php
+
+
+                                                $programmea = Db::getInstance()->query("SELECT * FROM `courses` ORDER BY id DESC");
+                                                if (!$programmea->count()) {
+                                                    echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                                                } else {
+
+                                                ?>
+                                                    <div class="table-responsive data-font">
+                                                        <table id="rahmatullah" class="table table-hover table-bordered" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">SN</th>
+                                                                    <th scope="col">Title</th>
+                                                                    <th scope="col">Schools</th>
+                                                                    <th scope="col">Lecturer</th>
+                                                                    <th scope="col">Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                $i = 1;
+                                                                foreach ($programmea->results() as $programme) {
+
+                                                                ?>
+                                                                    <tr>
+                                                                        <td><?php echo $i++; ?></td>
+                                                                        <td><?php echo $programme->title; ?></td>
+                                                                        <td><?php
+
+                                                                            $fatima = $programme->school;
+                                                                            $programmea = Db::getInstance()->query("SELECT * FROM `schools` WHERE id = $fatima");
+                                                                            if (!$programmea->count()) {
+                                                                                echo "<h4 class='my-5 text-center'>Nothing to display.</h4>";
+                                                                            } else {
+                                                                                echo escape($programmea->results()[0]->title);
+                                                                            }
+
+                                                                            ?></td>
+                                                                        <td><?php echo $programme->lecturer; ?></td>
+                                                                        <td>
+                                                                            <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
+                                                                                <button class="btn btn-default border">
+                                                                                    <span class="fa fa-edit"></span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php
+                                                                }
+                                                                ?>
+
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <?php
+
+                                                $programmea = Db::getInstance()->query("SELECT * FROM `schools` ORDER BY id DESC");
+                                                if (!$programmea->count()) {
+                                                    echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
+                                                } else {
+
+                                                ?>
+                                                    <div class="table-responsive data-font">
+                                                        <table id="rahmatullah" class="table table-hover table-bordered" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">SN</th>
+                                                                    <th scope="col">Title</th>
+                                                                    <th scope="col">Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                $i = 1;
+                                                                foreach ($programmea->results() as $programme) {
+
+                                                                ?>
+                                                                    <tr>
+                                                                        <td><?php echo $i++; ?></td>
+                                                                        <td><?php echo $programme->title; ?></td>
+                                                                        <td>
+                                                                            <div id="<?php echo $programme->id ?>" land="<?php echo $programme->title ?>" class="edit_programme" style="float:left;">
+                                                                                <button class="btn btn-default border">
+                                                                                    <span class="fa fa-edit"></span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php
+                                                                }
+                                                                ?>
+
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    <?php
+
+                    } else {
+                    ?>
+
+                        <div class="row">
+
                             <div class="col-md-12 px-0">
                                 <div class="card">
                                     <div class="card-body">
@@ -66,44 +197,59 @@ if ($user->isLoggedIn()) {
                                         <?php
 
 
-                                        $programmea = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY id DESC");
+                                        $programmea = Db::getInstance()->query("SELECT * FROM `courses` ORDER BY id DESC");
                                         if (!$programmea->count()) {
                                             echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
                                         } else {
 
                                         ?>
-
                                             <div class="table-responsive data-font">
                                                 <table id="rahmatullah" class="table table-hover table-bordered" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Created</th>
-                                                            <th scope="col">Modified</th>
+                                                            <th scope="col">SN</th>
                                                             <th scope="col">Title</th>
-                                                            <th scope="col">Course Duration</th>
+                                                            <th scope="col">Schools</th>
+                                                            <th scope="col">Lecturer</th>
+                                                            <th scope="col">Test</th>
+                                                            <th scope="col">Exam</th>
                                                             <th scope="col">Created BY</th>
-                                                            <th scope="col">Action</th>
+                                                            <th scope="col">modified</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
-
+                                                        $i = 1;
                                                         foreach ($programmea->results() as $programme) {
 
                                                         ?>
                                                             <tr>
-                                                                <td><?php echo $programme->created; ?></td>
-                                                                <td><?php echo $programme->modified; ?></td>
+                                                                <td><?php echo $i++; ?></td>
                                                                 <td><?php echo $programme->title; ?></td>
-                                                                <td><?php echo $programme->duration; ?></td>
-                                                                <td><?php echo $programme->added_by; ?></td>
-                                                                <td>
-                                                                    <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
-                                                                        <button class="btn btn-default border">
-                                                                            <span class="fa fa-edit"></span>
-                                                                        </button>
-                                                                    </div>
-                                                                </td>
+                                                                <td><?php
+
+                                                                    $fatima = $programme->school;
+                                                                    $programmea = Db::getInstance()->query("SELECT * FROM `schools` WHERE id = $fatima");
+                                                                    if (!$programmea->count()) {
+                                                                        echo "<h4 class='my-5 text-center'>Nothing to display.</h4>";
+                                                                    } else {
+                                                                        echo escape($programmea->results()[0]->title);
+                                                                    }
+
+                                                                    ?></td>
+                                                                <td><?php echo $programme->lecturer; ?></td>
+                                                                <td><?php echo $programme->test; ?></td>
+                                                                <td><?php echo $programme->exam; ?></td>
+                                                                <td><?php
+
+                                                                    $u = $programme->added_by;
+                                                                    $username = Db::getInstance()->get('users', array('id', '=', $u));
+                                                                    if ($username->count()) {
+                                                                        echo escape($username->results()[0]->username);
+                                                                    }
+                                                                    ?></td>
+                                                                <td><?php echo $programme->modified; ?></td>
+
                                                             </tr>
                                                         <?php
                                                         }
@@ -123,145 +269,7 @@ if ($user->isLoggedIn()) {
 
                         </div>
                     <?php
-
-                    } else {
-                    ?>
-
-                        <div class="row">
-                            <div class="col-md-6 px-0">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                                            <h6 class="card-title p-2">All Certificates</h6>
-                                        </div>
-
-
-                                        <?php
-
-
-                                        $programmea = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY id DESC");
-                                        if (!$programmea->count()) {
-                                            echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
-                                        } else {
-
-                                        ?>
-
-                                            <div class="table-responsive data-font">
-                                                <table id="abdusalaam" class="table table-hover table-bordered" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Created</th>
-                                                            <th scope="col">Modified</th>
-                                                            <th scope="col">Title</th>
-                                                            <th scope="col">Course Duration</th>
-                                                            <th scope="col">Created BY</th>
-                                                            <th scope="col">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-
-                                                        foreach ($programmea->results() as $programme) {
-
-                                                        ?>
-                                                            <tr>
-                                                                <td><?php echo $programme->created; ?></td>
-                                                                <td><?php echo $programme->modified; ?></td>
-                                                                <td><?php echo $programme->title; ?></td>
-                                                                <td><?php echo $programme->duration; ?></td>
-                                                                <td><?php echo $programme->added_by; ?></td>
-                                                                <td>
-                                                                    <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
-                                                                        <button class="btn btn-default border">
-                                                                            <span class="fa fa-edit"></span>
-                                                                        </button>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        <?php
-                                                        }
-                                                        ?>
-
-                                                    </tbody>
-                                                </table>
-
-                                            </div>
-
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 px-0">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                                            <h6 class="card-title p-2">All Certificates</h6>
-                                        </div>
-
-
-                                        <?php
-
-
-                                        $programmea = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY id DESC");
-                                        if (!$programmea->count()) {
-                                            echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
-                                        } else {
-
-                                        ?>
-
-                                            <div class="table-responsive data-font">
-                                                <table id="rahmatullah" class="table table-hover table-bordered" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Created</th>
-                                                            <th scope="col">Modified</th>
-                                                            <th scope="col">Title</th>
-                                                            <th scope="col">Course Duration</th>
-                                                            <th scope="col">Created BY</th>
-                                                            <th scope="col">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-
-                                                        foreach ($programmea->results() as $programme) {
-
-                                                        ?>
-                                                            <tr>
-                                                                <td><?php echo $programme->created; ?></td>
-                                                                <td><?php echo $programme->modified; ?></td>
-                                                                <td><?php echo $programme->title; ?></td>
-                                                                <td><?php echo $programme->duration; ?></td>
-                                                                <td><?php echo $programme->added_by; ?></td>
-                                                                <td>
-                                                                    <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
-                                                                        <button class="btn btn-default border">
-                                                                            <span class="fa fa-edit"></span>
-                                                                        </button>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        <?php
-                                                        }
-                                                        ?>
-
-                                                    </tbody>
-                                                </table>
-
-                                            </div>
-
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    <?php              }
-
+                    }
                     ?>
                 </div>
             </div>

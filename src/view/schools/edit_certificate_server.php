@@ -2,7 +2,7 @@
 
 require_once '../../core/init.php';
 
-
+$id = $_POST['id'];
 
 if (Input::exists()) {
 
@@ -23,7 +23,7 @@ if (Input::exists()) {
         $user = Db::getInstance();
 
         try {
-            $user->insert('programmes', array(
+            $user->update('certificates', $id, array(
                 'title'     => Input::get('title'),
                 'duration'  => Input::get('duration'),
                 'added_by'  => Input::get('added_by')

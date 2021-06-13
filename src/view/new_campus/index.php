@@ -60,7 +60,7 @@ if ($user->isLoggedIn()) {
                         <th width="250">Location Address</th>
                         <th width="100">Telephone</th>
                         <th width="150">Email</th>
-                        <th width="100">Author</th>
+                        <th width="100">Created By</th>
                         <th width="100">Created</th>
                         <th width="50">Action</th>
                       </tr>
@@ -77,7 +77,14 @@ if ($user->isLoggedIn()) {
                           <td><?php echo $location->address; ?></td>
                           <td><?php echo $location->phone; ?></td>
                           <td><?php echo $location->email; ?></td>
-                          <td><?php echo $location->added_by; ?></td>
+                          <td><?php
+
+                              $u = $location->added_by;
+                              $username = Db::getInstance()->get('users', array('id', '=', $u));
+                              if ($username->count()) {
+                                echo escape($username->results()[0]->username);
+                              }
+                              ?></td>
                           <td><?php echo $location->created; ?></td>
                           <td>
                             <div id="" style="float:left;">

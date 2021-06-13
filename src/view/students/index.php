@@ -44,7 +44,7 @@ if ($user->isLoggedIn()) {
               <div class="table-responsive data-font">
                 <?php
 
-                $username = escape($user->data()->username);
+                $username = escape($user->data()->id);
                 $userSyscategory = escape($user->data()->syscategory);
                 $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
 
@@ -65,8 +65,8 @@ if ($user->isLoggedIn()) {
                           <th width="150">Matric No.</th>
                           <th width="180">Full name</th>
                           <th width="180">Mobile</th>
-                          <th width="100">Location</th>
-                          <th width="160">School</th>
+                          <th width="100">Programme</th>
+                          <th width="160">Location</th>
                           <th width="140">Created</th>
                           <th width="30">Action</th>
                         </tr>
@@ -83,8 +83,8 @@ if ($user->isLoggedIn()) {
                             <td><?php echo $student->matric_no; ?></td>
                             <td><?php echo $student->firstname . " " . $student->lastname ?></td>
                             <td><?php echo $student->phone ?></td>
+                            <td><?php echo $student->programme ?></td>
                             <td><?php echo $student->location ?></td>
-                            <td><?php echo $student->schools ?></td>
                             <td><?php echo $student->created ?></td>
                             <td>
                               <div class="staff_student_view" id="<?php echo $student->member_id; ?>" lang="view/students">
@@ -118,8 +118,8 @@ if ($user->isLoggedIn()) {
                           <th width="150">Matric No.</th>
                           <th width="180">Full name</th>
                           <th width="180">Mobile</th>
-                          <th width="100">Location</th>
-                          <th width="160">School</th>
+                          <th width="100">Programme</th>
+                          <th width="160">Location</th>
                           <th width="140">Created</th>
                           <th width="30">Action</th>
                         </tr>
@@ -136,8 +136,8 @@ if ($user->isLoggedIn()) {
                             <td><?php echo $student->matric_no; ?></td>
                             <td><?php echo $student->firstname . " " . $student->lastname ?></td>
                             <td><?php echo $student->phone ?></td>
+                            <td><?php echo $student->programme ?></td>
                             <td><?php echo $student->location ?></td>
-                            <td><?php echo $student->schools ?></td>
                             <td><?php echo $student->created ?></td>
                             <td>
                               <div class="staff_student_view" id="<?php echo $student->member_id; ?>" lang="view/students">

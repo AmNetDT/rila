@@ -45,15 +45,15 @@ if ($user->isLoggedIn()) {
                                     <textarea name="Category" id="Category" class="form-control" cols="50" style="width: 100%" placeholder="Programme Category"></textarea>
                                     <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
                                 </div>
-                    </div>
-                                <div class="row">
+                            </div>
+                            <div class="row">
 
-                                    <div id="submitButton">
-                                        <button type="button" id="save" class="btn btn-light">
-                                            <span class="fa fa-save"> Save</span>
-                                        </button>
-                                    </div>
+                                <div id="submitButton">
+                                    <button type="button" id="save" class="btn btn-light">
+                                        <span class="fa fa-save"> Save</span>
+                                    </button>
                                 </div>
+                            </div>
                         </form>
                     <?php
 
