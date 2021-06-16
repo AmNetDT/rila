@@ -1,18 +1,54 @@
 <?php
 
-require_once '../../core/db.php';
+require_once '../../core/init.php';
 
-$ptypes_id = $_POST['id'];
-$name = $_POST['name'];
-$added_by = $_POST['added_by'];
+$id = $_POST['id'];
 
+if (Input::exists()) {
 
+	$validate = new Validate();
+	$validation = $validate->check($_POST, array(
+		'Title'         => array(
+			'required'      => true
+		),
+		'School'         => array(
+			'required'      => true
+		),
+		'Lecturer'      => array(
+			'required'      => true
+		),
+		'Test'         => array(
+			'required'      => true
+		),
+		'Exam'      => array(
+			'required'      => true
+		),
+		'added_by'      =>  array(
+			'required'      =>  true
+		)
+	));
 
+	if ($validation->passed()) {
+		$user = Db::getInstance();
 
-$sql = "UPDATE `payment_type` SET `name`=?, `added_by`=? WHERE id=$ptypes_id";
-$sqli = $connection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-if($sqli->execute(array($name, $added_by))){
-	echo "Successfully updated Payment Title";
-}else{
-	echo "Failed to update Payment Title";
+		try {
+			$user->update('courses', $id, array(
+				'title' => Input::get('Title'),
+				'school'     => Input::get('School'),
+				'lecturer'  => Input::get('Lecturer'),
+				'test'  => Input::get('Test'),
+				'exam'  => Input::get('Exam'),
+				'added_by'  => Input::get('added_by')
+			));
+
+			echo 'Course updated successfully';
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+	} else {
+
+		foreach ($validation->errors() as $error) {
+			echo $error . '<br />';
+		}
+	}
 }

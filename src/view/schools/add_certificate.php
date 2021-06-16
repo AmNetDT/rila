@@ -51,6 +51,13 @@ if ($user->isLoggedIn()) {
                             </div>
                             <div class="row">
                                 <div class="form-group">
+                                    <label for="objectives" class="sr-only"> Course Objectives</label>
+                                    <textarea name="objectives" id="objectives" class="form-control" cols="50" style="width: 100%" placeholder="Course Objectives"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
                                     <label for="duration" class="sr-only"> Duration</label>
                                     <input type="text" name="duration" id="duration" class="form-control" placeholder="Duration" />
                                 </div>
@@ -95,6 +102,7 @@ if ($user->isLoggedIn()) {
 
 
             let title = $('#title').val();
+            let objectives = $('#objectives').val();
             let duration = $('#duration').val();
             let programme = $('#programme').val();
             let added_by = $('#added_by').val();
@@ -106,6 +114,7 @@ if ($user->isLoggedIn()) {
                 data: {
 
                     'title': title,
+                    'objectives': objectives,
                     'duration': duration,
                     'programme': programme,
                     'added_by': added_by

@@ -38,7 +38,7 @@ if ($user->isLoggedIn()) {
           <h3>Programmes</h3>
           <?php
 
-          $username = escape($user->data()->username);
+          $username = escape($user->data()->id);
           $userSyscategory = escape($user->data()->syscategory);
           if ($userSyscategory == 1) {
 
@@ -170,6 +170,12 @@ if ($user->isLoggedIn()) {
                                     }
                                     ?></td>
                                 <td>
+                                  <div id="<?php echo $programme->id;
+                                            ?>" lang="<?php echo $programme->title;
+                                                      ?>" title="<?php echo $programme->course_objective; ?>" class="view_certificate" style="float:left;">
+                                    <button class=" btn btn-default border">
+                                      <span class="fa fa-search"></span></button>
+                                  </div>
                                   <div id="<?php echo $programme->id; ?>" lang="<?php echo $programme->title; ?>" class="edit_certificate" style="float:left;">
                                     <button class=" btn btn-default border">
                                       <span class="fa fa-edit"></span></button>
@@ -224,9 +230,11 @@ if ($user->isLoggedIn()) {
                             <tr>
                               <th scope="col">SN</th>
                               <th scope="col">Title</th>
+                              <th scope="col">Course Objectives</th>
                               <th scope="col">Duration</th>
                               <th scope="col">Programme</th>
                               <th scope="col">Modified</th>
+                              <th scope="col">Action</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -238,6 +246,7 @@ if ($user->isLoggedIn()) {
                               <tr>
                                 <td><?php echo $i++; ?></td>
                                 <td><?php echo $programme->title; ?></td>
+                                <td><?php echo $programme->course_objective; ?></td>
                                 <td><?php echo $programme->duration; ?></td>
                                 <td><?php
 
@@ -252,6 +261,14 @@ if ($user->isLoggedIn()) {
                                     }
                                     ?></td>
                                 <td><?php echo $programme->modified; ?></td>
+                                <td>
+                                  <div id="<?php echo $programme->id;
+                                            ?>" lang="<?php echo $programme->title;
+                                                      ?>" title="<?php echo $programme->course_objective; ?>" class="view_certificate" style="float:left;">
+                                    <button class=" btn btn-default border">
+                                      <span class="fa fa-search"></span></button>
+                                  </div>
+                                </td>
                               </tr>
                             <?php
                             }

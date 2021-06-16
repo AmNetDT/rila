@@ -105,10 +105,9 @@ if ($user->isLoggedIn()) {
                                                                             ?></td>
                                                                         <td><?php echo $programme->lecturer; ?></td>
                                                                         <td>
-                                                                            <div id="<?php echo $programme->id ?>" land="<?php echo $programme->added_by ?>" class="edit_programme" style="float:left;">
-                                                                                <button class="btn btn-default border">
-                                                                                    <span class="fa fa-edit"></span>
-                                                                                </button>
+                                                                            <div id="<?php echo $programme->id; ?>" lang="<?php echo $programme->title; ?>" class="edit_course" style="float:left;">
+                                                                                <button class=" btn btn-default border">
+                                                                                    <span class="fa fa-edit"></span></button>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -153,10 +152,9 @@ if ($user->isLoggedIn()) {
                                                                         <td><?php echo $i++; ?></td>
                                                                         <td><?php echo $programme->title; ?></td>
                                                                         <td>
-                                                                            <div id="<?php echo $programme->id ?>" land="<?php echo $programme->title ?>" class="edit_programme" style="float:left;">
-                                                                                <button class="btn btn-default border">
-                                                                                    <span class="fa fa-edit"></span>
-                                                                                </button>
+                                                                            <div id="<?php echo $programme->id; ?>" lang="<?php echo $programme->title; ?>" class="edit_schools" style="float:left;">
+                                                                                <button class=" btn btn-default border">
+                                                                                    <span class="fa fa-edit"></span></button>
                                                                             </div>
                                                                         </td>
                                                                     </tr>

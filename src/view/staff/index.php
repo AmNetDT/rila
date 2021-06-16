@@ -76,7 +76,7 @@ if ($user->isLoggedIn()) {
                           <td><?php echo $staff->firstname . " " . $staff->lastname ?></td>
                           <td><?php echo $staff->category ?></td>
                           <td><?php echo $staff->location ?></td>
-                          <td><?php echo $staff->schools ?></td>
+                          <td><?php echo $staff->programme ?></td>
                           <td><?php echo $staff->created ?></td>
                           <td>
                             <div class="staff_student_view" id="<?php echo $staff->member_id; ?>" lang="view/staff">

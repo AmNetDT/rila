@@ -39,7 +39,7 @@ if ($user->isLoggedIn()) {
           <div id="btn_c" style="text-align: right;">
             <?php
 
-            $username = escape($user->data()->username);
+            $username = escape($user->data()->id);
             $userSyscategory = escape($user->data()->syscategory);
             //$privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
 

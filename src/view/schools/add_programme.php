@@ -32,7 +32,7 @@ if ($user->isLoggedIn()) {
                         Add New Programme Category</p>
                     <?php
 
-                    $username = escape($user->data()->username);
+                    $username = escape($user->data()->id);
                     $userSyscategory = escape($user->data()->syscategory);
                     $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
                     if ($userSyscategory == 1) {

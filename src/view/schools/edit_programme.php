@@ -35,9 +35,7 @@
                              <div class="row">
                                  <div class="form-group">
                                      <label for="Category" class="sr-only"> Programme Category</label>
-                                     <textarea name="Category" id="Category" class="form-control" cols="50" style="width: 100%">
-                                     <?php echo $programme->category; ?>
-                                     </textarea>
+                                     <textarea name="Category" id="Category" class="form-control" cols="50" style="width: 100%"><?php echo $programme->category; ?></textarea>
                                      <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
                                      <input type="hidden" name="id" id="id" value="<?php echo $programme->id; ?>" />
                                  </div>

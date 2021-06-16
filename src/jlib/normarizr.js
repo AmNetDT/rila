@@ -16,6 +16,9 @@ let ajaxAddSchool=false;
 let ajaxAddCourse=false;
 let ajaxEditProgramme=false;
 let ajaxEditCertificate=false;
+let ajaxEditCourse=false;
+let ajaxEditSchools=false;
+let ajaxViewCertificate=false;
 
 
 
@@ -585,7 +588,7 @@ $(document).ready(function() {
     })
 
 
-    //Update Programme Pop up Window with Ajax jquery
+    //Update Certificate Pop up Window with Ajax jquery
     $(document).on('click', '.edit_certificate', function () {
         $("#loader_httpFeed").show();
         let Title = $(this).attr("lang");
@@ -605,7 +608,7 @@ $(document).ready(function() {
                 success: function (msg) {
                     $("#loader_httpFeed").hide();
                     new top.PopLayer({
-                        "title": `Update Programme -> ${Title.toUpperCase()}`,
+                        "title": `Update Certificate -> ${Title.toUpperCase()}`,
                         "content": msg
                     });
                     ajaxEditCertificate = false;
@@ -623,6 +626,125 @@ $(document).ready(function() {
         }
     })
     
+
+    //Update Course Pop up Window with Ajax jquery
+    $(document).on('click', '.edit_course', function () {
+        $("#loader_httpFeed").show();
+        let Title = $(this).attr("lang");
+        let id = $(this).attr("id");
+
+        if (!ajaxEditCourse) {
+
+            ajaxEditCourse = true;
+            $.ajax({
+                type: "POST",
+                url: "view/course/edit_course.php",
+                data: {
+                    id: id
+                },
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": `Update Course -> ${Title.toUpperCase()}`,
+                        "content": msg
+                    });
+                    ajaxEditCourse = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+    })
+
+
+    //Update School Pop up Window with Ajax jquery
+    $(document).on('click', '.edit_schools', function () {
+        $("#loader_httpFeed").show();
+        let Title = $(this).attr("lang");
+        let id = $(this).attr("id");
+
+        if (!ajaxEditSchools) {
+
+            ajaxEditSchools = true;
+            $.ajax({
+                type: "POST",
+                url: "view/course/edit_schools.php",
+                data: {
+                    id: id
+                },
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": `Update School -> ${Title.toUpperCase()}`,
+                        "content": msg
+                    });
+                    ajaxEditSchools = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+    })
+
+
+    //View Certificate Pop up Window with Ajax jquery
+    $(document).on('click', '.view_certificate', function () {
+        $("#loader_httpFeed").show();
+        let title = $(this).attr("lang");
+        let id = $(this).attr("id");
+        let objectives = $(this).attr("title");
+
+
+        if (!ajaxViewCertificate) {
+
+            ajaxViewCertificate = true;
+            $.ajax({
+                type: "POST",
+                data: {
+                    'id': id,
+                    'title': title,
+                    'objectives': objectives
+                },
+                url: "view/schools/view_certificate",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": `View Certificate -> ${title.toUpperCase()}`,
+                        "content": msg
+                    });
+                    ajaxViewCertificate = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+    })
+
+
 
 });
 

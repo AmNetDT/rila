@@ -294,7 +294,7 @@ if (!$user->isLoggedIn()) {
                                                 <ul style="margin-left:-15px;">
                                                     <li class="_mc">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
-                                                            <span class="hide-menu"> News Blog</span>
+                                                            <span class="hide-menu"> Inbox</span>
                                                         </a>
                                                     </li>
                                                     <li class="_mc">

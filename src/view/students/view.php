@@ -51,8 +51,8 @@ if ($user->isLoggedIn()) {
                                                 <div class="card-body">
                                                     <?php
 
-                                                    if ($staff->firstname != "" || $staff->lastname != "" || $staff->schools != "" || $staff->email != "" || $staff->location != "") {
-                                                        echo '<h5 class="card-title py-0 my-0">' . $staff->firstname . ' ' . $staff->lastname . '</h5><p class="card-text py-0 my-0">' . $staff->member_id . '</p><p class="card-text py-0 my-0">' . $staff->schools . '</p><p class="card-text pt-2 my-0">' . $staff->email . '</p><p class="card-text py-0 my-0">' . $staff->location . '</p>';
+                                                    if ($staff->firstname != "" || $staff->lastname != "" || $staff->programme != "" || $staff->email != "" || $staff->location != "") {
+                                                        echo '<h5 class="card-title py-0 my-0">' . $staff->firstname . ' ' . $staff->lastname . '</h5><p class="card-text py-0 my-0">' . $staff->member_id . '</p><p class="card-text py-0 my-0">' . $staff->programme . '</p><p class="card-text pt-2 my-0">' . $staff->email . '</p><p class="card-text py-0 my-0">' . $staff->location . '</p>';
                                                     } 
 
 

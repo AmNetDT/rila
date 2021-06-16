@@ -10,66 +10,85 @@
          <div class="container">
              <div class="card" style="max-width: 100%;">
                  <div class="row no-gutters">
-                     <h6>Certificate Titles</h6>
+                     <h6>Certificate Title</h6>
 
                      <div class="col-sm-12">
 
                          <?php
 
-                            $ptype = Db::getInstance()->query("SELECT * FROM `certificates` WHERE id=$id");
-                            foreach ($ptype->results() as $ptypes) {
+
+                            $username = escape($user->data()->id);
+                            $Syscategory = escape($user->data()->syscategory);
+                            $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $Syscategory");
+
+                            if ($Syscategory == 1) {
+
+                                $ptype = Db::getInstance()->query("SELECT * FROM `certificates` WHERE id=$id");
+                                foreach ($ptype->results() as $ptypes) {
 
                             ?>
-                             <form autocomplete="off">
+                                 <form autocomplete="off">
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="programme" class="sr-only">Programme</label>
-                                    <select class="form-control" name="programme" id="programme">
-                                        <option selected>--Type of programme--</option>
-                                        <?php
+                                     <div class="row">
+                                         <div class="form-group">
+                                             <label for="programme" class="sr-only">Programme</label>
+                                             <select class="form-control" name="Programme" id="Programme">
+                                                 <?php
 
-                                        $programmes = Db::getInstance()->query("SELECT * FROM `programmes` ORDER BY id DESC");
-                                        foreach ($programmes->results() as $programmes) {
+                                                    $p = $ptypes->programme;
+                                                    $programme = Db::getInstance()->get('programmes', array('id', '=', $p));
+                                                    if ($programme->count()) { ?>
+                                                     <option value="<?php echo $ptypes->programme; ?>"><?php echo escape($programme->results()[0]->category); ?></option>
+                                                 <?php }
+                                                    ?>
 
-                                        ?>
-                                            <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->category; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="title" class="sr-only"> Certificate Title</label>
-                                    <textarea name="title" id="title" class="form-control" cols="50" style="width: 100%" placeholder="Certificate Title">
-                                    <?php
-                                    echo $ptype->title;
-                                    ?>
-                                    </textarea>
+                                                 <?php
 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="duration" class="sr-only"> Duration</label>
-                                    <input type="text" name="duration" id="duration" class="form-control" value="<?php echo $ptype->duration; ?>" />
-                                </div>
-                                
-                                    <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
-                                    <input type="hidden" name="id" id="id" value="<?php echo $ptype->id; ?>" />
-                            </div>
-                            <div class="row">
+                                                    $programmes = Db::getInstance()->query("SELECT * FROM `programmes` ORDER BY id DESC");
+                                                    foreach ($programmes->results() as $programmes) {
 
-                                <div id="submitButton">
-                                    <button type="button" id="save" class="btn btn-light">
-                                        <span class="fa fa-save"> Save</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <?php
+                                                    ?>
+                                                     <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->category; ?></option>
+                                                 <?php
+                                                    }
+                                                    ?>
+                                             </select>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="form-group">
+                                             <label for="title" class="sr-only"> Certificate Title</label>
+                                             <textarea name="Title" id="Title" placeholder="Certificate Title" class="form-control" cols="50" style="width: 100%"><?php echo $ptypes->title; ?></textarea>
+
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="form-group">
+                                             <label for="objectives" class="sr-only"> Course Objectives</label>
+                                             <textarea name="objectives" id="objectives" class="form-control" cols="50" style="width: 100%" placeholder="Course Objectives"><?php echo $ptypes->course_objective; ?></textarea>
+
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="form-group">
+                                             <label for="duration" class="sr-only"> Duration</label>
+                                             <input type="text" name="Duration" id="Duration" class="form-control" value="<?php echo $ptypes->duration; ?>" />
+                                         </div>
+
+                                         <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />
+                                         <input type="hidden" name="id" id="id" value="<?php echo $ptypes->id; ?>" />
+                                     </div>
+                                     <div class="row">
+
+                                         <div id="submitButton">
+                                             <button type="button" id="save" class="btn btn-light">
+                                                 <span class="fa fa-save"> Save</span>
+                                             </button>
+                                         </div>
+                                     </div>
+                                 </form>
+                         <?php
+                                }
                             }
                             ?>
                      </div>
@@ -97,30 +116,32 @@
          $("#save").click(function() {
 
              let id = $('#id').val();
-             let member_id = $('#member_id').val();
-             let matric_no = $('#matric_no').val();
+             let Programme = $('#Programme').val();
+             let Title = $('#Title').val();
+             let Objectives = $('#objectives').val();
+             let Duration = $('#Duration').val();
              let added_by = $('#added_by').val();
 
-             if (matric_no != '' && added_by != '') {
-                 $.ajax({
-                     url: "view/payments/edit_certificate_server",
-                     method: 'POST',
-                     data: {
-                         'payment_id': payment_id,
-                         'member_id': member_id,
-                         'matric_no': matric_no,
-                         'added_by': added_by
-                     },
-                     success: function(data) {
 
-                         dalert.alert(data);
-                         //dataTable.ajax.reload();
+             $.ajax({
+                 url: "view/schools/edit_certificate_server",
+                 method: 'POST',
+                 data: {
+                     'id': id,
+                     'Programme': Programme,
+                     'Objectives': Objectives,
+                     'Title': Title,
+                     'Duration': Duration,
+                     'added_by': added_by
+                 },
+                 success: function(data) {
 
-                     }
-                 });
-             } else {
-                 dalert.alert("Payment Title is required");
-             }
+                     dalert.alert(data);
+                     //dataTable.ajax.reload();
+
+                 }
+             });
+
          });
          event.preventDefault();
      });

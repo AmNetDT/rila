@@ -28,6 +28,7 @@ if (Input::exists()) {
         try {
             $user->insert('certificates', array(
                 'title'     => Input::get('title'),
+                'course_objective' => Input::get('Objectives'),
                 'duration'  => Input::get('duration'),
                 'programme'  => Input::get('programme'),
                 'added_by'  => Input::get('added_by')

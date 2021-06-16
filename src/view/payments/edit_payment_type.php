@@ -32,7 +32,7 @@
                          </div>
 
                          <?php
-                            $username = escape($user->data()->username);
+                            $username = escape($user->data()->id);
 
                             ?>
                          <input type="hidden" name="id" id="ptypes_id" value="<?php echo $ptypes->id; ?>" />

@@ -28,7 +28,7 @@
                      </div>
 
                      <?php
-                        $username = escape($user->data()->username);
+                        $username = escape($user->data()->id);
 
                         ?>
                      <input type="hidden" name="added_by" id="added_by" value="<?php echo $username; ?>" />

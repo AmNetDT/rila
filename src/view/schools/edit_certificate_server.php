@@ -8,10 +8,13 @@ if (Input::exists()) {
 
     $validate = new Validate();
     $validation = $validate->check($_POST, array(
-        'title'         => array(
+        'Programme'         => array(
         'required'      => true
         ),
-        'duration'      => array(
+        'Title'         => array(
+        'required'      => true
+        ),
+        'Duration'      => array(
         'required'      => true
         ),
         'added_by'      =>  array(
@@ -24,12 +27,14 @@ if (Input::exists()) {
 
         try {
             $user->update('certificates', $id, array(
-                'title'     => Input::get('title'),
-                'duration'  => Input::get('duration'),
+                'programme' => Input::get('Programme'),
+                'title'     => Input::get('Title'),
+                'course_objective' => Input::get('Objectives'),
+                'duration'  => Input::get('Duration'),
                 'added_by'  => Input::get('added_by')
             ));
 
-            echo 'Programme added successfully';
+            echo 'Certificate updated successfully';
         } catch (Exception $e) {
             die($e->getMessage());
         }
