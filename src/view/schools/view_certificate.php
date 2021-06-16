@@ -30,7 +30,11 @@ if ($user->isLoggedIn()) {
             ?>
                 <div class="card">
                     <div class="row no-gutters">
-
+                        <div id="btn_c" class="col-md-12 text-right">
+                            <button id="<?php echo $id ?>" class="AddCertificateCourse border mb-1" type="submit">
+                                <span class="fa fa-plus"> Add Course</span>
+                            </button>
+                        </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="card-body border-top">
                                 <?php
@@ -47,7 +51,7 @@ if ($user->isLoggedIn()) {
                                             <tr>
                                                 <th scope="col" style="width:5%">#</th>
                                                 <th scope="col" style="width:65%">Course Title</th>
-                                                <th scope="col" style="width:5%">C.A.</th>
+                                                <th scope="col" style="width:5%">Test</th>
                                                 <th scope="col" style="width:5%">Examination</th>
                                                 <th scope="col" style="width:20%">Action</th>
                                             </tr>
@@ -69,10 +73,8 @@ if ($user->isLoggedIn()) {
                                                         <td scope="row"><?php echo escape($cert->results()[0]->test); ?></td>
                                                         <td scope="row"><?php echo escape($cert->results()[0]->exam); ?></td>
                                                         <td>
-                                                            <div id="<?php echo $courset->id; ?>" class="">
-                                                                <button class="btn-danger border">
-                                                                    <span class="fa fa-trash"></span>
-                                                                </button>
+                                                            <div id="<?php echo $courset->id; ?>" lang='<?php echo "certificate_courses"; ?>' class="delete_row">
+                                                                <button class="btn-default border"><span class="fa fa-trash"></span></button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -117,7 +119,7 @@ if ($user->isLoggedIn()) {
                                             <tr>
                                                 <th scope="col" style="width:5%">#</th>
                                                 <th scope="col" style="width:65%">Course Title</th>
-                                                <th scope="col" style="width:5%">C.A.</th>
+                                                <th scope="col" style="width:5%">Test</th>
                                                 <th scope="col" style="width:5%">Examination</th>
                                             </tr>
                                         </thead>

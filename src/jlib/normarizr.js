@@ -19,6 +19,7 @@ let ajaxEditCertificate=false;
 let ajaxEditCourse=false;
 let ajaxEditSchools=false;
 let ajaxViewCertificate=false;
+let ajaxAddCertificateCourse=false;
 
 
 
@@ -282,7 +283,7 @@ $(document).ready(function() {
         let table = $(this).attr("lang");
 
         dalert.ReplaceConfirm();
-       
+        
         confirm("Are you sure you want to delete?", "Confirm Delete!", function (result) {
             if (result) {
                 $.ajax({
@@ -301,7 +302,7 @@ $(document).ready(function() {
                                 tittleBgColor: '#535353',
                                 tittleFontColor: '#ffffff'
                             });
-                        dataTable.ajax.reload('abdganiu');
+                        
                     }
                 });
             }
@@ -315,6 +316,7 @@ $(document).ready(function() {
                     });
                 return false;
             }
+            
         },
         {
                 messageFontColor: '#333333',
@@ -322,7 +324,7 @@ $(document).ready(function() {
                 tittleBgColor: '#535353',
                 tittleFontColor: '#ffffff'
             });
-
+       
     });
    
 
@@ -744,7 +746,43 @@ $(document).ready(function() {
         }
     })
 
+    //Add Certificate Course Pop up Window with Ajax jquery
+    $(document).on('click', '.AddCertificateCourse', function (e) {
+        $("#loader_httpFeed").show();
 
+        let id = $(this).attr("id");
+
+        if (!ajaxAddCertificateCourse) {
+
+            ajaxAddCertificateCourse = true;
+            $.ajax({
+                type: "POST",
+                data: {
+                    'id': id
+                },
+                url: "view/schools/AddCertificateCourse",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Add Certificate Course",
+                        "content": msg
+                    });
+                    ajaxAddCertificateCourse = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+        e.preventDefault();
+    })
 
 });
 
