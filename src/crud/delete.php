@@ -17,3 +17,4 @@ require_once '../core/db.php';
 
 		
 
+//Universal delete query

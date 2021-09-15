@@ -217,7 +217,7 @@ if ($user->isLoggedIn()) {
                     <?php
 
 
-                    $programmea = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY programme DESC");
+                    $programmea = Db::getInstance()->query("SELECT * FROM `certificates` WHERE id!=14 ORDER BY programme DESC");
                     if (!$programmea->count()) {
                       echo "<h4 class='my-5 text-center'>No data to be displayed</h4>";
                     } else {

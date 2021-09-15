@@ -89,8 +89,7 @@
                              <label for="confirm_password" class="sr-only">Confirm Password</label>
                              <input type="password" name="confirm_password" id="confirm_password" class="form-control" />
                          </div>
-                         <input type="hidden" name="added_by" id="added_by" value="<?php echo $username_id; ?>" />
-                         <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>" />
+                         <input type="hidden" name="user_id" id="user_id" value="<?php echo $username_id; ?>" />
                          <div id="submitButton">
                              <button type="button" id="save" class="btn btn-light mb-3">
                                  <span class="fa fa-edit"> Update</span>
@@ -100,7 +99,7 @@
 
                      </form>
                  <?php }
-                } else if ($userSyscategory == 2 || $userSyscategory == 3) {
+                } else if ($userSyscategory == 2) {
 
                     $users = Db::getInstance()->query("SELECT * FROM users WHERE id=$user_id");
                     foreach ($users->results() as $use) {
@@ -145,8 +144,7 @@
                              <label for="confirm_password" class="sr-only">Confirm Password</label>
                              <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" class="form-control" />
                          </div>
-                         <input type="hidden" name="added_by" id="added_by" value="<?php echo $username_id; ?>" />
-                         <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>" />
+                         <input type="hidden" name="user_id" id="user_id" value="<?php echo $username_id; ?>" />
                          <div id="submitButton">
                              <button type="button" id="save" class="btn btn-light mb-3">
                                  <span class="fa fa-edit"> Update</span>
@@ -187,23 +185,20 @@
              let password = $('#password').val();
              let confirm_password = $('#confirm_password').val();
              let token = $('#token').val();
-             let added_by = $('#added_by').val();
-
 
 
              $.ajax({
                  url: "view/users/update_user_server",
                  method: 'POST',
                  data: {
-                     id: id,
+                     user_id: id,
                      username: username,
                      syscategory: syscategory,
                      school: school,
                      location: location,
                      password: password,
                      confirm_password: confirm_password,
-                     token: token,
-                     added_by: added_by
+                     token: token
 
                  },
                  success: function(data) {

@@ -2,7 +2,7 @@
 
 require_once '../../core/init.php';
 
-$id = $_POST['id'];
+$id = $_POST['user_id'];
 $member_id = $_POST['username'];
 
 if (Input::exists()) {
@@ -21,9 +21,6 @@ if (Input::exists()) {
                 'require'         => true
             ),
             'location'        => array(
-                'require'         => true
-            ),
-            'added_by'        => array(
                 'require'         => true
             ),
             'password'        => array(
@@ -46,7 +43,6 @@ if (Input::exists()) {
                     'syscategory' => Input::get('syscategory'),
                     'certificate' => Input::get('school'),
                     'location' => Input::get('location'),
-                    'added_by' => Input::get('added_by'),
                     'password' => Hash::make(Input::get('password'), $salt),
                     'salt' => $salt,
                     'joined' => date('Y-m-d H:i:s')

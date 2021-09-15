@@ -58,6 +58,39 @@ $(document).ready(function() {
         e.preventDefault();
     })
 
+     //Inbox Compose form Pop up Window with Ajax jquery
+     $(document).on('click', '.composer_box', function (e) {
+        $("#loader_httpFeed").show();
+        
+        if (!ajaxRegisterNewUser) {
+
+            ajaxRegisterNewUser = true;
+            $.ajax({
+                type: "POST",
+                url: "view/events/compose",
+                cache: false,
+                success: function (msg) {
+                    $("#loader_httpFeed").hide();
+                    new top.PopLayer({
+                        "title": "Compose Message",
+                        "content": msg
+                    });
+                    ajaxRegisterNewUser = false;
+                },
+                error: function (xhr) {
+                    if (xhr.status == 404) {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet connection working");
+                    } else {
+                        $("#loader_httpFeed").hide();
+                        dalert.alert("internet is down");
+                    }
+                }
+            });
+        }
+        e.preventDefault();
+    })
+
     //Add Payment type Pop up Window with Ajax jquery
     $(document).on('click', '.add_paymenttype', function (e) {
         $("#loader_httpFeed").show();
@@ -327,7 +360,6 @@ $(document).ready(function() {
        
     });
    
-
     //User/Student Delete Confirm Message box with Ajax jquery
     $(document).on('click', '.delete_user_or_student', function () {
         

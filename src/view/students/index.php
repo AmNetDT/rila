@@ -64,9 +64,8 @@ if ($user->isLoggedIn()) {
                           <th width="150">Student ID</th>
                           <th width="150">Matric No.</th>
                           <th width="180">Full name</th>
-                          <th width="180">Mobile</th>
-                          <th width="100">Programme</th>
-                          <th width="160">Location</th>
+                          <th width="180">Phone</th>
+                          <th width="100">Certificate</th>
                           <th width="140">Created</th>
                           <th width="30">Action</th>
                         </tr>
@@ -84,7 +83,6 @@ if ($user->isLoggedIn()) {
                             <td><?php echo $student->firstname . " " . $student->lastname ?></td>
                             <td><?php echo $student->phone ?></td>
                             <td><?php echo $student->programme ?></td>
-                            <td><?php echo $student->location ?></td>
                             <td><?php echo $student->created ?></td>
                             <td>
                               <div class="staff_student_view" id="<?php echo $student->member_id; ?>" lang="view/students">

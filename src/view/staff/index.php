@@ -58,8 +58,8 @@ if ($user->isLoggedIn()) {
                         <th width="150">Employee ID</th>
                         <th width="180">Full name</th>
                         <th width="180">Category</th>
-                        <th width="100">Location</th>
-                        <th width="160">School</th>
+                        <th width="160">Phone</th>
+                        <th width="160">Email</th>
                         <th width="140">Created</th>
                         <th width="30">Action</th>
                       </tr>
@@ -75,8 +75,8 @@ if ($user->isLoggedIn()) {
                           <td><?php echo $staff->member_id; ?></td>
                           <td><?php echo $staff->firstname . " " . $staff->lastname ?></td>
                           <td><?php echo $staff->category ?></td>
-                          <td><?php echo $staff->location ?></td>
-                          <td><?php echo $staff->programme ?></td>
+                          <td><?php echo $staff->phone ?></td>
+                          <td><?php echo $staff->email ?></td>
                           <td><?php echo $staff->created ?></td>
                           <td>
                             <div class="staff_student_view" id="<?php echo $staff->member_id; ?>" lang="view/staff">

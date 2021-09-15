@@ -16,7 +16,7 @@ if ($user->isLoggedIn()) {
             Register a new user account</p>
           <?php
 
-          
+
           $locating = escape($user->data()->location);
           $userSyscategory = escape($user->data()->syscategory);
           $privilege = Db::getInstance()->query("SELECT * FROM `syscategory` WHERE `id` = $userSyscategory");
@@ -40,7 +40,7 @@ if ($user->isLoggedIn()) {
                       foreach ($Syscategory->results() as $Syscategory) {
                     ?>
                         <option value="<?php echo $Syscategory->id; ?>"><?php echo $Syscategory->name; ?></option>
-                      <?php
+                    <?php
                       }
                     }
                     ?>
@@ -54,19 +54,9 @@ if ($user->isLoggedIn()) {
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="school" class="sr-only">Programme</label>
-                  <select class="form-control" name="school" id="school">
-                    <option selected>--Type of programme--</option>
-                    <?php
-
-                    $programmes = Db::getInstance()->query("SELECT * FROM `certificates` ORDER BY `id` DESC");
-                    foreach ($programmes->results() as $programmes) {
-
-                    ?>
-                      <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->title; ?></option>
-                    <?php
-                    }
-                    ?>
+                  <label for="school" class="sr-only">Designation</label>
+                  <select class="form-control" name="school" id="school" disabled>
+                    <option value="14">Admin Staff</option>
                   </select>
                 </div>
 
@@ -101,7 +91,7 @@ if ($user->isLoggedIn()) {
               </div>
             </form>
           <?php
-          } else if ($userSyscategory == 2) {
+          } else if ($userSyscategory == 2 || $userSyscategory == 3) {
 
           ?>
             <form class="row" autocomplete="off">
@@ -118,23 +108,23 @@ if ($user->isLoggedIn()) {
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="school" class="sr-only">Programme</label>
+                  <label for="school" class="sr-only">Certificates</label>
                   <select class="form-control" name="school" id="school">
-                    <option selected>--Type of programme--</option>
+                    <option selected>--Type of Certificate--</option>
                     <?php
 
-                    $programmes = Db::getInstance()->query("SELECT * FROM `certificates` WHERE id!=4 ORDER BY `id` DESC");
+                    $programmes = Db::getInstance()->query("SELECT * FROM `certificates` WHERE id!=14 ORDER BY `id` DESC");
                     foreach ($programmes->results() as $programmes) {
 
                     ?>
                       <option value="<?php echo $programmes->id; ?>"><?php echo $programmes->title; ?></option>
-                    <?php
+                      <?php
                     }
-                    ?>
+                      ?>
                   </select>
                 </div>
                 <input type="hidden" name="syscategory" id="syscategory" value="5" class="form-control" />
-                <input type="hidden" name="location" id="location" value="<?php echo $locating; ?>" class="form-control" />
+                <input type="hidden" name="location" id="location" value="<?php echo escape($user->data()->location); ?>" class="form-control" />
                 <div class="form-group">
                   <label for="confirm_password" class="sr-only">Confirm Password</label>
                   <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" />
@@ -190,14 +180,14 @@ if ($user->isLoggedIn()) {
         method: 'POST',
         data: {
 
-          'username': username,
-          'syscategory': syscategory,
-          'school': school,
-          'location': location,
-          'password': password,
-          'confirm_password': confirm_password,
-          'token': token,
-          'added_by': added_by
+          username: username,
+          syscategory: syscategory,
+          school: school,
+          location: location,
+          password: password,
+          confirm_password: confirm_password,
+          token: token,
+          added_by: added_by
 
         },
         success: function(data) {

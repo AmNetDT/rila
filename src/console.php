@@ -258,6 +258,13 @@ if (!$user->isLoggedIn()) {
                                                             <span class="hide-menu"> Student Details</span>
                                                         </a>
                                                     </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Finance
+                                                </a>
+                                                <ul style="margin-left:-15px;">
                                                     <li class="_payment">
                                                         <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
                                                             <span class="hide-menu"> Tuition Fees</span>
@@ -293,21 +300,23 @@ if (!$user->isLoggedIn()) {
                                                 </a>
                                                 <ul style="margin-left:-15px;">
                                                     <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/events" aria-expanded="false">
                                                             <span class="hide-menu"> Inbox</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
-                                                            <span class="hide-menu"> Time Table</span>
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="_mc">
-                                                <a class="waves-effect waves-dark menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
                                                     <span class="hide-menu"> Library</span>
                                                 </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                                            <span class="hide-menu"> Manage Library</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </li>
@@ -318,7 +327,119 @@ if (!$user->isLoggedIn()) {
 
 
                         ?>
-                            <p class="px-4 py-3 text-light shadow bg-danger">Coordinator</p>
+                            <p class="px-4 py-3 text-light shadow bg-danger">Super Coordinator</p>
+                            <div class="tree">
+                                <ul id="sidebarnav">
+
+                                    <li><a>User Management</a>
+                                        <ul>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    <span class="hide-menu">Users Account</span>
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <!--li class="_mc">
+                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/register" aria-expanded="false">
+                                            <span class="hide-menu"> Add New User</span>
+                                        </a>
+                                    </li!-->
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/" aria-expanded="false">
+                                                            <span class="hide-menu"> Users</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Students
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/students" aria-expanded="false">
+                                                            <span class="hide-menu"> Student Details</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/results" aria-expanded="false">
+                                                            <span class="hide-menu"> Results Manager</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Finance
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_payment">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Tuition Fees</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Other Payments</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Schools
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/schools" aria-expanded="false">
+                                                            <span class="hide-menu"> Programmes</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/course" aria-expanded="false">
+                                                            <span class="hide-menu"> Courses</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Events
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/events/compose" aria-expanded="false">
+                                                            <span class="hide-menu"> Compose</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/events" aria-expanded="false">
+                                                            <span class="hide-menu"> Inbox</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    <span class="hide-menu"> Library</span>
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                                            <span class="hide-menu"> Manage Library</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php
+                        } else if ($userSyscategory == 3) {
+
+
+                        ?>
+                            <p class="px-4 py-3 text-light shadow bg-danger">Admin - Coordinator</p>
                             <div class="tree">
                                 <ul id="sidebarnav">
 
@@ -386,28 +507,135 @@ if (!$user->isLoggedIn()) {
                                                 </a>
                                                 <ul style="margin-left:-15px;">
                                                     <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
-                                                            <span class="hide-menu"> News Blog</span>
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/events/compose" aria-expanded="false">
+                                                            <span class="hide-menu"> Compose</span>
                                                         </a>
                                                     </li>
                                                     <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="Settings" aria-expanded="false">
-                                                            <span class="hide-menu"> Time Table</span>
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/events" aria-expanded="false">
+                                                            <span class="hide-menu"> Inbox</span>
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="_mc">
-                                                <a class="waves-effect waves-dark menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
                                                     <span class="hide-menu"> Library</span>
                                                 </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                                            <span class="hide-menu"> Manage Library</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                         <?php
-                        } else if ($userSyscategory == 3) {
+                        } else if ($userSyscategory == 4) {
+
+
+                        ?>
+                            <p class="px-4 py-3 text-light shadow bg-danger">Acad Coordinator</p>
+                            <div class="tree">
+                                <ul id="sidebarnav">
+
+                                    <li><a>User Management</a>
+                                        <ul>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    <span class="hide-menu">Users Account</span>
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <!--li class="_mc">
+                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/register" aria-expanded="false">
+                                            <span class="hide-menu"> Add New User</span>
+                                        </a>
+                                    </li!-->
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/users/" aria-expanded="false">
+                                                            <span class="hide-menu"> Users</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Students
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/students" aria-expanded="false">
+                                                            <span class="hide-menu"> Student Details</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_payment">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Tuition Fees</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/payments" aria-expanded="false">
+                                                            <span class="hide-menu"> Other Payments</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Schools
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/schools" aria-expanded="false">
+                                                            <span class="hide-menu"> Programmes</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/course" aria-expanded="false">
+                                                            <span class="hide-menu"> Courses</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    Events
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/events/compose" aria-expanded="false">
+                                                            <span class="hide-menu"> Compose</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/events" aria-expanded="false">
+                                                            <span class="hide-menu"> Inbox</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
+                                                    <span class="hide-menu"> Library</span>
+                                                </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                                            <span class="hide-menu"> Manage Library</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php
+                        } else if ($userSyscategory == 5) {
 
 
                         ?>
@@ -439,7 +667,7 @@ if (!$user->isLoggedIn()) {
                                 </ul>
                             </div>
                         <?php
-                        } else if ($userSyscategory == 4) {
+                        } else if ($userSyscategory == 6) {
 
 
                         ?>
@@ -448,17 +676,24 @@ if (!$user->isLoggedIn()) {
                                 <ul id="sidebarnav">
                                     <li><a>User Management</a>
                                         <ul>
-                                            <li class="_mc">
-                                                <a class="waves-effect waves-dark menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                            <li>
+                                                <a class="waves-effect waves-dark menutree pl-4">
                                                     <span class="hide-menu"> Library</span>
                                                 </a>
+                                                <ul style="margin-left:-15px;">
+                                                    <li class="_mc">
+                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="view/library" aria-expanded="false">
+                                                            <span class="hide-menu"> Manage Library</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                         <?php
-                        } else if ($userSyscategory == 5) {
+                        } else if ($userSyscategory == 7) {
 
 
 
@@ -466,50 +701,26 @@ if (!$user->isLoggedIn()) {
                             <p class="px-4 py-3 text-light shadow bg-dark">Students</p>
                             <div class="tree">
                                 <ul id="sidebarnav">
+
                                     <li><a>User Management</a>
                                         <ul>
                                             <li class="_mc">
-                                                <a class="waves-effect waves-dark menutree text-white" href="javascript:void(0)" id="#" aria-expanded="false">
-                                                    <span class="hide-menu">Programme</span>
-                                                </a>
-                                                <ul style="margin-left:-15px;">
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="console" aria-expanded="false">
-                                                            <span class="hide-menu"> Curriculum</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="console" aria-expanded="false">
-                                                            <span class="hide-menu"> Time Table</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a class="waves-effect waves-dark menutree pl-4">
-                                                    Record
-                                                </a>
-                                                <ul style="margin-left:-15px;">
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="console" aria-expanded="false">
-                                                            <span class="hide-menu"> Grade Record</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="_mc">
-                                                        <a class="waves-effect waves-dark sub-menutree" href="javascript:void(0)" id="console" aria-expanded="false">
-                                                            <span class="hide-menu"> Payment Record</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="waves-effect waves-dark menutree">
-                                                    Events
+                                                <a class="waves-effect waves-dark menutree pl-4" href="javascript:void(0)" id="view/students" aria-expanded="false">
+                                                    Payments
                                                 </a>
                                             </li>
                                             <li class="_mc">
-                                                <a class="waves-effect waves-dark menutree text-white" href="javascript:void(0)" id="Settings" aria-expanded="false">
+                                                <a class="waves-effect waves-dark menutree pl-4" href="javascript:void(0)" id="view/students" aria-expanded="false">
+                                                    Academy
+                                                </a>
+                                            </li>
+                                            <li class="_mc">
+                                                <a class="waves-effect waves-dark menutree pl-4" href="javascript:void(0)" id="view/students" aria-expanded="false">
+                                                    Inbox
+                                                </a>
+                                            </li>
+                                            <li class="_mc">
+                                                <a class="waves-effect waves-dark menutree pl-4" href="javascript:void(0)" id="view/library" aria-expanded="false">
                                                     <span class="hide-menu"> Library</span>
                                                 </a>
                                             </li>
@@ -557,12 +768,7 @@ if (!$user->isLoggedIn()) {
                                         <p class="fa fa-users font-icon"></p>
                                         <p class="card-title m-t-10">Number of Admin Users</p>
                                         <p class="card-subtitle"></p>
-                                        <div class="row text-center justify-content-md-center">
-                                            <div class="col-4"><a href="javascript:void(0)" class="link">
-                                                    <i class="fa fa-users"></i>
-                                                    <span class="font-medium">23</span>
-                                                </a></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -575,12 +781,7 @@ if (!$user->isLoggedIn()) {
                                         <p class="fa fa-institution font-icon"></p>
                                         <p class="card-title m-t-10">Schools</p>
                                         <p class="card-subtitle"></p>
-                                        <div class="row text-center justify-content-md-center">
-                                            <div class="col-4"><a href="javascript:void(0)" class="link">
-                                                    <i class="fa fa-institution"></i>
-                                                    <span class="font-medium">3</span>
-                                                </a></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -592,12 +793,7 @@ if (!$user->isLoggedIn()) {
                                         <p class="fa fa-mortar-board font-icon"></p>
                                         <p class="card-title m-t-10">Number of Student</p>
                                         <p class="card-subtitle"></p>
-                                        <div class="row text-center justify-content-md-center">
-                                            <div class="col-4"><a href="javascript:void(0)" class="link">
-                                                    <i class="fa fa-tasks"></i>
-                                                    <font class="font-medium">254</font>
-                                                </a></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -612,12 +808,7 @@ if (!$user->isLoggedIn()) {
                                         <p class="fa fa-calendar font-icon"></p>
                                         <p class="card-title m-t-10">Number of Post</p>
                                         <p class="card-subtitle"></p>
-                                        <div class="row text-center justify-content-md-center">
-                                            <div class="col-4"><a href="javascript:void(0)" class="link">
-                                                    <i class="fa fa-send"></i>
-                                                    <span class="font-medium">254</span>
-                                                </a></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -630,12 +821,7 @@ if (!$user->isLoggedIn()) {
                                         <p class="fa fa-credit-card font-icon"></p>
                                         <p class="card-title m-t-10">Payment Records</p>
                                         <p class="card-subtitle"></p>
-                                        <div class="row text-center justify-content-md-center">
-                                            <div class="col-4"><a href="javascript:void(0)" class="link">
-                                                    <i class="fa fa-credit-card"></i>
-                                                    <span class="font-medium">254</span>
-                                                </a></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -647,12 +833,7 @@ if (!$user->isLoggedIn()) {
                                         <p class="fa fa-book font-icon"></p>
                                         <p class="card-title m-t-10">Library Inventory</p>
                                         <p class="card-subtitle"></p>
-                                        <div class="row text-center justify-content-md-center">
-                                            <div class="col-4"><a href="javascript:void(0)" class="link">
-                                                    <i class="fa fa-book"></i>
-                                                    <span class="font-medium">254</span>
-                                                </a></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>

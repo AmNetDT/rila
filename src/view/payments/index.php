@@ -46,7 +46,7 @@ if ($user->isLoggedIn()) {
             ?>
 
             <button class="view_payment_type border">
-              <span class="fa fa-search"> Titles</span>
+              <span class="fa fa-search"> Payment Titles</span>
             </button>
 
           </div>

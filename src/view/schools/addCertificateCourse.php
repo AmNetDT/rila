@@ -103,6 +103,7 @@ if ($user->isLoggedIn()) {
                 success: function(data) {
 
                     dalert.alert(data);
+                    dataTable.ajax.reload();
 
                 },
                 error: function(xhr) {
